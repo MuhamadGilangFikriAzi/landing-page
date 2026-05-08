@@ -119,6 +119,102 @@ body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
 .gradient-text { background: linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .btn-primary { background: linear-gradient(135deg, #3b82f6, #2563eb); transition: all 0.3s ease; }
 .btn-primary:hover { background: linear-gradient(135deg, #2563eb, #1d4ed8); transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(59,130,246,0.4); }
+
+/* ─── PROMO DISKON ─────────────────────────── */
+.promo-badge {
+  position: absolute;
+  top: -0.75rem;
+  right: -0.75rem;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(239,68,68,0.35);
+  z-index: 10;
+  animation: promoPulse 2s ease-in-out infinite;
+  letter-spacing: 0.02em;
+}
+@keyframes promoPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+.price-old {
+  text-decoration: line-through;
+  color: #9ca3af;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+.price-new {
+  color: #dc2626;
+  font-weight: 800;
+  font-size: 2.5rem;
+}
+.price-new.green {
+  color: #059669;
+}
+.price-discount-label {
+  font-size: 0.75rem;
+  color: #059669;
+  font-weight: 600;
+}
+.countdown-bar {
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.countdown-bar .label-promo {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+}
+.countdown-bar .label-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0.25rem 0;
+}
+.countdown-bar .label-reset {
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+.countdown-timer {
+  display: inline-flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+.countdown-timer .cd-item {
+  text-align: center;
+}
+.countdown-timer .cd-num {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+  min-width: 2.2rem;
+}
+.countdown-timer .cd-label {
+  display: block;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-top: 0.15rem;
+}
+@keyframes countPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.countdown-timer .cd-sep {
+  font-size: 1.3rem;
+  font-weight: 700;
+  animation: countPulse 1s step-end infinite;
+  line-height: 1.8;
+}
 </style></head>
 <body x-data="{ mobileOpen: false }">
 
@@ -238,6 +334,19 @@ Landing page, company profile, toko online &mdash; dikerjakan developer berpenga
       <p class="section-subtitle">Mulai dari Rp 800.000 &mdash; tanpa biaya tersembunyi. Hosting &amp; domain GRATIS! Geser untuk lihat semua paket.</p>
     </div>
   </div>
+      <div class="countdown-bar" x-data="promoCountdown()">
+    <div class="label-promo">🔥 Promo Harian</div>
+    <div class="label-title">Diskon 30% Semua Layanan!</div>
+    <div class="countdown-timer">
+      <div class="cd-item"><span class="cd-num" x-text="h.pad()">00</span><span class="cd-label">Jam</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-item"><span class="cd-num" x-text="m.pad()">00</span><span class="cd-label">Menit</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-item"><span class="cd-num" x-text="s.pad()">00</span><span class="cd-label">Detik</span></div>
+    </div>
+    <div class="label-reset">⏰ Reset setiap pukul 00:00 WIB</div>
+  </div>
+    
 
   <div class="max-w-6xl mx-auto px-6">
     <div class="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4
@@ -249,7 +358,7 @@ Landing page, company profile, toko online &mdash; dikerjakan developer berpenga
       [&::-webkit-scrollbar-thumb]:hover:bg-gray-400">
 
       <!-- Landing Page -->
-      <div class="snap-start shrink-0 w-[320px] md:w-[360px] border border-gray-200 rounded-2xl p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-white">
+      <div class="snap-start shrink-0 w-[320px] md:w-[360px] border border-gray-200 rounded-2xl p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-white relative"><div class="promo-badge">DISKON 30%</div>
         <h3 class="text-lg font-bold text-gray-800">Landing Page</h3>
         <div class="mt-4 mb-6"><span class="text-4xl font-bold text-gray-900">Rp 800k</span><span class="text-gray-400 text-sm">/project</span></div>
         <ul class="space-y-3 text-sm text-gray-600">
@@ -266,7 +375,7 @@ Landing page, company profile, toko online &mdash; dikerjakan developer berpenga
       </div>
 
       <!-- Company Profile (POPULER) -->
-      <div class="snap-start shrink-0 w-[320px] md:w-[360px] border-2 border-blue-500 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 relative bg-white">
+      <div class="snap-start shrink-0 w-[320px] md:w-[360px] border-2 border-blue-500 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 relative bg-white"><div class="promo-badge" style="right:auto;left:-0.75rem">DISKON 30%</div>
         <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-4 py-1 rounded-full">POPULER</div>
         <h3 class="text-lg font-bold text-gray-800 mt-2">Company Profile</h3>
         <div class="mt-4 mb-6"><span class="text-4xl font-bold text-gray-900">Rp 1,5jt</span><span class="text-gray-400 text-sm">/project</span></div>
@@ -285,7 +394,7 @@ Landing page, company profile, toko online &mdash; dikerjakan developer berpenga
       </div>
 
       <!-- Toko Online -->
-      <div class="snap-start shrink-0 w-[320px] md:w-[360px] border border-gray-200 rounded-2xl p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-white">
+      <div class="snap-start shrink-0 w-[320px] md:w-[360px] border border-gray-200 rounded-2xl p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-white relative"><div class="promo-badge">DISKON 30%</div>
         <h3 class="text-lg font-bold text-gray-800">Toko Online</h3>
         <div class="mt-4 mb-6"><span class="text-4xl font-bold text-gray-900">Rp 2,5jt</span><span class="text-gray-400 text-sm">/project</span></div>
         <ul class="space-y-3 text-sm text-gray-600">
@@ -355,7 +464,7 @@ Landing page, company profile, toko online &mdash; dikerjakan developer berpenga
     <div class="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 max-w-5xl mx-auto px-6">
       
       <!-- Starter AI Reply -->
-      <div class="snap-start shrink-0 w-[300px] md:w-[340px] bg-white rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
+      <div class="snap-start shrink-0 w-[300px] md:w-[340px] bg-white rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 relative"><div class="promo-badge">DISKON 30%</div>
         <div class="mb-6">
           <h4 class="text-lg font-bold text-gray-900 mb-1">Starter AI Reply</h4>
           <p class="text-sm text-gray-500">Auto reply sederhana & cepat untuk UMKM</p>
@@ -398,7 +507,7 @@ Landing page, company profile, toko online &mdash; dikerjakan developer berpenga
       </div>
 
       <!-- Advanced AI Assistant -->
-      <div class="snap-start shrink-0 w-[300px] md:w-[340px] bg-white rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
+      <div class="snap-start shrink-0 w-[300px] md:w-[340px] bg-white rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 relative"><div class="promo-badge">DISKON 30%</div>
         <div class="mb-6">
           <h4 class="text-lg font-bold text-gray-900 mb-1">Advanced AI Assistant</h4>
           <p class="text-sm text-gray-500">AI paling pintar untuk bisnis sibuk</p>
@@ -454,7 +563,7 @@ Landing page, company profile, toko online &mdash; dikerjakan developer berpenga
 <p class="text-gray-500 mt-4 leading-relaxed">Ada ide website🚀 Konsultasi Gratis dulu, saya bantu tentukan konsep yang tepat. Respon cepat via WhatsApp.</p>
 <div class="space-y-4 mt-8">
 <div class="flex items-start gap-4"><div class="w-11 h-11 bg-blue-100 rounded-xl flex items-center justify-center shrink-0"><svg class="w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></div><div><h4 class="font-semibold text-gray-800 text-sm">WhatsApp</h4><p class="text-gray-500 text-sm">+62 881-0806-08167</p></div></div>
-<div class="flex items-start gap-4"><div class="w-11 h-11 bg-purple-100 rounded-xl flex items-center justify-center shrink-0"><svg class="w-5 h-5 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div><div><h4 class="font-semibold text-gray-800 text-sm">Email</h4><p class="text-gray-500 text-sm">contact@suruhcoding.com</p></div></div>
+<div class="flex items-start gap-4"><div class="w-11 h-11 bg-purple-100 rounded-xl flex items-center justify-center shrink-0"><svg class="w-5 h-5 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div><div><h4 class="font-semibold text-gray-800 text-sm">Email</h4><p class="text-gray-500 text-sm">contact@suruhngoding.com</p></div></div>
 </div>
 </div>
 <div class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-3xl p-8 md:p-10 text-white">
@@ -475,5 +584,38 @@ Landing page, company profile, toko online &mdash; dikerjakan developer berpenga
 <p class="text-xs mt-4">&copy; 2026 SuruhNgoding. All rights reserved.</p>
 </div>
 </footer>
-</body>
+<script>/* ─── PROMO COUNTDOWN + DISKON ────────────── */
+function promoCountdown() {
+    return {
+        h: 24, m: 0, s: 0,
+        init() {
+            const now = new Date();
+            const jakartaOff = 7 * 60 * 60 * 1000;
+            const nowJakarta = new Date(now.getTime() + jakartaOff);
+            const endOfDay = new Date(nowJakarta);
+            endOfDay.setUTCHours(24, 0, 0, 0);
+            let diff = Math.floor((endOfDay - nowJakarta) / 1000);
+            if (diff <= 0) diff = 86400;
+            this.h = Math.floor(diff / 3600);
+            this.m = Math.floor((diff % 3600) / 60);
+            this.s = diff % 60;
+            setInterval(() => {
+                this.s--;
+                if (this.s < 0) { this.s = 59; this.m--; }
+                if (this.m < 0) { this.m = 59; this.h--; }
+                if (this.h < 0) { this.h = 23; this.m = 59; this.s = 59; }
+            }, 1000);
+        }
+    };
+}
+function applyDiscount() {
+    document.querySelectorAll('[data-price]').forEach(function(el) {
+        var original = parseInt(el.dataset.price, 10);
+        if (isNaN(original)) return;
+        var discounted = Math.round(original * 0.7);
+        el.innerHTML = '<span class="price-old">Rp ' + original.toLocaleString('id-ID') + '</span> ' +
+                      '<span class="price-new">Rp ' + discounted.toLocaleString('id-ID') + '</span>';
+    });
+}
+document.addEventListener('DOMContentLoaded', applyDiscount);</script></body>
 </html>
