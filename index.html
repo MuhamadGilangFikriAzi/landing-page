@@ -123,19 +123,50 @@ body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
 /* ─── PROMO DISKON — PREMIUM ──────────────── */
 .promo-badge {
   position: absolute;
-  top: -0.75rem;
-  right: -0.75rem;
   background: linear-gradient(135deg, #ef4444 0%, #dc2626 50%, #b91c1c 100%);
   color: #fff;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 800;
-  padding: 0.4rem 1rem;
+  padding: 0.35rem 0.75rem;
   border-radius: 999px;
   box-shadow: 0 4px 16px rgba(239,68,68,0.4), 0 0 0 2px rgba(239,68,68,0.15);
   z-index: 10;
   letter-spacing: 0.04em;
   white-space: nowrap;
   animation: promoGlow 2s ease-in-out infinite;
+  pointer-events: none;
+  top: 0.5rem;
+  right: 0.4rem;
+}
+.promo-badge-green {
+  background: linear-gradient(135deg, #059669, #047857);
+  box-shadow: 0 4px 16px rgba(5,150,105,0.4), 0 0 0 2px rgba(5,150,105,0.15);
+}
+.promo-badge-center {
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.promo-badge-right {
+  right: 0.4rem;
+  left: auto;
+}
+@media (max-width: 640px) {
+  .promo-badge {
+    font-size: 0.6rem;
+    padding: 0.25rem 0.6rem;
+    top: 0.35rem;
+    right: 0.25rem;
+  }
+  .promo-badge-center {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .promo-badge-right {
+    right: 0.25rem;
+    left: auto;
+  }
 }
 @keyframes promoGlow {
   0%, 100% { box-shadow: 0 4px 16px rgba(239,68,68,0.4), 0 0 0 2px rgba(239,68,68,0.15); }
@@ -268,7 +299,177 @@ body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
   0%, 100% { opacity: 1; }
   50% { opacity: 0.3; }
 }
-</style></head>
+</style><script>/* ─── i18n MULTI-LANGUAGE ─────────────────── */
+const I18N = {
+  locale: localStorage.getItem('lang') || 'id',
+  setLocale(lang) {
+    this.locale = lang;
+    localStorage.setItem('lang', lang);
+    document.documentElement.lang = lang;
+  },
+  t(key) {
+    const keys = key.split('.');
+    let val = this.translations[this.locale];
+    for (let k of keys) {
+      if (val && val[k] !== undefined) val = val[k];
+      else return key;
+    }
+    return val || key;
+  },
+  translations: {
+    id: {
+      nav: {
+        home: 'Beranda',
+        stats: 'Statistik',
+        portfolio: 'Portofolio',
+        pricing: 'Harga',
+        ai: 'AI WhatsApp',
+        contact: 'Kontak'
+      },
+      hero: {
+        tagline: 'Solusi Digital untuk Bisnis Anda',
+        subtitle: '<span x-text="$t('hero.subtitle')">Dari landing page hingga AI automation, kami bantu bisnis Anda go digital.</span>',
+        cta: '<span x-text="$t('hero.cta')">Konsultasi Gratis</span>',
+        more: '<span x-text="$t('hero.more')">Lihat Portofolio</span>'
+      },
+      stats: {
+        projects: '<span x-text="$t('stats.projects')">Project Selesai</span>',
+        clients: '<span x-text="$t('stats.clients')">Klien</span>',
+        templates: '<span x-text="$t('stats.templates')">Template</span>',
+        years: '<span x-text="$t('stats.years')">Tahun Pengalaman</span>'
+      },
+      pricing: {
+        title: '<span x-text="$t('pricing.title')"><span x-text="$t('pricing.cta')">Pilih Paket</span> Sesuai Kebutuhan</span>',
+        tag: 'Harga',
+        landing: 'Landing Page',
+        landing_desc: '<span x-text="$t('pricing.landing_desc')">Website satu halaman profesional untuk bisnis atau personal brand.</span>',
+        company: 'Company Profile',
+        company_desc: '<span x-text="$t('pricing.company_desc')">Website profil perusahaan lengkap dengan multi halaman.</span>',
+        toko: 'Toko Online',
+        toko_desc: '<span x-text="$t('pricing.toko_desc')">Website e-commerce dengan sistem pemesanan online.</span>',
+        cta: 'Pilih Paket',
+        bestseller: '<span x-text="$t('pricing.bestseller')">Terlaris</span>'
+      },
+      ai: {
+        tag: 'AI WhatsApp',
+        title: '<span x-text="$t('ai.title')">Otomatisasi WhatsApp dengan AI</span>',
+        desc: '<span x-text="$t('ai.desc')">Balas chat pelanggan otomatis 24 jam dengan AI cerdas.</span>',
+        how_title: '<span x-text="$t('ai.how_title')"><span x-text="$t('ai.how_title')">Cara Kerja</span></span>',
+        how_1: '<span x-text="$t('ai.how_1')">Pelanggan kirim pesan ke WhatsApp bisnis kamu</span>',
+        how_2: '<span x-text="$t('ai.how_2')">AI kami proses dan pahami maksud pesannya</span>',
+        how_3: '<span x-text="$t('ai.how_3')">Balasan cerdas langsung terkirim otomatis</span>',
+        cta: '<span x-text="$t('ai.cta')"><span x-text="$t('ai.cta')">Mulai Sekarang</span></span>',
+        new: '<span x-text="$t('ai.new')">Baru</span>'
+      },
+      contact: {
+        tag: 'Kontak',
+        title: '<span x-text="$t('contact.title')"><span x-text="$t('contact.title')">Hubungi Kami</span></span>',
+        name: '<span x-text="$t('contact.name')">Nama</span>',
+        email: '<span x-text="$t('contact.email')">Email</span>',
+        message: '<span x-text="$t('contact.message')">Pesan</span>',
+        send: '<span x-text="$t('contact.send')"><span x-text="$t('contact.send')">Kirim Pesan</span></span>',
+        or_wa: '<span x-text="$t('contact.or_wa')">Atau langsung via WhatsApp</span>'
+      },
+      footer: {
+        rights: '<span x-text="$t('footer.rights')">Hak Cipta Dilindungi.</span>',
+        made: '<span x-text="$t('footer.made')">Dibuat dengan</span>',
+        by: '<span x-text="$t('footer.by')">oleh SuruhNgoding</span>'
+      },
+      promo: {
+        title: '<span x-text="$t('promo.title')" class="label-title"><span x-text="$t('promo.title')" class="label-title">Diskon 30% Semua Layanan!</span></span>',
+        label: '<span x-text="$t('promo.label')" class="label-promo"><span x-text="$t('promo.label')" class="label-promo">Promo Harian</span></span>',
+        reset: '<span x-text="$t('promo.reset')" class="label-reset"><span x-text="$t('promo.reset')" class="label-reset">Reset setiap 00:00 WIB</span></span>'
+      },
+      button: {
+        lang: 'EN'
+      }
+    },
+    en: {
+      nav: {
+        home: 'Home',
+        stats: 'Statistics',
+        portfolio: 'Portfolio',
+        pricing: 'Pricing',
+        ai: 'AI WhatsApp',
+        contact: 'Contact'
+      },
+      hero: {
+        tagline: 'Digital Solutions for Your Business',
+        subtitle: 'From landing pages to AI automation, we help your business go digital.',
+        cta: 'Free Consultation',
+        more: 'View Portfolio'
+      },
+      stats: {
+        projects: 'Projects Done',
+        clients: 'Clients',
+        templates: 'Templates',
+        years: 'Years Experience'
+      },
+      pricing: {
+        title: 'Choose the Right Package',
+        tag: 'Pricing',
+        landing: 'Landing Page',
+        landing_desc: 'Professional single-page website for business or personal brand.',
+        company: 'Company Profile',
+        company_desc: 'Complete multi-page company profile website.',
+        toko: 'Online Store',
+        toko_desc: 'E-commerce website with online ordering system.',
+        cta: 'Choose Package',
+        bestseller: 'Best Seller'
+      },
+      ai: {
+        tag: 'AI WhatsApp',
+        title: 'WhatsApp Automation with AI',
+        desc: 'Auto-reply customer chats 24/7 with smart AI.',
+        how_title: 'How It Works',
+        how_1: 'Customer sends a message to your business WhatsApp',
+        how_2: 'Our AI processes and understands the message',
+        how_3: 'Smart reply is sent automatically',
+        cta: 'Get Started',
+        new: 'New'
+      },
+      contact: {
+        tag: 'Contact',
+        title: 'Get in Touch',
+        name: 'Name',
+        email: 'Email',
+        message: 'Message',
+        send: 'Send Message',
+        or_wa: 'Or directly via WhatsApp'
+      },
+      footer: {
+        rights: 'All Rights Reserved.',
+        made: 'Made with',
+        by: 'by SuruhNgoding'
+      },
+      promo: {
+        title: '30% Off All Services!',
+        label: 'Daily Promo',
+        reset: 'Resets at 00:00 WIB'
+      },
+      button: {
+        lang: 'ID'
+      }
+    }
+  }
+};
+// Alpine magic $t()
+document.addEventListener('alpine:init', () => {
+  Alpine.magic('t', () => (key) => I18N.t(key));
+  Alpine.store('lang', {
+    locale: I18N.locale,
+    switch() {
+      I18N.setLocale(I18N.locale === 'id' ? 'en' : 'id');
+      this.locale = I18N.locale;
+      // Force Alpine re-render
+      document.querySelectorAll('[x-text*="$t("]').forEach(el => {
+        const key = el.getAttribute('x-text').replace("$t('","").replace("')","");
+        el.innerText = I18N.t(key);
+      });
+    }
+  });
+});</script>
+</head>
 <body x-data="{ mobileOpen: false }">
 
 <nav x-data="{ scrolled: false }" x-init="window.addEventListener('scroll', () => scrolled = window.scrollY > 30)"
@@ -279,12 +480,17 @@ class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6">
 <span :class="scrolled ? 'text-gray-800' : 'text-white'" class="transition-colors">SuruhNgoding</span>
 </a>
 <div class="hidden md:flex items-center gap-8">
-<a href="#layanan" :class="scrolled ? 'text-gray-600 hover:text-blue-600' : 'text-gray-200 hover:text-white'" class="text-sm font-medium transition">Layanan</a>
-<a href="#portofolio" :class="scrolled ? 'text-gray-600 hover:text-blue-600' : 'text-gray-200 hover:text-white'" class="text-sm font-medium transition">Portofolio</a>
-<a href="#harga" :class="scrolled ? 'text-gray-600 hover:text-blue-600' : 'text-gray-200 hover:text-white'" class="text-sm font-medium transition">Harga</a>
-<a href="#kontak" :class="scrolled ? 'text-gray-600 hover:text-blue-600' : 'text-gray-200 hover:text-white'" class="text-sm font-medium transition">Kontak</a>
+<a href="#layanan" :class="scrolled ? 'text-gray-600 hover:text-blue-600' : 'text-gray-200 hover:text-white'" class="text-sm font-medium transition" x-text="$t('nav.home')">Layanan</a>
+<a href="#portofolio" :class="scrolled ? 'text-gray-600 hover:text-blue-600' : 'text-gray-200 hover:text-white'" class="text-sm font-medium transition" x-text="$t('nav.portfolio')">Portofolio</a>
+<a href="#harga" :class="scrolled ? 'text-gray-600 hover:text-blue-600' : 'text-gray-200 hover:text-white'" class="text-sm font-medium transition" x-text="$t('nav.pricing')">Harga</a>
+<a href="#kontak" :class="scrolled ? 'text-gray-600 hover:text-blue-600' : 'text-gray-200 hover:text-white'" class="text-sm font-medium transition" x-text="$t('nav.contact')">Kontak</a>
 <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20tertarik%20buat%20website" target="_blank" class="btn-primary text-white text-sm font-semibold px-5 py-2.5 rounded-xl inline-flex items-center gap-2">
-<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Hubungi Saya
+<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> <button @click="$store.lang.switch()" 
+  :class="scrolled ? 'text-gray-600 border-gray-300 hover:bg-gray-100' : 'text-gray-200 border-white/30 hover:bg-white/10'"
+  class="ml-1 px-2.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 border"
+  style="min-width:32px">
+  <span x-text="$t('button.lang')">EN</span>
+</button>Hubungi Saya
 </a></div>
 <button @click="mobileOpen = !mobileOpen" :class="scrolled ? 'text-gray-700' : 'text-white'" class="md:hidden p-2">
 <svg x-show="!mobileOpen" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -292,10 +498,13 @@ class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6">
 </button>
 </div>
 <div x-show="mobileOpen" x-cloak class="md:hidden bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-<a href="#layanan" @click="mobileOpen = false" class="block px-5 py-3 text-sm font-medium text-gray-700 hover:bg-blue-50">Layanan</a>
-<a href="#portofolio" @click="mobileOpen = false" class="block px-5 py-3 text-sm font-medium text-gray-700 hover:bg-blue-50">Portofolio</a>
-<a href="#harga" @click="mobileOpen = false" class="block px-5 py-3 text-sm font-medium text-gray-700 hover:bg-blue-50">Harga</a>
-<a href="#kontak" @click="mobileOpen = false" class="block px-5 py-3 text-sm font-medium text-gray-700 hover:bg-blue-50">Kontak</a>
+<a href="#layanan" @click="mobileOpen = false" class="block px-5 py-3 text-sm font-medium text-gray-700 hover:bg-blue-50" x-text="$t('nav.home')">Layanan</a>
+<a href="#portofolio" @click="mobileOpen = false" class="block px-5 py-3 text-sm font-medium text-gray-700 hover:bg-blue-50" x-text="$t('nav.portfolio')">Portofolio</a>
+<a href="#harga" @click="mobileOpen = false" class="block px-5 py-3 text-sm font-medium text-gray-700 hover:bg-blue-50" x-text="$t('nav.pricing')">Harga</a>
+<a href="#kontak" @click="mobileOpen = false" class="block px-5 py-3 text-sm font-medium text-gray-700 hover:bg-blue-50" x-text="$t('nav.contact')">Kontak</a><button @click="$store.lang.switch(); mobileOpen = false" 
+  class="w-full px-5 py-3 text-sm font-medium text-gray-700 hover:bg-blue-50 border-t border-gray-100 text-left">
+  $t('button.lang')
+</button>
 </div>
 </nav>
 
@@ -382,7 +591,7 @@ Landing page, company profile, toko online &mdash; dikerjakan developer berpenga
 <section id="harga" class="section section-white">
   <div class="container">
     <div class="section-heading">
-      <span class="section-tag">Harga</span>
+      <span <span x-text="$t('nav.pricing')" <span x-text="$t('nav.pricing')" class="section-tag">Harga</span>
       <h2 class="section-title">Paket Sederhana &amp; Transparan</h2>
       <p class="section-subtitle">Mulai dari Rp 800.000 &mdash; tanpa biaya tersembunyi. Hosting &amp; domain GRATIS! Geser untuk lihat semua paket.</p>
     </div>
@@ -411,8 +620,8 @@ Landing page, company profile, toko online &mdash; dikerjakan developer berpenga
       [&::-webkit-scrollbar-thumb]:hover:bg-gray-400">
 
       <!-- Landing Page -->
-      <div class="snap-start shrink-0 w-[320px] md:w-[360px] border border-gray-200 rounded-2xl p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-white relative"><div class="promo-badge">DISKON 30%</div>
-        <h3 class="text-lg font-bold text-gray-800">Landing Page</h3>
+      <div class="snap-start shrink-0 w-[320px] md:w-[360px] border border-gray-200 rounded-2xl p-7 md:p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-white relative"><div class="promo-badge promo-badge-right">DISKON 30%</div>
+        <h3 class="text-lg font-bold text-gray-800"><span x-text="$t('pricing.landing')">Landing Page</span></h3>
         <div class="mt-4 mb-6"><span class="text-4xl font-bold text-gray-900">Rp 800k</span><span class="text-gray-400 text-sm">/project</span></div>
         <ul class="space-y-3 text-sm text-gray-600">
           <li class="flex items-start gap-2">✅ 1 halaman responsif modern</li>
@@ -428,9 +637,9 @@ Landing page, company profile, toko online &mdash; dikerjakan developer berpenga
       </div>
 
       <!-- Company Profile (POPULER) -->
-      <div class="snap-start shrink-0 w-[320px] md:w-[360px] border-2 border-emerald-500 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 relative bg-white"><div class="promo-badge" style="right:auto;left:-0.9rem;top:-0.75rem;background:linear-gradient(135deg,#059669,#047857)">HEMAT 30%</div>
+      <div class="snap-start shrink-0 w-[320px] md:w-[360px] border-2 border-emerald-500 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 relative bg-white"><div <div class="promo-badge promo-badge-center promo-badge-green">HEMAT 30%</div>
         <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-4 py-1 rounded-full">POPULER</div>
-        <h3 class="text-lg font-bold text-gray-800 mt-2">Company Profile</h3>
+        <h3 class="text-lg font-bold text-gray-800 mt-2"><span x-text="$t('pricing.company')">Company Profile</span></h3>
         <div class="mt-4 mb-6"><span class="text-4xl font-bold text-gray-900">Rp 1,5jt</span><span class="text-gray-400 text-sm">/project</span></div>
         <ul class="space-y-3 text-sm text-gray-600">
           <li class="flex items-start gap-2">✅ Multi halaman (beranda, tentang, layanan, kontak)</li>
@@ -447,8 +656,8 @@ Landing page, company profile, toko online &mdash; dikerjakan developer berpenga
       </div>
 
       <!-- Toko Online -->
-      <div class="snap-start shrink-0 w-[320px] md:w-[360px] border border-gray-200 rounded-2xl p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-white relative"><div class="promo-badge">DISKON 30%</div>
-        <h3 class="text-lg font-bold text-gray-800">Toko Online</h3>
+      <div class="snap-start shrink-0 w-[320px] md:w-[360px] border border-gray-200 rounded-2xl p-7 md:p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-white relative"><div class="promo-badge promo-badge-right">DISKON 30%</div>
+        <h3 class="text-lg font-bold text-gray-800"><span x-text="$t('pricing.toko')">Toko Online</span></h3>
         <div class="mt-4 mb-6"><span class="text-4xl font-bold text-gray-900">Rp 2,5jt</span><span class="text-gray-400 text-sm">/project</span></div>
         <ul class="space-y-3 text-sm text-gray-600">
           <li class="flex items-start gap-2">✅ Landing page + katalog produk</li>
@@ -478,7 +687,7 @@ Landing page, company profile, toko online &mdash; dikerjakan developer berpenga
 <section <section <section id="ai-automation" class="section section-light">
   <div class="container">
     <div class="section-heading">
-      <span class="section-tag">AI WhatsApp</span>
+      <span <span x-text="$t('nav.ai')" class="section-tag">AI WhatsApp</span>
       <h2 class="section-title">Cara Kerja AI WhatsApp Automation</h2>
       <p class="section-subtitle">Gampang, langsung jalan — tinggal hubungkan, AI siap bantu balas chat 24 jam</p>
     </div>
@@ -510,14 +719,14 @@ Landing page, company profile, toko online &mdash; dikerjakan developer berpenga
 
     <!-- Pricing -->
     <div class="text-center mb-10">
-      <h3 class="section-title">Pilih Paket Sesuai Kebutuhan</h3>
+      <h3 class="section-title"><span x-text="$t('pricing.title')">Pilih Paket Sesuai Kebutuhan</span></h3>
       <p class="section-subtitle">Mulai dari yang sederhana sampai yang paling pintar — geser untuk lihat semua</p>
     </div>
 
     <div class="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 max-w-5xl mx-auto px-6">
       
       <!-- Starter AI Reply -->
-      <div class="snap-start shrink-0 w-[300px] md:w-[340px] bg-white rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 relative"><div class="promo-badge">DISKON 30%</div>
+      <div class="snap-start shrink-0 w-[300px] md:w-[340px] bg-white rounded-2xl p-7 md:p-8 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 relative"><div class="promo-badge promo-badge-right">DISKON 30%</div>
         <div class="mb-6">
           <h4 class="text-lg font-bold text-gray-900 mb-1">Starter AI Reply</h4>
           <p class="text-sm text-gray-500">Auto reply sederhana & cepat untuk UMKM</p>
@@ -560,7 +769,7 @@ Landing page, company profile, toko online &mdash; dikerjakan developer berpenga
       </div>
 
       <!-- Advanced AI Assistant -->
-      <div class="snap-start shrink-0 w-[300px] md:w-[340px] bg-white rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 relative"><div class="promo-badge">DISKON 30%</div>
+      <div class="snap-start shrink-0 w-[300px] md:w-[340px] bg-white rounded-2xl p-7 md:p-8 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 relative"><div class="promo-badge promo-badge-right">DISKON 30%</div>
         <div class="mb-6">
           <h4 class="text-lg font-bold text-gray-900 mb-1">Advanced AI Assistant</h4>
           <p class="text-sm text-gray-500">AI paling pintar untuk bisnis sibuk</p>
