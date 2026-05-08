@@ -120,100 +120,153 @@ body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
 .btn-primary { background: linear-gradient(135deg, #3b82f6, #2563eb); transition: all 0.3s ease; }
 .btn-primary:hover { background: linear-gradient(135deg, #2563eb, #1d4ed8); transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(59,130,246,0.4); }
 
-/* ─── PROMO DISKON ─────────────────────────── */
+/* ─── PROMO DISKON — PREMIUM ──────────────── */
 .promo-badge {
   position: absolute;
   top: -0.75rem;
   right: -0.75rem;
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-  color: white;
-  font-size: 0.7rem;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 50%, #b91c1c 100%);
+  color: #fff;
+  font-size: 0.72rem;
   font-weight: 800;
-  padding: 0.35rem 0.75rem;
+  padding: 0.4rem 1rem;
   border-radius: 999px;
-  box-shadow: 0 4px 12px rgba(239,68,68,0.35);
+  box-shadow: 0 4px 16px rgba(239,68,68,0.4), 0 0 0 2px rgba(239,68,68,0.15);
   z-index: 10;
-  animation: promoPulse 2s ease-in-out infinite;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  animation: promoGlow 2s ease-in-out infinite;
 }
-@keyframes promoPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+@keyframes promoGlow {
+  0%, 100% { box-shadow: 0 4px 16px rgba(239,68,68,0.4), 0 0 0 2px rgba(239,68,68,0.15); }
+  50% { box-shadow: 0 4px 24px rgba(239,68,68,0.55), 0 0 0 4px rgba(239,68,68,0.3); transform: scale(1.06); }
 }
+/* Harga lama — di atas, abu-abu, dicoret */
 .price-old {
+  display: block;
   text-decoration: line-through;
   color: #9ca3af;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 400;
+  margin-bottom: 0.15rem;
 }
+/* Harga promo — besar, bold, mencolok */
 .price-new {
+  display: block;
   color: #dc2626;
   font-weight: 800;
-  font-size: 2.5rem;
+  font-size: 2.2rem;
+  line-height: 1.1;
 }
 .price-new.green {
   color: #059669;
 }
-.price-discount-label {
+.price-unit {
   font-size: 0.75rem;
-  color: #059669;
-  font-weight: 600;
+  font-weight: 500;
+  color: #6b7280;
+  margin-left: 0.15rem;
 }
+.price-savings {
+  display: inline-block;
+  background: #fef2f2;
+  color: #dc2626;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  margin-top: 0.3rem;
+}
+/* ─── COUNTDOWN PREMIUM ──────────────────── */
 .countdown-bar {
-  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  background: linear-gradient(135deg, #1e40af 0%, #2563eb 40%, #3b82f6 100%);
   color: white;
-  padding: 0.75rem 1rem;
+  padding: 1rem 1.5rem;
   border-radius: 1rem;
   text-align: center;
   margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(37,99,235,0.2);
+}
+.countdown-bar::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%);
+  animation: cdShimmer 4s ease-in-out infinite;
+}
+@keyframes cdShimmer {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
 }
 .countdown-bar .label-promo {
-  font-size: 0.8rem;
+  position: relative;
+  z-index: 1;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  opacity: 0.9;
+  letter-spacing: 0.08em;
+  opacity: 0.85;
 }
 .countdown-bar .label-title {
-  font-size: 1.1rem;
+  position: relative;
+  z-index: 1;
+  font-size: 1.15rem;
   font-weight: 700;
-  margin: 0.25rem 0;
+  margin: 0.2rem 0 0.5rem;
 }
 .countdown-bar .label-reset {
-  font-size: 0.7rem;
-  opacity: 0.7;
+  position: relative;
+  z-index: 1;
+  font-size: 0.65rem;
+  opacity: 0.6;
+  margin-top: 0.4rem;
 }
 .countdown-timer {
+  position: relative;
+  z-index: 1;
   display: inline-flex;
-  gap: 1rem;
-  margin-top: 0.5rem;
+  align-items: center;
+  gap: 0.75rem;
 }
 .countdown-timer .cd-item {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 0.4rem 0.6rem;
+  min-width: 60px;
+  backdrop-filter: blur(4px);
 }
 .countdown-timer .cd-num {
   display: block;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 800;
   line-height: 1;
-  min-width: 2.2rem;
+  font-variant-numeric: tabular-nums;
 }
 .countdown-timer .cd-label {
   display: block;
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   text-transform: uppercase;
   opacity: 0.7;
-  margin-top: 0.15rem;
+  margin-top: 0.1rem;
+  letter-spacing: 0.05em;
+}
+.countdown-timer .cd-sep {
+  font-size: 1.4rem;
+  font-weight: 700;
+  animation: countPulse 1s step-end infinite;
+  color: rgba(255,255,255,0.6);
 }
 @keyframes countPulse {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
-.countdown-timer .cd-sep {
-  font-size: 1.3rem;
-  font-weight: 700;
-  animation: countPulse 1s step-end infinite;
-  line-height: 1.8;
+  50% { opacity: 0.3; }
 }
 </style></head>
 <body x-data="{ mobileOpen: false }">
@@ -337,7 +390,7 @@ Landing page, company profile, toko online &mdash; dikerjakan developer berpenga
       <div class="countdown-bar" x-data="promoCountdown()">
     <div class="label-promo">🔥 Promo Harian</div>
     <div class="label-title">Diskon 30% Semua Layanan!</div>
-    <div class="countdown-timer">
+    <div class="countdown-timer" style="margin-top:0.6rem">
       <div class="cd-item"><span class="cd-num" x-text="h.pad()">00</span><span class="cd-label">Jam</span></div>
       <span class="cd-sep">:</span>
       <div class="cd-item"><span class="cd-num" x-text="m.pad()">00</span><span class="cd-label">Menit</span></div>
@@ -375,7 +428,7 @@ Landing page, company profile, toko online &mdash; dikerjakan developer berpenga
       </div>
 
       <!-- Company Profile (POPULER) -->
-      <div class="snap-start shrink-0 w-[320px] md:w-[360px] border-2 border-blue-500 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 relative bg-white"><div class="promo-badge" style="right:auto;left:-0.75rem">DISKON 30%</div>
+      <div class="snap-start shrink-0 w-[320px] md:w-[360px] border-2 border-emerald-500 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 relative bg-white"><div class="promo-badge" style="right:auto;left:-0.9rem;top:-0.75rem;background:linear-gradient(135deg,#059669,#047857)">HEMAT 30%</div>
         <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-4 py-1 rounded-full">POPULER</div>
         <h3 class="text-lg font-bold text-gray-800 mt-2">Company Profile</h3>
         <div class="mt-4 mb-6"><span class="text-4xl font-bold text-gray-900">Rp 1,5jt</span><span class="text-gray-400 text-sm">/project</span></div>
@@ -584,38 +637,40 @@ Landing page, company profile, toko online &mdash; dikerjakan developer berpenga
 <p class="text-xs mt-4">&copy; 2026 SuruhNgoding. All rights reserved.</p>
 </div>
 </footer>
-<script>/* ─── PROMO COUNTDOWN + DISKON ────────────── */
+<script>/* ─── PROMO COUNTDOWN + DISKON HELPER ────── */
+const DISCOUNT_RATE = 0.3;
+function calcDiscount(price) {
+    var disc = Math.round(price * DISCOUNT_RATE);
+    return { original: price, discounted: price - disc, savings: disc };
+}
+function formatRupiah(n) {
+    return 'Rp ' + n.toLocaleString('id-ID');
+}
 function promoCountdown() {
     return {
         h: 24, m: 0, s: 0,
         init() {
-            const now = new Date();
-            const jakartaOff = 7 * 60 * 60 * 1000;
-            const nowJakarta = new Date(now.getTime() + jakartaOff);
-            const endOfDay = new Date(nowJakarta);
+            var now = new Date();
+            var jakartaOff = 7 * 60 * 60 * 1000;
+            var nowJakarta = new Date(now.getTime() + jakartaOff);
+            var endOfDay = new Date(nowJakarta);
             endOfDay.setUTCHours(24, 0, 0, 0);
-            let diff = Math.floor((endOfDay - nowJakarta) / 1000);
+            var diff = Math.floor((endOfDay - nowJakarta) / 1000);
             if (diff <= 0) diff = 86400;
             this.h = Math.floor(diff / 3600);
             this.m = Math.floor((diff % 3600) / 60);
             this.s = diff % 60;
-            setInterval(() => {
-                this.s--;
-                if (this.s < 0) { this.s = 59; this.m--; }
-                if (this.m < 0) { this.m = 59; this.h--; }
-                if (this.h < 0) { this.h = 23; this.m = 59; this.s = 59; }
+            var self = this;
+            setInterval(function() {
+                self.s--;
+                if (self.s < 0) { self.s = 59; self.m--; }
+                if (self.m < 0) { self.m = 59; self.h--; }
+                if (self.h < 0) { self.h = 23; self.m = 59; self.s = 59; }
             }, 1000);
         }
     };
 }
-function applyDiscount() {
-    document.querySelectorAll('[data-price]').forEach(function(el) {
-        var original = parseInt(el.dataset.price, 10);
-        if (isNaN(original)) return;
-        var discounted = Math.round(original * 0.7);
-        el.innerHTML = '<span class="price-old">Rp ' + original.toLocaleString('id-ID') + '</span> ' +
-                      '<span class="price-new">Rp ' + discounted.toLocaleString('id-ID') + '</span>';
-    });
-}
-document.addEventListener('DOMContentLoaded', applyDiscount);</script></body>
+Number.prototype.pad = function() {
+    return this < 10 ? '0' + this : String(this);
+};</script></body>
 </html>
