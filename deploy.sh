@@ -15,10 +15,10 @@ docker rm suruhngoding-prod 2>/dev/null || true
 echo "🏗️  Building Docker image..."
 docker build -t suruhngoding:latest .
 
-# Run new container
-echo "🚀 Starting new container..."
+# Run new container (Cloudflare tunnel expects port 8090)
+echo "🚀 Starting new container on port 8090..."
 docker run -d \
-  -p 80:80 \
+  -p 8090:80 \
   --name suruhngoding-prod \
   --restart always \
   suruhngoding:latest

@@ -5,7 +5,7 @@ services:
     build: .
     container_name: suruhngoding-prod
     ports:
-      - "80:80"
+      - "8090:80"  # Cloudflare tunnel config expects port 8090
     restart: always
     environment:
       TZ: Asia/Jakarta

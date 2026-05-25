@@ -10,8 +10,8 @@ docker build -t suruhngoding:latest .
 
 ### Run Container
 ```bash
-# Start container with port 80 mapping
-docker run -d -p 80:80 --name suruhngoding-prod suruhngoding:latest
+# Start container with port 8090 mapping (Cloudflare tunnel config)
+docker run -d -p 8090:80 --name suruhngoding-prod suruhngoding:latest
 
 # Check if running
 docker ps | grep suruhngoding

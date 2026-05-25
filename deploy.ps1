@@ -12,10 +12,10 @@ docker rm suruhngoding-prod 2>$null
 Write-Host "🏗️  Building Docker image..." -ForegroundColor Yellow
 docker build -t suruhngoding:latest .
 
-# Run new container
-Write-Host "🚀 Starting new container..." -ForegroundColor Yellow
+# Run new container (Cloudflare tunnel expects port 8090)
+Write-Host "🚀 Starting new container on port 8090..." -ForegroundColor Yellow
 docker run -d `
-  -p 80:80 `
+  -p 8090:80 `
   --name suruhngoding-prod `
   --restart always `
   suruhngoding:latest
