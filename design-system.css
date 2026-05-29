@@ -1512,6 +1512,15 @@ body {
 }
 
 /* ─── FAQ ───────────────────────────────── */
+.faq-section-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--blue);
+  margin-bottom: 0.75rem;
+  padding-left: 0.25rem;
+}
 .faq-list { display: flex; flex-direction: column; gap: 0.5rem; }
 .faq-item {
   background: var(--white);

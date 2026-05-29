@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SuruhNgoding — Lisensi SuruhKelola & SuruhLaundry | Bayar Sekali, Pakai Selamanya</title>
-<meta name="description" content="Beli lisensi SuruhKelola (kasir & manajemen UMKM) dan SuruhLaundry (aplikasi laundry all-in-one). Lifetime deal — bayar sekali, pakai selamanya. Mulai dari Rp 249rb.">
-<meta name="keywords" content="SuruhKelola, SuruhLaundry, aplikasi kasir, aplikasi laundry, software UMKM, lisensi lifetime, suruhngoding">
+<title>SuruhNgoding — Jasa Website & Aplikasi Bisnis untuk UMKM Indonesia</title>
+<meta name="description" content="Jasa pembuatan website profesional (landing page, company profile, toko online) + aplikasi bisnis SuruhKelola & SuruhLaundry dengan lisensi lifetime. Mulai Rp150K.">
+<meta name="keywords" content="jasa pembuatan website, landing page, company profile, toko online, SuruhKelola, SuruhLaundry, aplikasi kasir, aplikasi laundry, suruhngoding">
 <meta name="author" content="SuruhNgoding">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://suruhngoding.com/">
@@ -14,8 +14,8 @@
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="SuruhNgoding — Lisensi SuruhKelola & SuruhLaundry">
-<meta property="og:description" content="Aplikasi all-in-one untuk UMKM & Laundry Indonesia. Bayar sekali, pakai selamanya.">
+<meta property="og:title" content="SuruhNgoding — Jasa Website Profesional & Aplikasi Bisnis">
+<meta property="og:description" content="Website profesional + aplikasi kasir & laundry all-in-one untuk UMKM Indonesia.">
 <meta property="og:url" content="https://suruhngoding.com/">
 <meta property="og:image" content="https://suruhngoding.com/og-image.jpg">
 <meta property="og:locale" content="id_ID">
@@ -33,30 +33,17 @@ gtag('config', 'G-XXXXXXXXXX');
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
+  "@type": "LocalBusiness",
   "name": "SuruhNgoding",
   "url": "https://suruhngoding.com/",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "Android, Windows, Web",
-  "offers": [
-    {
-      "@type": "Offer",
-      "name": "SuruhKelola Starter",
-      "price": "299000",
-      "priceCurrency": "IDR"
-    },
-    {
-      "@type": "Offer",
-      "name": "SuruhLaundry Starter",
-      "price": "249000",
-      "priceCurrency": "IDR"
-    }
-  ],
+  "telephone": "+628810608167",
+  "priceRange": "Rp150K - Rp5JT",
+  "areaServed": "Indonesia",
   "contactPoint": {
     "@type": "ContactPoint",
     "telephone": "+628810608167",
-    "contactType": "customer support",
-    "availableLanguage": "Indonesian"
+    "contactType": "sales",
+    "availableLanguage": ["Indonesian", "English"]
   }
 }
 </script>
@@ -69,19 +56,22 @@ gtag('config', 'G-XXXXXXXXXX');
     <a href="#" class="navbar-logo">Suruh<span>Ngoding</span></a>
 
     <div class="navbar-links">
-      <a href="#produk">Produk</a>
-      <a href="#fitur">Fitur</a>
-      <a href="#cara-beli">Cara Beli</a>
-      <a href="#pricing">Harga</a>
-      <a href="#faq">FAQ</a>
+      <a href="#portfolio">Portofolio</a>
+      <a href="#pricing">Harga Jasa</a>
+      <a href="#produk-app" style="color:var(--cyan);font-weight:600;">✦ Produk Aplikasi</a>
+      <a href="#ai">AI WhatsApp</a>
+      <a href="#contact">Kontak</a>
     </div>
 
     <div class="navbar-actions">
-      <a href="#contact" class="btn btn-outline btn-sm" style="padding:0.55rem 1.2rem;font-size:0.8rem;">
-        <i class="fab fa-whatsapp"></i> Hubungi Kami
-      </a>
-      <a href="#pricing" class="btn btn-primary btn-sm" style="padding:0.55rem 1.2rem;font-size:0.8rem;">
-        Beli Sekarang
+      <button class="lang-toggle" id="langToggle" onclick="toggleLang()" title="Ganti Bahasa">
+        <span class="lang-toggle-track">
+          <span class="lang-toggle-thumb"></span>
+        </span>
+        <span class="lang-toggle-label">EN</span>
+      </button>
+      <a id="navConsult" href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20tertarik%20buat%20website" target="_blank" class="btn btn-primary btn-sm" style="padding:0.55rem 1.2rem;font-size:0.8rem;">
+        <i class="fab fa-whatsapp"></i> Konsultasi
       </a>
     </div>
 
@@ -93,16 +83,24 @@ gtag('config', 'G-XXXXXXXXXX');
 
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#produk" onclick="toggleMobile()">Produk</a>
-  <a href="#fitur" onclick="toggleMobile()">Fitur</a>
-  <a href="#cara-beli" onclick="toggleMobile()">Cara Beli</a>
-  <a href="#pricing" onclick="toggleMobile()">Harga</a>
-  <a href="#faq" onclick="toggleMobile()">FAQ</a>
-  <a href="#contact" onclick="toggleMobile()" class="btn btn-accent" style="margin-top:0.5rem;text-align:center;">
-    <i class="fab fa-whatsapp"></i> Hubungi Kami
-  </a>
-  <a href="#pricing" onclick="toggleMobile()" class="btn btn-primary" style="text-align:center;">
-    Beli Sekarang
+  <a href="#portfolio" onclick="toggleMobile()">Portofolio</a>
+  <a href="#pricing" onclick="toggleMobile()">Harga Jasa</a>
+  <a href="#produk-app" onclick="toggleMobile()" style="color:var(--cyan);font-weight:600;">✦ Produk Aplikasi</a>
+  <a href="#ai" onclick="toggleMobile()">AI WhatsApp</a>
+  <a href="#contact" onclick="toggleMobile()">Kontak</a>
+  <div class="lang-mobile">
+    <div class="lang-toggle-wrap-mobile">
+      <span style="font-size:0.85rem;color:var(--gray-600);">Bahasa</span>
+      <button class="lang-toggle" id="langToggleMobile" onclick="toggleLang()">
+        <span class="lang-toggle-track">
+          <span class="lang-toggle-thumb"></span>
+        </span>
+        <span class="lang-toggle-label">EN</span>
+      </button>
+    </div>
+  </div>
+  <a id="navConsultM" href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20tertarik%20buat%20website" target="_blank" class="btn btn-accent" style="margin-top:0.5rem;text-align:center;">
+    <i class="fab fa-whatsapp"></i> Konsultasi Gratis
   </a>
 </div>
 
@@ -112,125 +110,242 @@ gtag('config', 'G-XXXXXXXXXX');
     <div class="fade-up">
       <div class="hero-badge">
         <span class="hero-badge-dot"></span>
-        <span>Harga Early Bird — Terbatas!</span>
+        <span id="heroBadge">Bisa bantu bisnis Anda naik level</span>
       </div>
 
-      <h1>
-        Kelola Bisnis Lebih Mudah<br>
-        <span class="highlight">dengan SuruhNgoding</span>
+      <h1 id="heroTitle">
+        Bikin Website<br>
+        <span class="highlight">Yang Beneran Dipake</span>
       </h1>
 
-      <p>
-        Aplikasi all-in-one untuk UMKM & Laundry Indonesia.
-        Bayar sekali, pakai selamanya. Data aman di device kamu.
+      <p id="heroDesc">
+        Landing page, company profile, toko online, undangan digital —
+        dikerjain langsung sama developer, bukan template instan.
+        Hasil real yang bikin bisnis kamu keliatan profesional.
       </p>
 
       <div class="hero-actions">
-        <a href="#pricing" class="btn btn-primary">
-          Lihat Harga →
+        <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20tertarik%20buat%20website" target="_blank" class="btn btn-primary" id="heroCta">
+          <i class="fab fa-whatsapp"></i> Konsultasi Gratis
         </a>
-        <a href="#cara-beli" class="btn btn-outline">
-          Cara Beli
-        </a>
+        <a href="#portfolio" class="btn btn-outline" id="heroPorto">Lihat Portofolio</a>
       </div>
 
-      <div class="hero-trust">
-        <div class="hero-trust-item">
-          <i class="fas fa-infinity"></i>
-          <span>Lifetime Deal</span>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">9+</div>
+          <div class="hero-stat-label" id="statProjects">Project Selesai</div>
         </div>
-        <div class="hero-trust-item">
-          <i class="fas fa-shield-halved"></i>
-          <span>Data Aman di Device</span>
+        <div>
+          <div class="hero-stat-num">5</div>
+          <div class="hero-stat-label" id="statYears">Tahun Pengalaman</div>
         </div>
-        <div class="hero-trust-item">
-          <i class="fas fa-headset"></i>
-          <span>Support WhatsApp</span>
+        <div>
+          <div class="hero-stat-num">100%</div>
+          <div class="hero-stat-label" id="statOntime">Tepat Waktu</div>
         </div>
-        <div class="hero-trust-item">
-          <i class="fas fa-mobile-alt"></i>
-          <span>Android & Windows</span>
+        <div>
+          <div class="hero-stat-num">1 Jam</div>
+          <div class="hero-stat-label" id="statResponse">Respon Cepat</div>
         </div>
       </div>
     </div>
 
     <div class="hero-visual fade-up fade-up-d2">
-      <div class="hero-app-preview">
-        <div class="app-card-top">
-          <div class="app-card app-card-sk">
-            <div class="app-card-header">
-              <div class="app-icon-wrap sk-icon">
-                <i class="fas fa-cash-register"></i>
-              </div>
-              <div>
-                <div class="app-card-name">SuruhKelola</div>
-                <div class="app-card-sub">Kasir & UMKM</div>
-              </div>
-            </div>
-            <div class="app-stats">
-              <div class="app-stat">
-                <div class="app-stat-num">Rp 12,5jt</div>
-                <div class="app-stat-label">Omzet Hari Ini</div>
-              </div>
-              <div class="app-stat">
-                <div class="app-stat-num">48</div>
-                <div class="app-stat-label">Transaksi</div>
-              </div>
-            </div>
-            <div class="app-bar-chart">
-              <div class="bar" style="height:40%"></div>
-              <div class="bar" style="height:65%"></div>
-              <div class="bar" style="height:50%"></div>
-              <div class="bar" style="height:80%"></div>
-              <div class="bar" style="height:60%"></div>
-              <div class="bar active" style="height:90%"></div>
-            </div>
-          </div>
-
-          <div class="app-card app-card-sl">
-            <div class="app-card-header">
-              <div class="app-icon-wrap sl-icon">
-                <i class="fas fa-shirt"></i>
-              </div>
-              <div>
-                <div class="app-card-name">SuruhLaundry</div>
-                <div class="app-card-sub">Manajemen Laundry</div>
-              </div>
-            </div>
-            <div class="app-stats">
-              <div class="app-stat">
-                <div class="app-stat-num">23</div>
-                <div class="app-stat-label">Order Aktif</div>
-              </div>
-              <div class="app-stat">
-                <div class="app-stat-num">5</div>
-                <div class="app-stat-label">Siap Diambil</div>
-              </div>
-            </div>
-            <div class="app-tags">
-              <span class="app-tag proses">Proses</span>
-              <span class="app-tag selesai">Selesai</span>
-              <span class="app-tag antar">Antar Jemput</span>
-            </div>
-          </div>
+      <div class="hero-visual-card">
+        <div class="mockup-bar">
+          <span class="mockup-dot" style="background:#ff5f57"></span>
+          <span class="mockup-dot" style="background:#febc2e"></span>
+          <span class="mockup-dot" style="background:#28c840"></span>
         </div>
-
-        <div class="app-badge-lifetime">
-          <i class="fas fa-infinity"></i>
-          Bayar Sekali, Pakai Selamanya
-        </div>
+        <div class="mockup-line w80"></div>
+        <div class="mockup-line w60"></div>
+        <div class="mockup-line w80" style="margin-bottom:1.5rem"></div>
+        <div class="mockup-line w40" style="height:80px;border-radius:8px;"></div>
+        <div class="mockup-line w80" style="margin-top:0.8rem"></div>
+        <div class="mockup-line w60"></div>
+        <div class="mockup-line w80"></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ PRODUK ═══════════════ -->
-<section class="section" id="produk">
+<!-- ═══════════════ PORTFOLIO ═══════════════ -->
+<section class="section" id="portfolio">
   <div class="container">
     <div class="section-header fade-up">
-      <div class="section-label">Produk Kami</div>
-      <h2 class="section-title">Solusi untuk Bisnis Kamu</h2>
-      <p class="section-sub">Dua aplikasi yang dirancang khusus untuk kebutuhan UMKM dan Laundry Indonesia.</p>
+      <div class="section-label">Portofolio</div>
+      <h2 class="section-title" id="portoTitle">Project Terbaru</h2>
+      <p class="section-sub" id="portoSub">Beberapa website yang udah saya kerjakan — dari landing page sampe sistem POS.</p>
+    </div>
+
+    <div class="portfolio-grid">
+      <a href="https://gilang.novasistem.cloud" target="_blank" class="portfolio-card fade-up fade-up-d1">
+        <div class="portfolio-card-img" style="background: linear-gradient(135deg, #1e293b, #0f172a);color:rgba(255,255,255,0.3);">
+          <i class="fas fa-user-circle" style="font-size:3rem;"></i>
+        </div>
+        <div class="portfolio-card-body">
+          <div class="portfolio-card-tag">Portfolio</div>
+          <div class="portfolio-card-title">Personal Portfolio</div>
+          <div class="portfolio-card-desc">Bilingual portfolio dengan bilingual ID/EN</div>
+        </div>
+      </a>
+
+      <a href="https://pos.suruhngoding.com" target="_blank" class="portfolio-card fade-up fade-up-d2">
+        <div class="portfolio-card-img" style="background: linear-gradient(135deg, #1e3a5f, #0c1e33);color:rgba(255,255,255,0.3);">
+          <i class="fas fa-cash-register" style="font-size:3rem;"></i>
+        </div>
+        <div class="portfolio-card-body">
+          <div class="portfolio-card-tag">Web App</div>
+          <div class="portfolio-card-title">POS System</div>
+          <div class="portfolio-card-desc">Multi-kasir, manajemen stok, laporan laba</div>
+        </div>
+      </a>
+
+      <a href="https://suruhngoding.com" target="_blank" class="portfolio-card fade-up fade-up-d3">
+        <div class="portfolio-card-img" style="background: linear-gradient(135deg, #2d1b69, #1a0e3e);color:rgba(255,255,255,0.3);">
+          <i class="fas fa-code" style="font-size:3rem;"></i>
+        </div>
+        <div class="portfolio-card-body">
+          <div class="portfolio-card-tag">Landing Page</div>
+          <div class="portfolio-card-title">SuruhNgoding</div>
+          <div class="portfolio-card-desc">Landing page jasa pembuatan website</div>
+        </div>
+      </a>
+
+      <a href="https://sweetbake.suruhngoding.com" target="_blank" class="portfolio-card fade-up">
+        <div class="portfolio-card-img" style="background: linear-gradient(135deg, #5b1e34, #3a1121);color:rgba(255,255,255,0.3);">
+          <i class="fas fa-cake-candles" style="font-size:3rem;"></i>
+        </div>
+        <div class="portfolio-card-body">
+          <div class="portfolio-card-tag">Toko Online</div>
+          <div class="portfolio-card-title">SweetBake</div>
+          <div class="portfolio-card-desc">Toko kue online dengan katalog & order</div>
+        </div>
+      </a>
+
+      <a href="https://undangan.suruhngoding.com" target="_blank" class="portfolio-card fade-up fade-up-d2">
+        <div class="portfolio-card-img" style="background: linear-gradient(135deg, #7c3a4f, #4d2231);color:rgba(255,255,255,0.3);">
+          <i class="fas fa-envelope-open-text" style="font-size:3rem;"></i>
+        </div>
+        <div class="portfolio-card-body">
+          <div class="portfolio-card-tag">Undangan Digital</div>
+          <div class="portfolio-card-title">SuruhUndang</div>
+          <div class="portfolio-card-desc">25 template undangan pernikahan premium</div>
+        </div>
+      </a>
+
+      <a href="https://desadigital.suruhngoding.com" target="_blank" class="portfolio-card fade-up fade-up-d3">
+        <div class="portfolio-card-img" style="background: linear-gradient(135deg, #1e4a3a, #0f2e24);color:rgba(255,255,255,0.3);">
+          <i class="fas fa-tree" style="font-size:3rem;"></i>
+        </div>
+        <div class="portfolio-card-body">
+          <div class="portfolio-card-tag">Company Profile</div>
+          <div class="portfolio-card-title">DesaDigital v2</div>
+          <div class="portfolio-card-desc">Profil desa lengkap dengan layanan publik</div>
+        </div>
+      </a>
+
+      <a href="https://keuangan.suruhngoding.com" target="_blank" class="portfolio-card fade-up">
+        <div class="portfolio-card-img" style="background: linear-gradient(135deg, #0f4c3a, #0a2e22);color:rgba(255,255,255,0.3);">
+          <i class="fas fa-wallet" style="font-size:3rem;"></i>
+        </div>
+        <div class="portfolio-card-body">
+          <div class="portfolio-card-tag">Web App</div>
+          <div class="portfolio-card-title">KeuanganKu</div>
+          <div class="portfolio-card-desc">Aplikasi keuangan pribadi offline-first dengan grafik interaktif</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PRICING JASA WEBSITE ═══════════════ -->
+<section class="section" style="background:var(--gray-100)" id="pricing">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-label">Harga Jasa</div>
+      <h2 class="section-title" id="priceTitle">Paket Sederhana, Transparan</h2>
+      <p class="section-sub" id="priceSub">Domain .suruhngoding.com gratis 1 tahun. Yang keliatan mahal, yang bayar gak bikin sakit.</p>
+    </div>
+
+    <!-- Promo Banner -->
+    <div class="promo-banner fade-up fade-up-d1" id="promoBanner" style="margin-bottom:2rem;">
+      <div class="promo-label" id="promoLabel">Promo Harian</div>
+      <div class="promo-title" id="promoTitle">Diskon 30% Semua Layanan!</div>
+      <div class="promo-timer" id="countdown">
+        <div class="promo-timer-item"><span class="promo-timer-num" id="cdHours">00</span><span class="promo-timer-label">Jam</span></div>
+        <span class="promo-timer-sep">:</span>
+        <div class="promo-timer-item"><span class="promo-timer-num" id="cdMinutes">00</span><span class="promo-timer-label">Menit</span></div>
+        <span class="promo-timer-sep">:</span>
+        <div class="promo-timer-item"><span class="promo-timer-num" id="cdSeconds">00</span><span class="promo-timer-label">Detik</span></div>
+      </div>
+      <div class="promo-reset" id="promoReset">&#9881; Reset setiap pukul 00:00 WIB</div>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="pricing-card fade-up">
+        <div class="pricing-name">Landing Page</div>
+        <div class="pricing-original" id="olLanding">Rp 1.600.000</div>
+        <div class="pricing-price" id="pLanding">Rp 800.000</div>
+        <div class="pricing-desc" id="dLanding">1 halaman, responsif, integrase WA, SEO</div>
+        <a href="https://wa.me/62881080608167?text=Halo%20Sari!%20Saya%20tertarik%20paket%20Landing%20Page%20(Rp%20800rb)%20dari%20Google%20Ads" target="_blank" class="pricing-cta">Pilih Paket</a>
+      </div>
+
+      <div class="pricing-card pricing-card featured fade-up fade-up-d1">
+        <div class="pricing-card-badge">Terlaris</div>
+        <div class="pricing-name">Company Profile</div>
+        <div class="pricing-original" id="olCompany">Rp 2.500.000</div>
+        <div class="pricing-price" id="pCompany">Rp 1.500.000</div>
+        <div class="pricing-desc" id="dCompany">Multi halaman, gallery, Google Maps, integrase WA</div>
+        <a href="https://wa.me/62881080608167?text=Halo%20Sari!%20Saya%20tertarik%20paket%20Company%20Profile%20(Rp%201,5jt)%20dari%20Google%20Ads" target="_blank" class="pricing-cta">Pilih Paket</a>
+      </div>
+
+      <div class="pricing-card fade-up fade-up-d2">
+        <div class="pricing-name">Toko Online</div>
+        <div class="pricing-original" id="olToko">Rp 4.000.000</div>
+        <div class="pricing-price" id="pToko">Rp 2.500.000</div>
+        <div class="pricing-desc" id="dToko">Katalog + keranjang + payment gateway + integrase WA</div>
+        <a href="https://wa.me/62881080608167?text=Halo%20Sari!%20Saya%20tertarik%20paket%20Toko%20Online%20(Rp%202,5jt)%20dari%20Google%20Ads" target="_blank" class="pricing-cta">Pilih Paket</a>
+      </div>
+
+      <div class="pricing-card fade-up">
+        <div class="pricing-name">Undangan Digital</div>
+        <div class="pricing-original" id="olUndangan">Rp 300.000</div>
+        <div class="pricing-price" id="pUndangan">Rp 150.000</div>
+        <div class="pricing-desc" id="dUndangan">25 template premium, RSVP online, music latar</div>
+        <a href="https://wa.me/62881080608167?text=Halo%20Sari!%20Saya%20tertarik%20paket%20Undangan%20Digital%20dari%20Google%20Ads" target="_blank" class="pricing-cta">Pilih Paket</a>
+      </div>
+
+      <div class="pricing-card fade-up fade-up-d1">
+        <div class="pricing-name">POS System</div>
+        <div class="pricing-original" id="olPos">Rp 5.000.000</div>
+        <div class="pricing-price" id="pPos">Rp 3.000.000</div>
+        <div class="pricing-desc" id="dPos">Stok barang, multi-kasir, laporan laba/rugi</div>
+        <a href="https://wa.me/62881080608167?text=Halo%20Sari!%20Saya%20tertarik%20paket%20POS%20System%20dari%20Google%20Ads" target="_blank" class="pricing-cta">Pilih Paket</a>
+      </div>
+
+      <div class="pricing-card fade-up fade-up-d2">
+        <div class="pricing-name">Web App Custom</div>
+        <div class="pricing-price" id="pCustom">Mulai Rp 5.000.000+</div>
+        <div class="pricing-desc" id="dCustom">Sistem sesuai kebutuhan — inventory, CRM, booking, dll</div>
+        <a href="https://wa.me/62881080608167?text=Halo%20Sari!%20Saya%20tertarik%20paket%20Web%20App%20Custom%20dari%20SuruhNgoding" target="_blank" class="pricing-cta">Konsultasi</a>
+      </div>
+    </div>
+
+    <div class="pricing-note fade-up">
+      Ada kebutuhan lain? <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20mau%20tanya%20soal%20project" target="_blank">Tanya aja langsung</a>, saya respon cepat kok.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PRODUK APLIKASI ═══════════════ -->
+<section class="section" id="produk-app">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-label">Produk Aplikasi</div>
+      <h2 class="section-title">SuruhKelola & SuruhLaundry</h2>
+      <p class="section-sub">Bukan hanya bikin website — kami juga punya aplikasi bisnis siap pakai untuk UMKM & Laundry Indonesia. Beli lisensi, pakai selamanya.</p>
     </div>
 
     <div class="product-grid">
@@ -240,11 +355,11 @@ gtag('config', 'G-XXXXXXXXXX');
           <i class="fas fa-cash-register"></i>
         </div>
         <div class="product-card-body">
-          <div class="product-card-tag">Untuk UMKM</div>
+          <div class="product-card-tag">Untuk UMKM & Warung</div>
           <h3 class="product-card-title">SuruhKelola</h3>
           <p class="product-card-desc">
-            Aplikasi kasir dan manajemen bisnis lengkap untuk UMKM Indonesia.
-            Dari penjualan, stok, hingga laporan keuangan — semua dalam satu aplikasi.
+            Aplikasi kasir dan manajemen bisnis lengkap. Dari penjualan, stok,
+            laporan keuangan, hingga CRM pelanggan — semua dalam satu aplikasi.
           </p>
           <ul class="product-feature-list">
             <li><i class="fas fa-check"></i> Kasir & Point of Sale (POS)</li>
@@ -252,13 +367,13 @@ gtag('config', 'G-XXXXXXXXXX');
             <li><i class="fas fa-check"></i> Laporan Keuangan Otomatis</li>
             <li><i class="fas fa-check"></i> Invoice & Nota Digital</li>
             <li><i class="fas fa-check"></i> CRM & Data Pelanggan</li>
-            <li><i class="fas fa-check"></i> Backup & Restore Data</li>
+            <li><i class="fas fa-check"></i> Multi-platform: Android & Windows</li>
           </ul>
           <div class="product-price-from">
-            Mulai dari <strong>Rp 299.000</strong> / lifetime
+            Mulai dari <strong>Rp 299.000</strong> / lifetime — bayar sekali, pakai selamanya
           </div>
-          <a href="#pricing" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:1.25rem;">
-            Lihat Paket SuruhKelola
+          <a href="#lisensi" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:1.25rem;">
+            Lihat Paket & Harga →
           </a>
         </div>
       </div>
@@ -269,7 +384,7 @@ gtag('config', 'G-XXXXXXXXXX');
           <i class="fas fa-shirt"></i>
         </div>
         <div class="product-card-body">
-          <div class="product-card-tag">Untuk Laundry</div>
+          <div class="product-card-tag">Untuk Laundry & Binatu</div>
           <h3 class="product-card-title">SuruhLaundry</h3>
           <p class="product-card-desc">
             Aplikasi manajemen laundry all-in-one. Kelola order, mesin, antar jemput,
@@ -281,74 +396,47 @@ gtag('config', 'G-XXXXXXXXXX');
             <li><i class="fas fa-check"></i> Manajemen Mesin Cuci</li>
             <li><i class="fas fa-check"></i> Layanan Antar Jemput</li>
             <li><i class="fas fa-check"></i> Notifikasi WhatsApp Otomatis</li>
-            <li><i class="fas fa-check"></i> Laporan Pendapatan</li>
+            <li><i class="fas fa-check"></i> Multi-platform: Android & Windows</li>
           </ul>
           <div class="product-price-from">
-            Mulai dari <strong>Rp 249.000</strong> / lifetime
+            Mulai dari <strong>Rp 249.000</strong> / lifetime — bayar sekali, pakai selamanya
           </div>
-          <a href="#pricing" class="btn btn-accent" style="width:100%;justify-content:center;margin-top:1.25rem;">
-            Lihat Paket SuruhLaundry
+          <a href="#lisensi" class="btn btn-accent" style="width:100%;justify-content:center;margin-top:1.25rem;">
+            Lihat Paket & Harga →
           </a>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ═══════════════ FITUR UNGGULAN ═══════════════ -->
-<section class="section" style="background:var(--gray-100)" id="fitur">
-  <div class="container">
-    <div class="section-header fade-up">
-      <div class="section-label">Keunggulan</div>
-      <h2 class="section-title">Kenapa Pilih SuruhNgoding?</h2>
-      <p class="section-sub">Dirancang untuk kemudahan bisnis Indonesia — tanpa biaya berulang, tanpa ribet.</p>
-    </div>
-
-    <div class="feature-grid">
+    <!-- Keunggulan Produk -->
+    <div class="feature-grid" style="margin-top:3rem;">
       <div class="feature-card fade-up">
-        <div class="feature-icon">
-          <i class="fas fa-infinity"></i>
-        </div>
+        <div class="feature-icon"><i class="fas fa-infinity"></i></div>
         <h4 class="feature-title">Tidak Ada Biaya Bulanan</h4>
-        <p class="feature-desc">Bayar sekali, gunakan selamanya. Tidak ada langganan, tidak ada kejutan tagihan.</p>
+        <p class="feature-desc">Bayar sekali, gunakan selamanya. Tidak ada langganan, tidak ada tagihan mendadak.</p>
       </div>
-
       <div class="feature-card fade-up fade-up-d1">
-        <div class="feature-icon">
-          <i class="fas fa-shield-halved"></i>
-        </div>
+        <div class="feature-icon"><i class="fas fa-shield-halved"></i></div>
         <h4 class="feature-title">Data Privasi Terjaga</h4>
-        <p class="feature-desc">Data tersimpan langsung di device kamu. Privasi bisnis 100% di tangan kamu.</p>
+        <p class="feature-desc">Data tersimpan di device kamu sendiri. Privasi bisnis 100% di tangan kamu.</p>
       </div>
-
       <div class="feature-card fade-up fade-up-d2">
-        <div class="feature-icon">
-          <i class="fas fa-arrows-rotate"></i>
-        </div>
-        <h4 class="feature-title">Backup & Restore</h4>
-        <p class="feature-desc">Pindah HP baru? Tidak masalah. Backup dan restore data antar device dengan mudah.</p>
-      </div>
-
-      <div class="feature-card fade-up">
-        <div class="feature-icon">
-          <i class="fas fa-mobile-screen-button"></i>
-        </div>
-        <h4 class="feature-title">Multi-Platform</h4>
-        <p class="feature-desc">Tersedia di Android, Windows, dan Web. Gunakan di perangkat manapun yang kamu mau.</p>
-      </div>
-
-      <div class="feature-card fade-up fade-up-d1">
-        <div class="feature-icon">
-          <i class="fab fa-whatsapp"></i>
-        </div>
+        <div class="feature-icon"><i class="fab fa-whatsapp"></i></div>
         <h4 class="feature-title">Notifikasi WhatsApp</h4>
-        <p class="feature-desc">Kirim notifikasi pesanan, invoice, dan update otomatis ke pelanggan via WhatsApp.</p>
+        <p class="feature-desc">Kirim notifikasi pesanan dan update otomatis ke pelanggan via WhatsApp.</p>
       </div>
-
+      <div class="feature-card fade-up">
+        <div class="feature-icon"><i class="fas fa-mobile-screen-button"></i></div>
+        <h4 class="feature-title">Multi-Platform</h4>
+        <p class="feature-desc">Tersedia di Android, Windows, dan Web. Gunakan di perangkat manapun.</p>
+      </div>
+      <div class="feature-card fade-up fade-up-d1">
+        <div class="feature-icon"><i class="fas fa-arrows-rotate"></i></div>
+        <h4 class="feature-title">Backup & Restore</h4>
+        <p class="feature-desc">Ganti HP baru? Tidak masalah. Backup dan restore data antar device mudah.</p>
+      </div>
       <div class="feature-card fade-up fade-up-d2">
-        <div class="feature-icon">
-          <i class="fas fa-headset"></i>
-        </div>
+        <div class="feature-icon"><i class="fas fa-headset"></i></div>
         <h4 class="feature-title">Support via WhatsApp</h4>
         <p class="feature-desc">Ada kendala? Tim kami siap bantu via WhatsApp. Respon cepat, solusi tepat.</p>
       </div>
@@ -356,75 +444,13 @@ gtag('config', 'G-XXXXXXXXXX');
   </div>
 </section>
 
-<!-- ═══════════════ CARA BELI ═══════════════ -->
-<section class="section" id="cara-beli">
+<!-- ═══════════════ HARGA LISENSI ═══════════════ -->
+<section class="section" style="background:var(--gray-100)" id="lisensi">
   <div class="container">
     <div class="section-header fade-up">
-      <div class="section-label">Cara Beli</div>
-      <h2 class="section-title">3 Langkah Mudah</h2>
-      <p class="section-sub">Proses pembelian sederhana — tidak perlu daftar dulu, tidak perlu kartu kredit.</p>
-    </div>
-
-    <div class="steps-grid">
-      <div class="step-card fade-up">
-        <div class="step-number">1</div>
-        <div class="step-icon">
-          <i class="fas fa-box-open"></i>
-        </div>
-        <h4 class="step-title">Pilih Produk & Paket</h4>
-        <p class="step-desc">
-          Pilih SuruhKelola atau SuruhLaundry sesuai kebutuhan bisnis kamu,
-          lalu tentukan paket (Starter, Bisnis, atau Pro).
-        </p>
-      </div>
-
-      <div class="step-connector fade-up fade-up-d1">
-        <i class="fas fa-arrow-right"></i>
-      </div>
-
-      <div class="step-card fade-up fade-up-d1">
-        <div class="step-number">2</div>
-        <div class="step-icon">
-          <i class="fas fa-building-columns"></i>
-        </div>
-        <h4 class="step-title">Transfer ke Rekening Kami</h4>
-        <p class="step-desc">
-          Isi form pembelian, lalu transfer ke rekening bank SuruhNgoding
-          sesuai nominal yang tertera (termasuk kode unik).
-        </p>
-      </div>
-
-      <div class="step-connector fade-up fade-up-d2">
-        <i class="fas fa-arrow-right"></i>
-      </div>
-
-      <div class="step-card fade-up fade-up-d2">
-        <div class="step-number">3</div>
-        <div class="step-icon">
-          <i class="fas fa-key"></i>
-        </div>
-        <h4 class="step-title">License Key Dikirim Otomatis</h4>
-        <p class="step-desc">
-          Upload bukti transfer, tim kami konfirmasi, dan license key langsung
-          dikirim ke email kamu. Siap digunakan selamanya!
-        </p>
-      </div>
-    </div>
-
-    <div class="steps-note fade-up">
-      <i class="fas fa-circle-info"></i>
-      <span>Konfirmasi biasanya selesai dalam <strong>1–2 jam</strong> di jam kerja. Ada kendala? <a href="https://wa.me/628810608167?text=Halo%20SuruhNgoding%2C%20saya%20ingin%20beli%20lisensi" target="_blank">Chat WhatsApp kami</a>.</span>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════ PRICING ═══════════════ -->
-<section class="section" style="background:var(--gray-100)" id="pricing">
-  <div class="container">
-    <div class="section-header fade-up">
-      <div class="section-label">Harga</div>
+      <div class="section-label">Harga Lisensi</div>
       <h2 class="section-title">Pilih Paket yang Tepat</h2>
-      <p class="section-sub">Bayar sekali, gunakan selamanya. Tidak ada biaya berulang.</p>
+      <p class="section-sub">Lifetime deal — bayar sekali, gunakan selamanya tanpa biaya berulang.</p>
     </div>
 
     <!-- Tab Produk -->
@@ -453,11 +479,8 @@ gtag('config', 'G-XXXXXXXXXX');
             <li><i class="fas fa-check"></i> Backup & restore data</li>
             <li class="disabled"><i class="fas fa-times"></i> Invoice & nota digital</li>
             <li class="disabled"><i class="fas fa-times"></i> CRM pelanggan</li>
-            <li class="disabled"><i class="fas fa-times"></i> Laporan lanjutan</li>
           </ul>
-          <a href="https://wa.me/628810608167?text=Halo%20SuruhNgoding%2C%20saya%20ingin%20beli%20SuruhKelola%20Starter" target="_blank" class="pricing-cta">
-            Beli Sekarang
-          </a>
+          <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20ingin%20beli%20SuruhKelola%20Starter" target="_blank" class="pricing-cta">Beli Sekarang</a>
         </div>
 
         <div class="pricing-card featured">
@@ -472,12 +495,9 @@ gtag('config', 'G-XXXXXXXXXX');
             <li><i class="fas fa-check"></i> CRM & data pelanggan</li>
             <li><i class="fas fa-check"></i> Laporan keuangan lanjutan</li>
             <li><i class="fas fa-check"></i> Ekspor laporan ke Excel</li>
-            <li><i class="fas fa-check"></i> Multi-kategori produk</li>
             <li class="disabled"><i class="fas fa-times"></i> Multi-user & kasir</li>
           </ul>
-          <a href="https://wa.me/628810608167?text=Halo%20SuruhNgoding%2C%20saya%20ingin%20beli%20SuruhKelola%20Bisnis" target="_blank" class="pricing-cta">
-            Beli Sekarang
-          </a>
+          <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20ingin%20beli%20SuruhKelola%20Bisnis" target="_blank" class="pricing-cta">Beli Sekarang</a>
         </div>
 
         <div class="pricing-card">
@@ -490,13 +510,10 @@ gtag('config', 'G-XXXXXXXXXX');
             <li><i class="fas fa-check"></i> Multi-user & multi-kasir</li>
             <li><i class="fas fa-check"></i> Manajemen cabang</li>
             <li><i class="fas fa-check"></i> Laporan per kasir</li>
-            <li><i class="fas fa-check"></i> Notifikasi stok menipis</li>
             <li><i class="fas fa-check"></i> Priority support WhatsApp</li>
             <li><i class="fas fa-check"></i> Update fitur gratis selamanya</li>
           </ul>
-          <a href="https://wa.me/628810608167?text=Halo%20SuruhNgoding%2C%20saya%20ingin%20beli%20SuruhKelola%20Pro" target="_blank" class="pricing-cta">
-            Beli Sekarang
-          </a>
+          <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20ingin%20beli%20SuruhKelola%20Pro" target="_blank" class="pricing-cta">Beli Sekarang</a>
         </div>
 
       </div>
@@ -518,11 +535,8 @@ gtag('config', 'G-XXXXXXXXXX');
             <li><i class="fas fa-check"></i> Laporan pendapatan dasar</li>
             <li class="disabled"><i class="fas fa-times"></i> Layanan antar jemput</li>
             <li class="disabled"><i class="fas fa-times"></i> Notifikasi WhatsApp</li>
-            <li class="disabled"><i class="fas fa-times"></i> Manajemen mesin cuci</li>
           </ul>
-          <a href="https://wa.me/628810608167?text=Halo%20SuruhNgoding%2C%20saya%20ingin%20beli%20SuruhLaundry%20Starter" target="_blank" class="pricing-cta">
-            Beli Sekarang
-          </a>
+          <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20ingin%20beli%20SuruhLaundry%20Starter" target="_blank" class="pricing-cta">Beli Sekarang</a>
         </div>
 
         <div class="pricing-card featured">
@@ -537,12 +551,9 @@ gtag('config', 'G-XXXXXXXXXX');
             <li><i class="fas fa-check"></i> Notifikasi WA otomatis</li>
             <li><i class="fas fa-check"></i> Manajemen mesin cuci</li>
             <li><i class="fas fa-check"></i> Laporan pendapatan lengkap</li>
-            <li><i class="fas fa-check"></i> Multi-jenis layanan</li>
             <li class="disabled"><i class="fas fa-times"></i> Multi-kasir & cabang</li>
           </ul>
-          <a href="https://wa.me/628810608167?text=Halo%20SuruhNgoding%2C%20saya%20ingin%20beli%20SuruhLaundry%20Bisnis" target="_blank" class="pricing-cta">
-            Beli Sekarang
-          </a>
+          <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20ingin%20beli%20SuruhLaundry%20Bisnis" target="_blank" class="pricing-cta">Beli Sekarang</a>
         </div>
 
         <div class="pricing-card">
@@ -553,15 +564,12 @@ gtag('config', 'G-XXXXXXXXXX');
           <ul class="pricing-feature-list">
             <li><i class="fas fa-check"></i> Semua fitur Bisnis</li>
             <li><i class="fas fa-check"></i> Multi-kasir & multi-cabang</li>
-            <li><i class="fas fa-check"></i> Laporan per karyawan</li>
             <li><i class="fas fa-check"></i> Manajemen driver antar jemput</li>
             <li><i class="fas fa-check"></i> Dashboard statistik lanjutan</li>
             <li><i class="fas fa-check"></i> Priority support WhatsApp</li>
             <li><i class="fas fa-check"></i> Update fitur gratis selamanya</li>
           </ul>
-          <a href="https://wa.me/628810608167?text=Halo%20SuruhNgoding%2C%20saya%20ingin%20beli%20SuruhLaundry%20Pro" target="_blank" class="pricing-cta">
-            Beli Sekarang
-          </a>
+          <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20ingin%20beli%20SuruhLaundry%20Pro" target="_blank" class="pricing-cta">Beli Sekarang</a>
         </div>
 
       </div>
@@ -569,100 +577,215 @@ gtag('config', 'G-XXXXXXXXXX');
 
     <div class="pricing-footer fade-up">
       <div class="pricing-footer-items">
-        <span><i class="fas fa-check-circle"></i> Pembayaran aman via transfer bank</span>
+        <span><i class="fas fa-check-circle"></i> Pembayaran via transfer bank</span>
         <span><i class="fas fa-check-circle"></i> License key dikirim via email</span>
         <span><i class="fas fa-check-circle"></i> Support aktif via WhatsApp</span>
       </div>
-      <p>Butuh paket custom atau lebih dari 10 device? <a href="https://wa.me/628810608167?text=Halo%20SuruhNgoding%2C%20saya%20butuh%20paket%20custom" target="_blank">Hubungi kami</a>.</p>
+      <p>Butuh paket custom atau lebih dari 10 device? <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20butuh%20paket%20custom%20lisensi" target="_blank">Hubungi kami langsung</a>.</p>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ TESTIMONI ═══════════════ -->
-<section class="section" id="testimoni">
+<!-- ═══════════════ CARA BELI LISENSI ═══════════════ -->
+<section class="section" id="cara-beli">
   <div class="container">
     <div class="section-header fade-up">
-      <div class="section-label">Testimoni</div>
-      <h2 class="section-title">Kata Mereka yang Sudah Pakai</h2>
-      <p class="section-sub">Ribuan UMKM dan laundry di Indonesia sudah mempercayakan manajemen bisnis mereka ke SuruhNgoding.</p>
+      <div class="section-label">Cara Beli Lisensi</div>
+      <h2 class="section-title">3 Langkah Mudah</h2>
+      <p class="section-sub">Proses pembelian lisensi sederhana — tidak perlu daftar dulu, tidak perlu kartu kredit.</p>
     </div>
 
-    <div class="testi-grid">
-      <div class="testi-card fade-up">
-        <div class="testi-stars">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-        </div>
-        <p class="testi-text">"SuruhKelola bener-bener ngerubah cara saya kelola warung. Dulu pencatatan manual, sekarang semua otomatis. Laporan keuangan tinggal tap!"</p>
-        <div class="testi-author">
-          <div class="testi-avatar sk-avatar">BW</div>
-          <div>
-            <div class="testi-name">Budi Wahyono</div>
-            <div class="testi-role">Pemilik Warung Makan, Semarang</div>
-          </div>
-        </div>
-        <div class="testi-product"><i class="fas fa-cash-register"></i> SuruhKelola Bisnis</div>
+    <div class="steps-grid">
+      <div class="step-card fade-up">
+        <div class="step-number">1</div>
+        <div class="step-icon"><i class="fas fa-box-open"></i></div>
+        <h4 class="step-title">Pilih Produk & Paket</h4>
+        <p class="step-desc">
+          Pilih SuruhKelola atau SuruhLaundry, lalu tentukan paket
+          (Starter, Bisnis, atau Pro) sesuai jumlah device yang kamu butuhkan.
+        </p>
       </div>
 
-      <div class="testi-card fade-up fade-up-d1">
-        <div class="testi-stars">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-        </div>
-        <p class="testi-text">"Laundry saya langsung lebih rapi setelah pakai SuruhLaundry. Pelanggan suka karena dapat notif WA otomatis waktu cuciannya selesai."</p>
-        <div class="testi-author">
-          <div class="testi-avatar sl-avatar">SR</div>
-          <div>
-            <div class="testi-name">Siti Rahayu</div>
-            <div class="testi-role">Pemilik Laundry Bersih, Surabaya</div>
-          </div>
-        </div>
-        <div class="testi-product"><i class="fas fa-shirt"></i> SuruhLaundry Bisnis</div>
+      <div class="step-connector fade-up fade-up-d1">
+        <i class="fas fa-arrow-right"></i>
       </div>
 
-      <div class="testi-card fade-up fade-up-d2">
-        <div class="testi-stars">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-        </div>
-        <p class="testi-text">"Harga lifetime-nya yang bikin saya tertarik. Bayar sekali, gak ada langganan. Support-nya juga cepat respons via WhatsApp. Recommended!"</p>
-        <div class="testi-author">
-          <div class="testi-avatar sk-avatar">AP</div>
-          <div>
-            <div class="testi-name">Agus Prasetyo</div>
-            <div class="testi-role">Pemilik Toko Sembako, Yogyakarta</div>
-          </div>
-        </div>
-        <div class="testi-product"><i class="fas fa-cash-register"></i> SuruhKelola Starter</div>
+      <div class="step-card fade-up fade-up-d1">
+        <div class="step-number">2</div>
+        <div class="step-icon"><i class="fas fa-building-columns"></i></div>
+        <h4 class="step-title">Transfer ke Rekening Kami</h4>
+        <p class="step-desc">
+          Klik "Beli Sekarang", isi data kamu via WhatsApp, lalu transfer
+          sesuai nominal yang tertera. Upload bukti transfer setelahnya.
+        </p>
       </div>
+
+      <div class="step-connector fade-up fade-up-d2">
+        <i class="fas fa-arrow-right"></i>
+      </div>
+
+      <div class="step-card fade-up fade-up-d2">
+        <div class="step-number">3</div>
+        <div class="step-icon"><i class="fas fa-key"></i></div>
+        <h4 class="step-title">Terima License Key via Email</h4>
+        <p class="step-desc">
+          Tim kami verifikasi pembayaran dan kirim license key ke email kamu.
+          Biasanya selesai dalam 1–2 jam. Siap dipakai selamanya!
+        </p>
+      </div>
+    </div>
+
+    <div class="steps-note fade-up">
+      <i class="fas fa-circle-info"></i>
+      <span>Konfirmasi dalam <strong>1–2 jam</strong> jam kerja (08.00–21.00 WIB). Ada pertanyaan? <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20ingin%20tanya%20tentang%20lisensi" target="_blank">Chat WhatsApp kami</a>.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ AI SECTION ═══════════════ -->
+<section class="section ai-section" id="ai">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-label">AI WhatsApp</div>
+      <h2 class="section-title" id="aiTitle">Balas Chat Pelanggan Pake AI</h2>
+      <p class="section-sub" id="aiSub">Pelanggan chatting, AI jawab — lo tinggal pantau. 24 jam, gak libur, gak lembur.</p>
+    </div>
+
+    <div class="ai-benefits fade-up">
+      <div class="ai-benefit-card">
+        <span class="ai-benefit-icon">⏱️</span>
+        <div class="ai-benefit-title" id="aiBen1Title">Balas Cepat 24 Jam</div>
+        <p class="ai-benefit-desc" id="aiBen1Desc">Setiap chat langsung dibalas dalam hitungan detik. Gak ada lagi pelanggan nunggu berjam-jam.</p>
+      </div>
+      <div class="ai-benefit-card">
+        <span class="ai-benefit-icon">💬</span>
+        <div class="ai-benefit-title" id="aiBen2Title">Chat Seperti Admin Asli</div>
+        <p class="ai-benefit-desc" id="aiBen2Desc">Pelanggan gak bakal sadar mereka chat sama AI — responnya natural, ramah, dan personal.</p>
+      </div>
+      <div class="ai-benefit-card">
+        <span class="ai-benefit-icon">⏳</span>
+        <div class="ai-benefit-title" id="aiBen3Title">Hemat Waktu & Fokus</div>
+        <p class="ai-benefit-desc" id="aiBen3Desc">AI handle pertanyaan umum, kamu fokus ke bisnis utama.</p>
+      </div>
+    </div>
+
+    <div class="ai-grid">
+      <div class="ai-steps">
+        <div class="ai-step fade-up">
+          <span class="ai-step-num">1</span>
+          <span class="ai-step-text" id="aiStep1">Hubungin nomor WhatsApp bisnis kamu</span>
+        </div>
+        <div class="ai-step fade-up fade-up-d1">
+          <span class="ai-step-num">2</span>
+          <span class="ai-step-text" id="aiStep2">Setel gaya chat sesuai bisnis kamu</span>
+        </div>
+        <div class="ai-step fade-up fade-up-d2">
+          <span class="ai-step-num">3</span>
+          <span class="ai-step-text" id="aiStep3">AI siap balas otomatis & natural</span>
+        </div>
+        <div class="ai-step fade-up fade-up-d3">
+          <span class="ai-step-num">4</span>
+          <span class="ai-step-text" id="aiStep4">Pantau chat & evaluasi dari dashboard</span>
+        </div>
+      </div>
+
+      <div class="ai-info fade-up fade-up-d1">
+        <p id="aiDesc1">AI ini dirancang biar pelanggan gak sadar lagi chatting sama AI. Responsif, ramah, natural — bukan robot kaku yang jawab "Baik, akan saya bantu."</p>
+        <p id="aiDesc2">Cocok buat bisnis yang sering kewalahan balas chat, atau lo yang mau tetap responsif meskipun lagi sibuk.</p>
+        <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20tertarik%20AI%20WhatsApp%20untuk%20bisnis%20saya" target="_blank" class="btn btn-accent">
+          <i class="fab fa-whatsapp"></i> <span id="aiCta">Konsultasi Gratis</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="ai-pricing-header fade-up">
+      <h3 class="ai-pricing-title" id="aiPricingTitle">Pilih Paket AI</h3>
+      <p class="section-sub" id="aiPricingSub">Mulai dari yang sederhana sampai yang paling pintar — ada semua.</p>
+    </div>
+
+    <div class="pricing-grid fade-up">
+      <div class="pricing-card">
+        <div class="pricing-name">Starter AI Reply</div>
+        <div class="pricing-price">Rp 1.500.000</div>
+        <div class="pricing-desc">Auto reply sederhana & cepat untuk UMKM</div>
+        <ul class="ai-feature-list">
+          <li>Auto reply WhatsApp otomatis</li>
+          <li>FAQ otomatis pertanyaan umum</li>
+          <li>Balasan 24 jam nonstop</li>
+          <li>Setup gaya chat sesuai bisnis</li>
+          <li>Cocok untuk UMKM & pemula</li>
+        </ul>
+        <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20tertarik%20paket%20Starter%20AI%20Reply" target="_blank" class="pricing-cta">Konsultasi Gratis</a>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="pricing-card-badge">Populer</div>
+        <div class="pricing-name">Smart AI CS</div>
+        <div class="pricing-price">Rp 3.500.000</div>
+        <div class="pricing-desc">AI yang lebih natural & paham konteks</div>
+        <ul class="ai-feature-list">
+          <li>Semua fitur Starter</li>
+          <li>Balasan lebih natural & kontekstual</li>
+          <li>Memahami pertanyaan customer</li>
+          <li>Follow up ringan otomatis</li>
+          <li>Custom gaya admin sesuai brand</li>
+          <li>Cocok untuk bisnis berkembang</li>
+        </ul>
+        <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20tertarik%20paket%20Smart%20AI%20CS" target="_blank" class="pricing-cta">Konsultasi Gratis</a>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-name">Advanced AI Assistant</div>
+        <div class="pricing-price">Rp 6.000.000</div>
+        <div class="pricing-desc">AI paling pintar untuk bisnis dengan chat tinggi</div>
+        <ul class="ai-feature-list">
+          <li>Semua fitur Smart</li>
+          <li>AI customer service lebih pintar</li>
+          <li>Multi kebutuhan balasan</li>
+          <li>Prompt custom sesuai bisnis</li>
+          <li>Respon fleksibel & natural</li>
+          <li>Maintenance & optimasi awal</li>
+        </ul>
+        <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20tertarik%20paket%20Advanced%20AI%20Assistant" target="_blank" class="pricing-cta">Konsultasi Gratis</a>
+      </div>
+    </div>
+
+    <div class="ai-note fade-up">
+      <p id="aiNote">💡 AI ini dirancang agar pelanggan tetap merasa seperti chatting dengan admin manusia. Responsif, ramah, dan natural — bukan robot kaku. Cocok untuk bisnis yang sering kewalahan membalas chat WhatsApp pelanggan, atau kamu yang ingin tetap responsif meskipun lagi sibuk.</p>
     </div>
   </div>
 </section>
 
 <!-- ═══════════════ FAQ ═══════════════ -->
-<section class="section" style="background:var(--gray-100)" id="faq">
+<section class="section" id="faq">
   <div class="container">
     <div class="section-header fade-up">
       <div class="section-label">FAQ</div>
       <h2 class="section-title">Pertanyaan yang Sering Ditanyakan</h2>
-      <p class="section-sub">Ada yang belum jelas? Cek jawaban di bawah atau langsung tanya kami via WhatsApp.</p>
+      <p class="section-sub">Tentang layanan jasa website maupun lisensi aplikasi SuruhKelola & SuruhLaundry.</p>
     </div>
 
     <div class="faq-list fade-up" style="max-width:760px;margin:0 auto;">
+
+      <div class="faq-section-label">Tentang Lisensi Aplikasi</div>
+
       <div class="faq-item">
         <button class="faq-question" onclick="toggleFaq(this)">
-          Apakah ada biaya bulanan?
+          Apakah ada biaya bulanan untuk lisensi aplikasi?
           <i class="fas fa-chevron-down faq-icon"></i>
         </button>
         <div class="faq-answer">
-          Tidak sama sekali. SuruhNgoding menggunakan model Lifetime Deal — kamu hanya bayar satu kali dan bisa menggunakan aplikasi selamanya tanpa biaya tambahan apapun.
+          Tidak ada. SuruhKelola dan SuruhLaundry menggunakan model Lifetime Deal — kamu hanya bayar satu kali dan bisa menggunakan aplikasi selamanya tanpa biaya tambahan apapun.
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question" onclick="toggleFaq(this)">
-          Berapa lama license key saya dikirim setelah transfer?
+          Berapa lama license key dikirim setelah transfer?
           <i class="fas fa-chevron-down faq-icon"></i>
         </button>
         <div class="faq-answer">
-          Setelah kamu upload bukti transfer, tim kami akan mengkonfirmasi pembayaran dan mengirim license key ke email kamu. Proses ini biasanya selesai dalam 1–2 jam di jam kerja (08.00–21.00 WIB).
+          Setelah kamu menghubungi kami dan transfer dikonfirmasi, license key dikirim ke email kamu. Proses ini biasanya selesai dalam 1–2 jam di jam kerja (08.00–21.00 WIB).
         </div>
       </div>
 
@@ -672,81 +795,62 @@ gtag('config', 'G-XXXXXXXXXX');
           <i class="fas fa-chevron-down faq-icon"></i>
         </button>
         <div class="faq-answer">
-          Tergantung paket yang kamu beli. Paket Starter untuk 1 device, Bisnis untuk 3 device, dan Pro untuk 10 device. Jika butuh lebih dari 10 device, hubungi kami untuk paket custom.
+          Tergantung paket: Starter untuk 1 device, Bisnis untuk 3 device, Pro untuk 10 device. Butuh lebih dari 10 device? Hubungi kami untuk paket custom.
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question" onclick="toggleFaq(this)">
-          Bagaimana jika HP saya hilang atau ganti HP baru?
+          Bagaimana jika HP saya hilang atau ganti perangkat baru?
           <i class="fas fa-chevron-down faq-icon"></i>
         </button>
         <div class="faq-answer">
-          Kamu bisa melakukan transfer lisensi ke device baru. Cukup hubungi tim support kami via WhatsApp dengan informasi license key kamu, dan kami akan bantu prosesnya secara gratis.
+          Bisa dilakukan transfer lisensi ke device baru. Hubungi tim support kami via WhatsApp dengan informasi license key, dan kami akan bantu prosesnya secara gratis.
+        </div>
+      </div>
+
+      <div class="faq-section-label" style="margin-top:1.5rem;">Tentang Jasa Pembuatan Website</div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Berapa lama proses pembuatan website?
+          <i class="fas fa-chevron-down faq-icon"></i>
+        </button>
+        <div class="faq-answer">
+          Tergantung kompleksitas. Landing page biasanya 3–5 hari kerja, company profile 5–10 hari, toko online 10–20 hari. Kami selalu konfirmasi estimasi di awal sebelum mulai pengerjaan.
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question" onclick="toggleFaq(this)">
-          Apakah ada masa uji coba (trial)?
+          Apakah termasuk hosting dan domain?
           <i class="fas fa-chevron-down faq-icon"></i>
         </button>
         <div class="faq-answer">
-          Saat ini belum tersedia versi trial publik. Namun kamu bisa menghubungi kami via WhatsApp untuk mendapatkan demo langsung dari tim kami sebelum memutuskan untuk membeli.
+          Ya, semua paket jasa website sudah termasuk domain .suruhngoding.com gratis 1 tahun. Untuk domain custom (.com, .id, dll) bisa ditambahkan dengan biaya terpisah.
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question" onclick="toggleFaq(this)">
-          Metode pembayaran apa saja yang diterima?
+          Apakah bisa minta revisi setelah selesai?
           <i class="fas fa-chevron-down faq-icon"></i>
         </button>
         <div class="faq-answer">
-          Saat ini kami menerima pembayaran via transfer bank (BCA, BRI, Mandiri, BNI). Setelah transfer, kamu perlu upload bukti pembayaran di halaman konfirmasi untuk mempercepat proses verifikasi.
+          Bisa. Setiap paket sudah termasuk revisi minor setelah selesai. Untuk revisi mayor atau penambahan fitur baru, bisa didiskusikan dengan biaya tambahan yang wajar.
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question" onclick="toggleFaq(this)">
-          Apakah data saya aman dan terjaga privasinya?
+          Metode pembayaran apa yang diterima?
           <i class="fas fa-chevron-down faq-icon"></i>
         </button>
         <div class="faq-answer">
-          Ya, 100% aman. Semua data bisnis kamu tersimpan langsung di device kamu sendiri, bukan di server kami. Kami tidak memiliki akses ke data transaksi, pelanggan, atau keuangan bisnis kamu.
+          Kami menerima transfer bank (BCA, BRI, Mandiri, BNI) dan e-wallet (GoPay, OVO, Dana). Untuk jasa website biasanya ada DP 50% di awal dan pelunasan saat selesai.
         </div>
       </div>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          Apakah update aplikasi gratis selamanya?
-          <i class="fas fa-chevron-down faq-icon"></i>
-        </button>
-        <div class="faq-answer">
-          Ya! Semua update dan perbaikan bug untuk versi yang kamu beli selamanya gratis. Untuk fitur-fitur major baru, kami akan informasikan terlebih dahulu kepada pengguna existing.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════ CTA BOTTOM ═══════════════ -->
-<section class="section cta-section">
-  <div class="container">
-    <div class="cta-box fade-up">
-      <div class="cta-badge">Harga Spesial Early Bird</div>
-      <h2 class="cta-title">Mulai Kelola Bisnis Lebih Cerdas</h2>
-      <p class="cta-desc">
-        Bergabung dengan ribuan pelaku UMKM dan laundry yang sudah mempercayakan
-        manajemen bisnis mereka ke SuruhNgoding. Bayar sekali, manfaat selamanya.
-      </p>
-      <div class="cta-actions">
-        <a href="#pricing" class="btn btn-primary" style="font-size:1rem;padding:0.9rem 2rem;">
-          Beli Lisensi Sekarang →
-        </a>
-        <a href="https://wa.me/628810608167?text=Halo%20SuruhNgoding%2C%20saya%20ingin%20tanya%20tentang%20produk" target="_blank" class="btn btn-outline-white">
-          <i class="fab fa-whatsapp"></i> Tanya Dulu via WA
-        </a>
-      </div>
     </div>
   </div>
 </section>
@@ -755,17 +859,17 @@ gtag('config', 'G-XXXXXXXXXX');
 <section class="section contact-section" id="contact">
   <div class="container">
     <div class="section-header fade-up">
-      <div class="section-label" style="color:var(--accent)">Kontak & Support</div>
-      <h2 class="section-title">Butuh Bantuan?</h2>
-      <p class="section-sub">Tim kami siap membantu kamu — dari pertanyaan produk hingga proses aktivasi lisensi.</p>
+      <div class="section-label" style="color:var(--accent)">Kontak</div>
+      <h2 class="section-title" id="contactTitle">Diskusikan Project Kamu</h2>
+      <p class="section-sub" id="contactSub">Konsultasi Gratis dulu. Saya bantu tentukan konsep yang pas. Gak ada kewajiban lanjut.</p>
     </div>
 
     <div class="contact-grid">
       <div class="contact-info fade-up">
         <i class="fab fa-whatsapp" style="font-size:2rem;color:var(--accent);opacity:0.6;"></i>
-        <div class="wa-number">+62 881-060-8167</div>
-        <p>Respon cepat, biasanya dalam 1 jam. Chat kami langsung:</p>
-        <a href="https://wa.me/628810608167?text=Halo%20SuruhNgoding%2C%20saya%20ingin%20tanya%20tentang%20lisensi" target="_blank" class="btn btn-accent">
+        <div class="wa-number">+62 881-080-608167</div>
+        <p>Respon cepat, biasanya dalam 1 jam. Atau kirim pesan langsung:</p>
+        <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20ada%20pertanyaan%20soal%20website" target="_blank" class="btn btn-accent">
           <i class="fab fa-whatsapp"></i> Chat WhatsApp
         </a>
         <div class="contact-extras">
@@ -788,25 +892,32 @@ gtag('config', 'G-XXXXXXXXXX');
   <div class="footer-inner">
     <div class="footer-brand">
       <span class="footer-logo">Suruh<span>Ngoding</span></span>
-      <p>Solusi manajemen bisnis untuk UMKM & Laundry Indonesia.</p>
+      <p>Jasa pembuatan website profesional + aplikasi bisnis SuruhKelola & SuruhLaundry untuk UMKM Indonesia.</p>
     </div>
     <div class="footer-links">
       <div class="footer-col">
-        <h5>Produk</h5>
-        <a href="#produk">SuruhKelola</a>
-        <a href="#produk">SuruhLaundry</a>
-        <a href="#pricing">Lihat Harga</a>
+        <h5>Layanan</h5>
+        <a href="#portfolio">Portofolio</a>
+        <a href="#pricing">Harga Jasa</a>
+        <a href="#ai">AI WhatsApp</a>
+      </div>
+      <div class="footer-col">
+        <h5>Produk Aplikasi</h5>
+        <a href="#produk-app">SuruhKelola</a>
+        <a href="#produk-app">SuruhLaundry</a>
+        <a href="#lisensi">Harga Lisensi</a>
+        <a href="#cara-beli">Cara Beli</a>
       </div>
       <div class="footer-col">
         <h5>Bantuan</h5>
-        <a href="#cara-beli">Cara Beli</a>
         <a href="#faq">FAQ</a>
-        <a href="https://wa.me/628810608167" target="_blank">WhatsApp Support</a>
+        <a href="#contact">Kontak</a>
+        <a href="https://wa.me/62881080608167" target="_blank">WhatsApp Support</a>
       </div>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>Hak Cipta &copy; 2026 SuruhNgoding. Dibikin dengan <i class="fas fa-heart" style="color:var(--accent)"></i> di Indonesia.</p>
+    <p id="footerRights">Hak Cipta &copy; 2026 SuruhNgoding. Dibikin dengan <i class="fas fa-heart" style="color:var(--accent)"></i> di Indonesia.</p>
   </div>
 </footer>
 
