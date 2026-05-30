@@ -1,0 +1,24 @@
+# supabase/config.toml
+# Konfigurasi project Supabase untuk SuruhNgoding
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public"]
+
+[db]
+port = 54322
+shadow_port = 54320
+major_version = 15
+
+[auth]
+enabled = true
+site_url = "https://suruhngoding.com"
+additional_redirect_urls = []
+jwt_expiry = 3600
+enable_signup = false  # hanya admin yang bisa login, signup ditutup
+
+[functions.license]
+# Edge Function: POST /functions/v1/license/activate
+#               POST /functions/v1/license/verify
+verify_jwt = false  # auth pakai x-api-key header, bukan JWT
