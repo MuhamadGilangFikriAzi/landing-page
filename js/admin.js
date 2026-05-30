@@ -161,10 +161,10 @@ const MOCK_ORDERS = [
   },
 ];
 
-/* ─── Harga Paket ──────────────────────────────────────── */
+/* ─── Harga Paket (harus sama dengan shared.js PRODUCTS) ── */
 const PACKAGE_PRICE = {
-  'SuruhKelola':  { Starter: 249000, Bisnis: 499000, Pro: 899000 },
-  'SuruhLaundry': { Starter: 199000, Bisnis: 399000, Pro: 699000 },
+  'SuruhKelola':  { Starter: 299000, Bisnis: 699000,  Pro: 1499000 },
+  'SuruhLaundry': { Starter: 249000, Bisnis: 549000,  Pro: 1199000 },
 };
 
 const PACKAGE_MAX_DEVICES = { Starter: 1, Bisnis: 3, Pro: 99 };
@@ -361,8 +361,8 @@ function loadDashboard() {
     <tr>
       <td class="td-mono">${o.order_number}</td>
       <td>
-        <div style="font-weight:600;font-size:0.875rem;">${escHtml(o.buyer_name)}</div>
-        <div class="text-muted text-sm">${escHtml(o.buyer_email)}</div>
+        <div style="font-weight:600;font-size:0.875rem;">${escapeHtml(o.buyer_name)}</div>
+        <div class="text-muted text-sm">${escapeHtml(o.buyer_email)}</div>
       </td>
       <td><span class="badge ${productBadgeClass(o.product)}">${o.product}</span></td>
       <td style="font-weight:600;">${formatRupiah(o.amount)}</td>
@@ -378,8 +378,8 @@ function loadDashboard() {
     <tr>
       <td class="td-mono">${l.license_key}</td>
       <td>
-        <div style="font-weight:600;font-size:0.875rem;">${escHtml(l.owner_name)}</div>
-        <div class="text-muted text-sm">${escHtml(l.owner_email)}</div>
+        <div style="font-weight:600;font-size:0.875rem;">${escapeHtml(l.owner_name)}</div>
+        <div class="text-muted text-sm">${escapeHtml(l.owner_email)}</div>
       </td>
       <td>${l.product}</td>
       <td>${l.package}</td>
@@ -467,11 +467,11 @@ function renderLicenseResult(license) {
         <div class="device-info">
           <div class="device-icon">${platformIcon(d.platform)}</div>
           <div>
-            <div class="device-name">${escHtml(d.name)}</div>
-            <div class="device-meta">${escHtml(d.platform)} &bull; Terakhir aktif: ${formatDateTime(d.last_seen)}</div>
+            <div class="device-name">${escapeHtml(d.name)}</div>
+            <div class="device-meta">${escapeHtml(d.platform)} &bull; Terakhir aktif: ${formatDateTime(d.last_seen)}</div>
           </div>
         </div>
-        <button class="btn-action danger" onclick="hapusDevice('${license.id}', '${d.id}', '${escHtml(d.name)}')">
+        <button class="btn-action danger" onclick="hapusDevice('${license.id}', '${d.id}', '${escapeHtml(d.name)}')">
           <i class="fa-solid fa-trash-can"></i> Hapus
         </button>
       </div>
@@ -488,7 +488,7 @@ function toggleLisensiStatus() {
 
   openModal(
     `${isActive ? 'Nonaktifkan' : 'Aktifkan'} Lisensi`,
-    `Apakah kamu yakin ingin ${label} lisensi <strong>${escHtml(license.license_key)}</strong> milik <strong>${escHtml(license.owner_name)}</strong>?`,
+    `Apakah kamu yakin ingin ${label} lisensi <strong>${escapeHtml(license.license_key)}</strong> milik <strong>${escapeHtml(license.owner_name)}</strong>?`,
     async () => {
       if (IS_SUPABASE_CONFIGURED && supabaseClient) {
         await supabaseClient.from('licenses').update({ status: newStatus }).eq('id', license.id);
@@ -508,7 +508,7 @@ function toggleLisensiStatus() {
 function hapusDevice(licenseId, deviceId, deviceName) {
   openModal(
     'Hapus Device',
-    `Hapus device <strong>${escHtml(deviceName)}</strong> dari lisensi ini? Device harus didaftarkan ulang jika ingin digunakan lagi.`,
+    `Hapus device <strong>${escapeHtml(deviceName)}</strong> dari lisensi ini? Device harus didaftarkan ulang jika ingin digunakan lagi.`,
     async () => {
       if (IS_SUPABASE_CONFIGURED && supabaseClient) {
         await supabaseClient.from('devices').delete().eq('id', deviceId);
@@ -558,8 +558,8 @@ function renderLisensiTable() {
     <tr>
       <td class="td-mono">${l.license_key}</td>
       <td>
-        <div style="font-weight:600;font-size:0.875rem;">${escHtml(l.owner_name)}</div>
-        <div class="text-muted text-sm">${escHtml(l.owner_email)}</div>
+        <div style="font-weight:600;font-size:0.875rem;">${escapeHtml(l.owner_name)}</div>
+        <div class="text-muted text-sm">${escapeHtml(l.owner_email)}</div>
       </td>
       <td>${l.product}</td>
       <td>${l.package}</td>
@@ -603,7 +603,7 @@ function toggleLisensiById(licenseId) {
 
   openModal(
     `${isActive ? 'Nonaktifkan' : 'Aktifkan'} Lisensi`,
-    `Apakah kamu yakin ingin ${isActive ? 'menonaktifkan' : 'mengaktifkan'} lisensi milik <strong>${escHtml(license.owner_name)}</strong>?`,
+    `Apakah kamu yakin ingin ${isActive ? 'menonaktifkan' : 'mengaktifkan'} lisensi milik <strong>${escapeHtml(license.owner_name)}</strong>?`,
     async () => {
       if (IS_SUPABASE_CONFIGURED && supabaseClient) {
         await supabaseClient.from('licenses').update({ status: newStatus }).eq('id', licenseId);
@@ -640,8 +640,8 @@ function renderPesananTable(tab) {
     <tr>
       <td class="td-mono">${o.order_number}</td>
       <td>
-        <div style="font-weight:600;font-size:0.875rem;">${escHtml(o.buyer_name)}</div>
-        <div class="text-muted text-sm">${escHtml(o.buyer_email)}</div>
+        <div style="font-weight:600;font-size:0.875rem;">${escapeHtml(o.buyer_name)}</div>
+        <div class="text-muted text-sm">${escapeHtml(o.buyer_email)}</div>
       </td>
       <td>${o.product}</td>
       <td>${o.package}</td>
@@ -654,11 +654,11 @@ function renderPesananTable(tab) {
             <button class="btn-action accent" onclick="konfirmasiPesanan('${o.id}')">
               <i class="fa-solid fa-check"></i> Konfirmasi
             </button>
-            <button class="btn-action danger" onclick="tolakPesanan('${o.id}', '${escHtml(o.order_number)}')">
+            <button class="btn-action danger" onclick="tolakPesanan('${o.id}', '${escapeHtml(o.order_number)}')">
               <i class="fa-solid fa-xmark"></i> Tolak
             </button>
           ` : ''}
-          ${o.status === 'rejected' ? `<span class="text-muted text-sm" title="${escHtml(o.rejection_reason || '')}"><i class="fa-solid fa-circle-info"></i> Lihat Alasan</span>` : ''}
+          ${o.status === 'rejected' ? `<span class="text-muted text-sm" title="${escapeHtml(o.rejection_reason || '')}"><i class="fa-solid fa-circle-info"></i> Lihat Alasan</span>` : ''}
           ${o.status === 'confirmed' ? `<span class="badge badge-confirmed">Selesai</span>` : ''}
           ${o.status === 'pending' ? `<span class="text-muted text-sm">Menunggu buyer</span>` : ''}
         </div>
@@ -689,7 +689,7 @@ function konfirmasiPesanan(orderId) {
   if (!order) return;
   openModal(
     'Konfirmasi Pesanan',
-    `Konfirmasi pembayaran untuk pesanan <strong>${order.order_number}</strong> dari <strong>${escHtml(order.buyer_name)}</strong> sebesar <strong>${formatRupiah(order.amount)}</strong>?`,
+    `Konfirmasi pembayaran untuk pesanan <strong>${order.order_number}</strong> dari <strong>${escapeHtml(order.buyer_name)}</strong> sebesar <strong>${formatRupiah(order.amount)}</strong>?`,
     async () => {
       if (IS_SUPABASE_CONFIGURED && supabaseClient) {
         await supabaseClient.from('orders').update({ status: 'confirmed' }).eq('id', orderId);
@@ -709,7 +709,7 @@ function tolakPesanan(orderId, orderNumber) {
 
   openModal(
     'Tolak Pesanan',
-    `Masukkan alasan penolakan untuk pesanan <strong>${escHtml(orderNumber)}</strong>:`,
+    `Masukkan alasan penolakan untuk pesanan <strong>${escapeHtml(orderNumber)}</strong>:`,
     async () => {
       const reasonInput = document.getElementById('modal-reject-reason');
       const reason = reasonInput ? reasonInput.value.trim() : 'Ditolak oleh admin.';
@@ -871,7 +871,7 @@ function showToast(message, type = 'info') {
   const container = document.getElementById('toast-container');
   const toast = document.createElement('div');
   toast.className = `toast ${type}`;
-  toast.innerHTML = `<i class="fa-solid ${icons[type] || icons.info}"></i><span>${escHtml(message)}</span>`;
+  toast.innerHTML = `<i class="fa-solid ${icons[type] || icons.info}"></i><span>${escapeHtml(message)}</span>`;
   container.appendChild(toast);
   setTimeout(() => {
     toast.style.opacity = '0';
@@ -913,7 +913,7 @@ function platformIcon(platform) {
 }
 
 function formatRupiah(amount) {
-  return 'Rp' + (amount || 0).toLocaleString('id-ID');
+  return 'Rp ' + (amount || 0).toLocaleString('id-ID');
 }
 
 function formatDate(iso) {
@@ -929,14 +929,11 @@ function formatDateTime(iso) {
   });
 }
 
-function escHtml(str) {
+function escapeHtml(str) {
   if (typeof str !== 'string') return str || '';
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
 }
 
 function simulateDelay(ms) {

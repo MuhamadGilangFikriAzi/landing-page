@@ -1,6 +1,6 @@
 /* ─────────────────────────────────────────────────────────
    cek-lisensi.js — Cek Status Lisensi Customer
-   SuruhNgoding — cek-lisensi.html
+   Membutuhkan js/shared.js dimuat terlebih dahulu.
    ───────────────────────────────────────────────────────── */
 
 'use strict';
@@ -9,6 +9,8 @@
 const SUPABASE_URL       = '';
 const SUPABASE_ANON_KEY  = '';
 const DEMO_MODE = !SUPABASE_URL || !SUPABASE_ANON_KEY;
+
+/* escapeHtml, showToast, copyToClipboard, formatDate tersedia dari shared.js */
 
 /* ── MOCK DATA ──────────────────────────────────────────── */
 const MOCK_LICENSES = [
@@ -528,47 +530,7 @@ function showLoading() {
   area.classList.add('show');
 }
 
-/* ── COPY TO CLIPBOARD ──────────────────────────────────── */
-function copyToClipboard(text) {
-  if (!text) return;
-  navigator.clipboard.writeText(text)
-    .then(() => showToast('License key disalin!'))
-    .catch(() => {
-      const ta = document.createElement('textarea');
-      ta.value = text;
-      ta.style.position = 'fixed';
-      ta.style.top = '-9999px';
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
-      showToast('License key disalin!');
-    });
-}
-
-/* ── TOAST ──────────────────────────────────────────────── */
-let _toastTimer = null;
-function showToast(msg) {
-  const el = document.getElementById('toast');
-  if (!el) return;
-  el.textContent = msg;
-  el.classList.add('show');
-  clearTimeout(_toastTimer);
-  _toastTimer = setTimeout(() => el.classList.remove('show'), 2200);
-}
-
-/* ── HELPERS ────────────────────────────────────────────── */
-function escapeHtml(str) {
-  const div = document.createElement('div');
-  div.textContent = str;
-  return div.innerHTML;
-}
-
-function formatDate(dateStr) {
-  if (!dateStr) return '—';
-  const d = new Date(dateStr);
-  return d.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
-}
+/* showToast, copyToClipboard, escapeHtml, formatDate dari shared.js */
 
 /* ── INIT ───────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', function () {

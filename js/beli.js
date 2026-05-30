@@ -1,36 +1,11 @@
 /* ─────────────────────────────────────────────────────────
    beli.js — Halaman Pembelian Lisensi
-   SuruhNgoding — beli.html
+   Membutuhkan js/shared.js dimuat terlebih dahulu.
    ───────────────────────────────────────────────────────── */
 
 'use strict';
 
-/* ── PRODUK & PAKET DATA ──────────────────────────────── */
-const PRODUCTS = {
-  suruhkelola: {
-    label: 'SuruhKelola',
-    paket: {
-      starter: { label: 'Starter', harga: 299000, device: 1 },
-      bisnis:  { label: 'Bisnis',  harga: 699000, device: 3 },
-      pro:     { label: 'Pro',     harga: 1499000, device: 10 },
-    }
-  },
-  suruhlaundry: {
-    label: 'SuruhLaundry',
-    paket: {
-      starter: { label: 'Starter', harga: 249000, device: 1 },
-      bisnis:  { label: 'Bisnis',  harga: 549000, device: 3 },
-      pro:     { label: 'Pro',     harga: 1199000, device: 10 },
-    }
-  }
-};
-
-/* ── BANK ACCOUNTS ─────────────────────────────────────── */
-const BANK_ACCOUNTS = [
-  { bank: 'BCA',     nomor: '1234567890', atas: 'SuruhNgoding' },
-  { bank: 'BRI',     nomor: '0987654321', atas: 'SuruhNgoding' },
-  { bank: 'Mandiri', nomor: '1122334455', atas: 'SuruhNgoding' },
-];
+/* PRODUCTS dan BANK_ACCOUNTS tersedia dari shared.js */
 
 /* ── STATE ─────────────────────────────────────────────── */
 let state = {
@@ -328,48 +303,7 @@ function copyNominal() {
   copyToClipboard(String(state.totalAmount));
 }
 
-/* ── COPY TO CLIPBOARD ─────────────────────────────────── */
-function copyToClipboard(text, btn) {
-  if (!text || text === '—') return;
-  navigator.clipboard.writeText(text)
-    .then(() => {
-      showToast('Disalin!');
-      if (btn) {
-        const orig = btn.innerHTML;
-        btn.innerHTML = '<i class="fas fa-check"></i> Disalin';
-        btn.style.color = '#10b981';
-        btn.style.borderColor = '#10b981';
-        setTimeout(() => {
-          btn.innerHTML = orig;
-          btn.style.color = '';
-          btn.style.borderColor = '';
-        }, 2000);
-      }
-    })
-    .catch(() => {
-      // Fallback
-      const ta = document.createElement('textarea');
-      ta.value = text;
-      ta.style.position = 'fixed';
-      ta.style.top = '-9999px';
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
-      showToast('Disalin!');
-    });
-}
-
-/* ── TOAST ─────────────────────────────────────────────── */
-let _toastTimer = null;
-function showToast(msg) {
-  const el = document.getElementById('toast');
-  if (!el) return;
-  el.textContent = msg;
-  el.classList.add('show');
-  clearTimeout(_toastTimer);
-  _toastTimer = setTimeout(() => el.classList.remove('show'), 2200);
-}
+/* showToast() dan copyToClipboard() tersedia dari shared.js */
 
 /* ── VALIDATION ────────────────────────────────────────── */
 function validateStep1(nama, email, produkKey, paketKey) {
@@ -430,9 +364,8 @@ function highlightError(id) {
 }
 
 /* ── FORMAT RUPIAH ─────────────────────────────────────── */
-function formatRp(num) {
-  return 'Rp ' + num.toLocaleString('id-ID');
-}
+/* Alias lokal agar tidak perlu ganti semua pemanggilan di atas */
+const formatRp = n => formatRupiah(n);
 
 /* ── DOMContentLoaded ──────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', function () {

@@ -8,31 +8,8 @@
 <link rel="stylesheet" href="design-system.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-  body { background: #f5f7fa; min-height: 100vh; }
-
-  /* ─── PAGE NAVBAR ─────────────────────── */
-  .page-nav {
-    background: var(--white);
-    border-bottom: 1px solid var(--gray-200);
-    padding: 0 24px;
-    position: sticky;
-    top: 0;
-    z-index: 50;
-  }
-  .page-nav-inner {
-    max-width: 760px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 60px;
-  }
-  .page-nav-logo {
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
-  }
-  .page-nav-logo img { height: 34px; width: auto; }
+  /* page-nav, form-control, form-group, badge-*, #toast → design-system.css */
+  body { background: var(--gray-100); min-height: 100vh; }
 
   /* ─── CONTENT WRAP ───────────────────── */
   .cek-wrap {
@@ -107,31 +84,7 @@
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
 
-  /* ─── FORM ────────────────────────────── */
-  .form-group { margin-bottom: 1.1rem; }
-  .form-label {
-    display: block;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--near-black);
-    margin-bottom: 0.4rem;
-  }
-  .form-control {
-    width: 100%;
-    padding: 0.7rem 0.9rem;
-    border: 1.5px solid var(--gray-200);
-    border-radius: var(--radius-md);
-    font-size: 0.9rem;
-    font-family: var(--font-sans);
-    color: var(--near-black);
-    background: var(--white);
-    transition: border-color 0.2s, box-shadow 0.2s;
-    outline: none;
-  }
-  .form-control:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(6,182,212,0.1);
-  }
+  /* form-group, form-control → design-system.css */
   .btn-full {
     display: flex;
     align-items: center;
@@ -149,7 +102,7 @@
     text-decoration: none;
   }
   .btn-accent { background: var(--accent); color: var(--white); }
-  .btn-accent:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(6,182,212,0.3); }
+  .btn-accent:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(77,207,255,0.3); }
   .btn-outline-gray {
     background: transparent;
     border: 1.5px solid var(--gray-200) !important;
@@ -179,18 +132,7 @@
     font-weight: 800;
     color: var(--near-black);
   }
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.3rem 0.75rem;
-    border-radius: 100px;
-    font-size: 0.75rem;
-    font-weight: 700;
-  }
-  .badge-active { background: #d1fae5; color: #065f46; }
-  .badge-inactive { background: #fee2e2; color: #991b1b; }
-  .badge-platform { background: rgba(6,182,212,0.1); color: var(--accent); font-size: 0.68rem; }
+  /* badge, badge-active, badge-inactive, badge-platform → design-system.css */
 
   .license-key-row {
     display: flex;
@@ -282,7 +224,7 @@
     flex-shrink: 0;
   }
   .device-icon.android { background: rgba(34,197,94,0.12); color: #16a34a; }
-  .device-icon.windows { background: rgba(14,165,233,0.12); color: #0284c7; }
+  .device-icon.windows { background: rgba(0,103,209,0.12); color: #0284c7; }
   .device-icon.web     { background: rgba(168,85,247,0.12); color: #7c3aed; }
   .device-name { font-size: 0.88rem; font-weight: 600; color: var(--near-black); }
   .device-meta { font-size: 0.72rem; color: var(--gray-600); margin-top: 0.1rem; }
@@ -412,7 +354,7 @@
   }
   .prog-step.done .prog-circle { background: #10b981; border-color: #10b981; color: var(--white); }
   .prog-step.done .prog-label { color: #10b981; font-weight: 600; }
-  .prog-step.active .prog-circle { background: var(--accent); border-color: var(--accent); color: var(--white); box-shadow: 0 0 0 3px rgba(6,182,212,0.15); }
+  .prog-step.active .prog-circle { background: var(--accent); border-color: var(--accent); color: var(--white); box-shadow: 0 0 0 3px rgba(77,207,255,0.15); }
   .prog-step.active .prog-label { color: var(--accent); font-weight: 600; }
   .status-detail {
     background: var(--gray-100);
@@ -427,24 +369,7 @@
   }
   .status-detail i { color: var(--accent); flex-shrink: 0; margin-top: 0.1rem; }
 
-  /* ─── TOAST ────────────────────────────── */
-  #toast {
-    position: fixed;
-    bottom: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%) translateY(80px);
-    background: var(--near-black);
-    color: var(--white);
-    padding: 0.65rem 1.5rem;
-    border-radius: 100px;
-    font-size: 0.82rem;
-    font-weight: 600;
-    z-index: 9999;
-    transition: transform 0.3s ease;
-    pointer-events: none;
-    white-space: nowrap;
-  }
-  #toast.show { transform: translateX(-50%) translateY(0); }
+  /* #toast → design-system.css */
 
   /* ─── LOADING ─────────────────────────── */
   .loading-spinner {
@@ -590,6 +515,7 @@
 
 </main>
 
+<script src="js/shared.js"></script>
 <script src="js/cek-lisensi.js"></script>
 </body>
 </html>

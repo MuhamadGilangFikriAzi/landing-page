@@ -883,17 +883,6 @@ body {
   padding-right: 2rem;
 }
 
-/* ─── FOOTER ───────────────────────────── */
-.footer {
-  background: var(--black);
-  padding: 2rem 24px;
-  text-align: center;
-}
-.footer p {
-  font-size: 0.8rem;
-  color: var(--gray-600);
-}
-
 /* ─── AI BENEFITS ──────────────────────── */
 .ai-benefits {
   display: grid;
@@ -1737,4 +1726,142 @@ body {
 .footer-bottom p {
   font-size: 0.78rem;
   color: var(--gray-600);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SHARED COMPONENTS — dipakai di beli.html, cek-lisensi.html,
+   dan halaman lain yang bukan landing page utama.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── PAGE NAV (navbar ringan untuk halaman internal) ─── */
+.page-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--gray-200);
+}
+.page-nav-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.page-nav-logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+.page-nav-logo img {
+  height: 32px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+.page-nav-logo-text {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--near-black);
+  letter-spacing: -0.03em;
+}
+.page-nav-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--gray-600);
+  text-decoration: none;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+}
+.page-nav-back:hover {
+  color: var(--near-black);
+  background: var(--gray-100);
+}
+
+/* ─── FORM CONTROLS ─────────────────────────────────────── */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+.form-group label {
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--near-black);
+}
+.form-group .req { color: #ef4444; }
+.form-control {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-family: var(--font-sans);
+  color: var(--near-black);
+  background: var(--white);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  -webkit-appearance: none;
+}
+.form-control:focus {
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 0 3px rgba(0,103,209,0.1);
+}
+.form-control::placeholder { color: var(--gray-400); }
+.form-control.error-border {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239,68,68,0.1);
+}
+select.form-control { cursor: pointer; }
+
+/* ─── STATUS BADGES ─────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.badge-active    { background: #d1fae5; color: #065f46; }
+.badge-inactive  { background: var(--gray-100); color: var(--gray-600); }
+.badge-pending   { background: #fef3c7; color: #92400e; }
+.badge-uploaded  { background: #dbeafe; color: #1e40af; }
+.badge-confirmed { background: #d1fae5; color: #065f46; }
+.badge-rejected  { background: #fee2e2; color: #991b1b; }
+.badge-platform  { background: var(--gray-100); color: var(--gray-600); }
+
+/* ─── TOAST ─────────────────────────────────────────────── */
+/* Elemen <div id="toast"> harus ada di HTML */
+#toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: var(--near-black);
+  color: var(--white);
+  padding: 0.65rem 1.25rem;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 9999;
+}
+#toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }

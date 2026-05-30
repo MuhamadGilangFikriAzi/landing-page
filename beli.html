@@ -8,50 +8,9 @@
 <link rel="stylesheet" href="design-system.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-  body {
-    background: var(--gray-100);
-    min-height: 100vh;
-  }
+  /* page-nav, form-control, form-group, badge-*, #toast → design-system.css */
 
-  /* ─── SIMPLE NAVBAR ─────────────────────── */
-  .page-nav {
-    background: var(--white);
-    border-bottom: 1px solid var(--gray-200);
-    padding: 0 24px;
-    position: sticky;
-    top: 0;
-    z-index: 50;
-  }
-  .page-nav-inner {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 60px;
-  }
-  .page-nav-logo {
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
-  }
-  .page-nav-logo img { height: 34px; width: auto; }
-  .page-nav-back {
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: var(--gray-600);
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.45rem 0.9rem;
-    border-radius: var(--radius-sm);
-    transition: all 0.2s;
-  }
-  .page-nav-back:hover {
-    color: var(--near-black);
-    background: var(--gray-100);
-  }
+  body { background: var(--gray-100); min-height: 100vh; }
 
   /* ─── MAIN CONTENT ──────────────────────── */
   .purchase-wrap {
@@ -109,7 +68,7 @@
     background: var(--accent);
     border-color: var(--accent);
     color: var(--white);
-    box-shadow: 0 0 0 4px rgba(6,182,212,0.15);
+    box-shadow: 0 0 0 4px rgba(77,207,255,0.2);
   }
   .step-dot.active .step-label { color: var(--accent); font-weight: 600; }
   .step-dot.done .step-circle {
@@ -141,44 +100,9 @@
     margin-bottom: 1.75rem;
   }
 
-  /* ─── FORM ──────────────────────────────── */
-  .form-group {
-    margin-bottom: 1.1rem;
-  }
-  .form-group label {
-    display: block;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--near-black);
-    margin-bottom: 0.4rem;
-  }
-  .form-group label .req { color: #ef4444; }
-  .form-group .note {
-    font-size: 0.73rem;
-    color: var(--gray-600);
-    margin-top: 0.2rem;
-  }
-  .form-control {
-    width: 100%;
-    padding: 0.65rem 0.9rem;
-    border: 1.5px solid var(--gray-200);
-    border-radius: var(--radius-md);
-    font-size: 0.88rem;
-    font-family: var(--font-sans);
-    color: var(--near-black);
-    background: var(--white);
-    transition: border-color 0.2s, box-shadow 0.2s;
-    outline: none;
-  }
-  .form-control:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(6,182,212,0.1);
-  }
-  .form-control:disabled {
-    background: var(--gray-100);
-    color: var(--gray-600);
-    cursor: not-allowed;
-  }
+  /* form-group dan form-control → design-system.css */
+  .form-control:disabled { background: var(--gray-100); color: var(--gray-600); cursor: not-allowed; }
+  .form-group .note { font-size: 0.73rem; color: var(--gray-600); margin-top: 0.2rem; }
   .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -188,8 +112,8 @@
 
   /* ─── ORDER SUMMARY ─────────────────────── */
   .order-summary {
-    background: linear-gradient(135deg, rgba(6,182,212,0.05), rgba(14,165,233,0.05));
-    border: 1px solid rgba(6,182,212,0.2);
+    background: linear-gradient(135deg, rgba(0,103,209,0.05), rgba(77,207,255,0.05));
+    border: 1px solid rgba(77,207,255,0.2);
     border-radius: var(--radius-lg);
     padding: 1.25rem;
     margin-top: 1.5rem;
@@ -212,7 +136,7 @@
     padding: 0.3rem 0;
   }
   .order-summary-row.total {
-    border-top: 1px solid rgba(6,182,212,0.2);
+    border-top: 1px solid rgba(77,207,255,0.2);
     margin-top: 0.5rem;
     padding-top: 0.75rem;
     font-weight: 700;
@@ -302,8 +226,8 @@
   .btn-copy:hover { border-color: var(--accent); color: var(--accent); }
 
   .nominal-box {
-    background: linear-gradient(135deg, rgba(6,182,212,0.07), rgba(14,165,233,0.07));
-    border: 2px solid rgba(6,182,212,0.25);
+    background: linear-gradient(135deg, rgba(77,207,255,0.07), rgba(0,103,209,0.07));
+    border: 2px solid rgba(77,207,255,0.25);
     border-radius: var(--radius-lg);
     padding: 1.25rem 1.5rem;
     text-align: center;
@@ -354,7 +278,7 @@
   }
   .dropzone:hover, .dropzone.dragover {
     border-color: var(--accent);
-    background: rgba(6,182,212,0.03);
+    background: rgba(77,207,255,0.03);
   }
   .dropzone input[type="file"] {
     position: absolute;
@@ -451,8 +375,8 @@
     display: flex;
     align-items: flex-start;
     gap: 0.5rem;
-    background: rgba(6,182,212,0.05);
-    border: 1px solid rgba(6,182,212,0.15);
+    background: rgba(77,207,255,0.05);
+    border: 1px solid rgba(77,207,255,0.15);
     border-radius: var(--radius-md);
     padding: 0.85rem 1rem;
     font-size: 0.78rem;
@@ -493,7 +417,7 @@
   .btn-full-accent:hover {
     background: var(--accent-hover);
     transform: translateY(-1px);
-    box-shadow: 0 8px 24px rgba(6,182,212,0.3);
+    box-shadow: 0 8px 24px rgba(77,207,255,0.3);
   }
   .btn-full-outline {
     background: transparent;
@@ -532,26 +456,7 @@
     margin-bottom: 1.25rem;
   }
 
-  /* ─── TOAST ─────────────────────────────── */
-  #toast {
-    position: fixed;
-    bottom: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%) translateY(80px);
-    background: var(--near-black);
-    color: var(--white);
-    padding: 0.65rem 1.5rem;
-    border-radius: 100px;
-    font-size: 0.82rem;
-    font-weight: 600;
-    z-index: 9999;
-    transition: transform 0.3s ease;
-    pointer-events: none;
-    white-space: nowrap;
-  }
-  #toast.show {
-    transform: translateX(-50%) translateY(0);
-  }
+  /* #toast → design-system.css */
 
   /* ─── STEP HIDDEN ───────────────────────── */
   .step-content { display: none; }
@@ -834,6 +739,7 @@
 <!-- Toast -->
 <div id="toast"></div>
 
+<script src="js/shared.js"></script>
 <script src="js/beli.js"></script>
 </body>
 </html>
