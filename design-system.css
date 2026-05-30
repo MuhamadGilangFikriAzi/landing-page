@@ -155,18 +155,35 @@ body {
   height: 64px;
 }
 .navbar-logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.navbar-logo-img {
+  height: 38px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+/* Fallback teks jika logo belum ada */
+.navbar-logo-text {
   font-family: var(--font-display);
   font-size: 1.2rem;
   font-weight: 800;
-  text-decoration: none;
   color: var(--near-black);
   letter-spacing: -0.03em;
 }
-.navbar-logo span {
+.navbar-logo-text span {
   color: var(--accent);
   font-weight: 900;
-  letter-spacing: -0.02em;
 }
+/* Logo putih di hero (sebelum scroll) */
+.navbar:not(.scrolled) .navbar-logo-img {
+  filter: brightness(0) invert(1);
+}
+.navbar:not(.scrolled) .navbar-logo-text { color: var(--white); }
+.navbar:not(.scrolled) .navbar-logo-text span { color: var(--accent); }
 .navbar-links {
   display: none;
   align-items: center;

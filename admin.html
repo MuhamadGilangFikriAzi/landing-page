@@ -44,15 +44,14 @@
   }
 
   .login-logo .logo-text {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--near-black);
-    letter-spacing: -0.03em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  .login-logo .logo-text span {
-    color: var(--accent);
+  .login-logo .logo-text img {
+    height: 44px;
+    width: auto;
   }
 
   .login-logo p {
@@ -190,15 +189,16 @@
   }
 
   .sidebar-logo {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: var(--white);
-    letter-spacing: -0.03em;
+    display: inline-flex;
+    align-items: center;
     text-decoration: none;
   }
 
-  .sidebar-logo span { color: var(--accent); }
+  .sidebar-logo img {
+    height: 34px;
+    width: auto;
+    filter: brightness(0) invert(1);
+  }
 
   .sidebar-badge {
     display: inline-block;
@@ -361,14 +361,15 @@
   }
 
   .mobile-logo {
-    font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: 800;
-    color: var(--white);
-    letter-spacing: -0.03em;
+    display: inline-flex;
+    align-items: center;
   }
 
-  .mobile-logo span { color: var(--accent); }
+  .mobile-logo img {
+    height: 30px;
+    width: auto;
+    filter: brightness(0) invert(1);
+  }
 
   /* ─── MAIN CONTENT ─────────────────────── */
   .main-content {
@@ -1060,7 +1061,7 @@
 <div id="login-screen">
   <div class="login-card">
     <div class="login-logo">
-      <div class="logo-text">Suruh<span>Ngoding</span></div>
+      <div class="logo-text"><img src="images/logo.png" alt="SuruhNgoding"></div>
       <p>Admin Panel</p>
     </div>
     <h2 class="login-title">Selamat datang</h2>
@@ -1096,7 +1097,7 @@
     <button class="btn-menu" onclick="toggleSidebar()" title="Buka menu">
       <i class="fa-solid fa-bars"></i>
     </button>
-    <span class="mobile-logo">Suruh<span>Ngoding</span> Admin</span>
+    <span class="mobile-logo"><img src="images/logo.png" alt="SuruhNgoding"></span>
   </div>
 
   <!-- Sidebar Overlay -->
@@ -1106,7 +1107,7 @@
     <!-- ─── SIDEBAR ─── -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
-        <div class="sidebar-logo">Suruh<span>Ngoding</span></div>
+        <div class="sidebar-logo"><img src="images/logo.png" alt="SuruhNgoding"></div>
         <div class="sidebar-badge">Admin Panel</div>
       </div>
       <nav class="sidebar-nav">

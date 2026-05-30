@@ -31,14 +31,11 @@
     height: 60px;
   }
   .page-nav-logo {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: var(--near-black);
+    display: inline-flex;
+    align-items: center;
     text-decoration: none;
-    letter-spacing: -0.03em;
   }
-  .page-nav-logo span { color: var(--accent); }
+  .page-nav-logo img { height: 34px; width: auto; }
   .page-nav-back {
     font-size: 0.82rem;
     font-weight: 500;
@@ -566,7 +563,9 @@
 <!-- NAVBAR -->
 <nav class="page-nav">
   <div class="page-nav-inner">
-    <a href="index.html" class="page-nav-logo">Suruh<span>Ngoding</span></a>
+    <a href="index.html" class="page-nav-logo">
+      <img src="images/logo.png" alt="SuruhNgoding">
+    </a>
     <a href="index.html" class="page-nav-back">
       <i class="fas fa-arrow-left"></i> Kembali ke Beranda
     </a>
