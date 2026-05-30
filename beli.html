@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beli Lisensi — SuruhNgoding</title>
+<meta name="description" content="Beli lisensi SuruhKelola atau SuruhLaundry. Bayar sekali, pakai selamanya.">
+<link rel="stylesheet" href="design-system.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  body {
+    background: var(--gray-100);
+    min-height: 100vh;
+  }
+
+  /* ─── SIMPLE NAVBAR ─────────────────────── */
+  .page-nav {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .page-nav-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .page-nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--near-black);
+    text-decoration: none;
+    letter-spacing: -0.03em;
+  }
+  .page-nav-logo span { color: var(--accent); }
+  .page-nav-back {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--gray-600);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.9rem;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s;
+  }
+  .page-nav-back:hover {
+    color: var(--near-black);
+    background: var(--gray-100);
+  }
+
+  /* ─── MAIN CONTENT ──────────────────────── */
+  .purchase-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 2rem 16px 4rem;
+  }
+
+  /* ─── STEP INDICATOR ────────────────────── */
+  .step-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+    gap: 0;
+  }
+  .step-dot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    position: relative;
+    z-index: 1;
+  }
+  .step-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border: 2px solid var(--gray-200);
+    background: var(--white);
+    color: var(--gray-400);
+    transition: all 0.3s ease;
+  }
+  .step-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--gray-400);
+    white-space: nowrap;
+    transition: color 0.3s;
+  }
+  .step-line {
+    flex: 1;
+    height: 2px;
+    background: var(--gray-200);
+    max-width: 80px;
+    margin-bottom: 18px;
+    transition: background 0.3s;
+  }
+  .step-dot.active .step-circle {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--white);
+    box-shadow: 0 0 0 4px rgba(6,182,212,0.15);
+  }
+  .step-dot.active .step-label { color: var(--accent); font-weight: 600; }
+  .step-dot.done .step-circle {
+    background: #10b981;
+    border-color: #10b981;
+    color: var(--white);
+  }
+  .step-dot.done .step-label { color: #10b981; }
+  .step-line.done { background: #10b981; }
+
+  /* ─── CARD ──────────────────────────────── */
+  .purchase-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+  }
+  .purchase-card h2 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--near-black);
+    margin-bottom: 0.35rem;
+  }
+  .purchase-card .card-sub {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+    margin-bottom: 1.75rem;
+  }
+
+  /* ─── FORM ──────────────────────────────── */
+  .form-group {
+    margin-bottom: 1.1rem;
+  }
+  .form-group label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--near-black);
+    margin-bottom: 0.4rem;
+  }
+  .form-group label .req { color: #ef4444; }
+  .form-group .note {
+    font-size: 0.73rem;
+    color: var(--gray-600);
+    margin-top: 0.2rem;
+  }
+  .form-control {
+    width: 100%;
+    padding: 0.65rem 0.9rem;
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    font-size: 0.88rem;
+    font-family: var(--font-sans);
+    color: var(--near-black);
+    background: var(--white);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+  }
+  .form-control:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(6,182,212,0.1);
+  }
+  .form-control:disabled {
+    background: var(--gray-100);
+    color: var(--gray-600);
+    cursor: not-allowed;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+
+  /* ─── ORDER SUMMARY ─────────────────────── */
+  .order-summary {
+    background: linear-gradient(135deg, rgba(6,182,212,0.05), rgba(14,165,233,0.05));
+    border: 1px solid rgba(6,182,212,0.2);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .order-summary-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .order-summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--gray-600);
+    padding: 0.3rem 0;
+  }
+  .order-summary-row.total {
+    border-top: 1px solid rgba(6,182,212,0.2);
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    font-weight: 700;
+    color: var(--near-black);
+    font-size: 1rem;
+  }
+  .order-summary-row.total .price {
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+  }
+  .order-empty {
+    text-align: center;
+    color: var(--gray-400);
+    font-size: 0.82rem;
+    padding: 0.75rem 0;
+  }
+
+  /* ─── BANK INFO STEP ────────────────────── */
+  .order-number-box {
+    background: var(--gray-100);
+    border-radius: var(--radius-md);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .order-number-label { font-size: 0.78rem; color: var(--gray-600); font-weight: 500; }
+  .order-number-value {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--near-black);
+    letter-spacing: 0.02em;
+  }
+
+  .alert-warning {
+    background: #fef3c7;
+    border: 1px solid #fcd34d;
+    border-left: 4px solid #f59e0b;
+    border-radius: var(--radius-md);
+    padding: 0.85rem 1rem;
+    font-size: 0.82rem;
+    color: #92400e;
+    margin-bottom: 1.25rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+  .alert-warning i { color: #f59e0b; flex-shrink: 0; margin-top: 0.05rem; }
+
+  .bank-list { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; }
+  .bank-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    padding: 0.85rem 1rem;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .bank-info { display: flex; flex-direction: column; gap: 0.15rem; }
+  .bank-name { font-size: 0.75rem; font-weight: 700; color: var(--gray-600); text-transform: uppercase; letter-spacing: 0.04em; }
+  .bank-number { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--near-black); }
+  .bank-owner { font-size: 0.73rem; color: var(--gray-600); }
+  .btn-copy {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.45rem 0.85rem;
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    background: var(--white);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--near-black);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    font-family: var(--font-sans);
+  }
+  .btn-copy:hover { border-color: var(--accent); color: var(--accent); }
+
+  .nominal-box {
+    background: linear-gradient(135deg, rgba(6,182,212,0.07), rgba(14,165,233,0.07));
+    border: 2px solid rgba(6,182,212,0.25);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  .nominal-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
+  .nominal-amount {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--near-black);
+    margin-bottom: 0.25rem;
+  }
+  .nominal-note { font-size: 0.72rem; color: var(--gray-600); }
+  .nominal-copy-row { margin-top: 0.75rem; }
+
+  .timer-box {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--gray-100);
+    border-radius: var(--radius-md);
+    padding: 0.85rem 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .timer-icon { font-size: 1rem; color: #f59e0b; }
+  .timer-label { font-size: 0.78rem; color: var(--gray-600); font-weight: 500; flex: 1; }
+  .timer-value {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--near-black);
+    letter-spacing: 0.04em;
+    min-width: 75px;
+    text-align: right;
+  }
+
+  /* ─── UPLOAD STEP ───────────────────────── */
+  .dropzone {
+    border: 2px dashed var(--gray-200);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 1.25rem;
+    position: relative;
+  }
+  .dropzone:hover, .dropzone.dragover {
+    border-color: var(--accent);
+    background: rgba(6,182,212,0.03);
+  }
+  .dropzone input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+  }
+  .dropzone-icon { font-size: 2.5rem; color: var(--gray-400); margin-bottom: 0.75rem; }
+  .dropzone-title { font-size: 0.9rem; font-weight: 600; color: var(--near-black); margin-bottom: 0.25rem; }
+  .dropzone-sub { font-size: 0.78rem; color: var(--gray-600); }
+  .dropzone-preview { margin-top: 0.75rem; }
+  .dropzone-preview img {
+    max-width: 100%;
+    max-height: 160px;
+    border-radius: var(--radius-md);
+    object-fit: cover;
+  }
+  .dropzone-preview .file-name {
+    font-size: 0.78rem;
+    color: var(--gray-600);
+    margin-top: 0.35rem;
+  }
+
+  /* ─── SUCCESS STEP ──────────────────────── */
+  .success-icon {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  .success-checkmark {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: var(--white);
+    font-size: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 32px rgba(16,185,129,0.3);
+  }
+  .success-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--near-black);
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .success-sub {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    margin-bottom: 1.75rem;
+    line-height: 1.7;
+  }
+  .success-order-box {
+    background: var(--gray-100);
+    border-radius: var(--radius-md);
+    padding: 1rem 1.25rem;
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+  .success-order-label { font-size: 0.73rem; color: var(--gray-600); margin-bottom: 0.25rem; }
+  .success-order-num {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--near-black);
+    letter-spacing: 0.04em;
+  }
+  .success-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin-bottom: 2rem;
+  }
+  .success-info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--gray-600);
+  }
+  .success-info-item i { color: var(--accent); width: 16px; }
+  .success-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .success-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    background: rgba(6,182,212,0.05);
+    border: 1px solid rgba(6,182,212,0.15);
+    border-radius: var(--radius-md);
+    padding: 0.85rem 1rem;
+    font-size: 0.78rem;
+    color: var(--gray-600);
+  }
+  .success-tip i { color: var(--accent); flex-shrink: 0; margin-top: 0.1rem; }
+
+  /* ─── BUTTONS ───────────────────────────── */
+  .btn-full {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.85rem;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    font-family: var(--font-sans);
+    transition: all 0.25s ease;
+    text-decoration: none;
+  }
+  .btn-full-primary {
+    background: var(--near-black);
+    color: var(--white);
+  }
+  .btn-full-primary:hover {
+    background: var(--black);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+  }
+  .btn-full-accent {
+    background: var(--accent);
+    color: var(--white);
+  }
+  .btn-full-accent:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(6,182,212,0.3);
+  }
+  .btn-full-outline {
+    background: transparent;
+    color: var(--near-black);
+    border: 1.5px solid var(--gray-200) !important;
+  }
+  .btn-full-outline:hover {
+    border-color: var(--gray-400) !important;
+    background: var(--gray-100);
+  }
+  .btn-wa-link {
+    text-align: center;
+    margin-top: 0.85rem;
+    font-size: 0.8rem;
+    color: var(--gray-600);
+  }
+  .btn-wa-link a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    font-weight: 600;
+  }
+
+  /* ─── DEMO BADGE ────────────────────────── */
+  .demo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: #fef3c7;
+    border: 1px solid #fcd34d;
+    border-radius: 100px;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #92400e;
+    margin-bottom: 1.25rem;
+  }
+
+  /* ─── TOAST ─────────────────────────────── */
+  #toast {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--near-black);
+    color: var(--white);
+    padding: 0.65rem 1.5rem;
+    border-radius: 100px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    z-index: 9999;
+    transition: transform 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  #toast.show {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* ─── STEP HIDDEN ───────────────────────── */
+  .step-content { display: none; }
+  .step-content.active { display: block; }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="page-nav">
+  <div class="page-nav-inner">
+    <a href="index.html" class="page-nav-logo">Suruh<span>Ngoding</span></a>
+    <a href="index.html" class="page-nav-back">
+      <i class="fas fa-arrow-left"></i> Kembali ke Beranda
+    </a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="purchase-wrap">
+
+  <!-- Step Indicator -->
+  <div class="step-indicator" id="stepIndicator">
+    <div class="step-dot active" id="sdot1">
+      <div class="step-circle" id="scirc1">1</div>
+      <div class="step-label">Data Pembeli</div>
+    </div>
+    <div class="step-line" id="sline1"></div>
+    <div class="step-dot" id="sdot2">
+      <div class="step-circle" id="scirc2">2</div>
+      <div class="step-label">Pembayaran</div>
+    </div>
+    <div class="step-line" id="sline2"></div>
+    <div class="step-dot" id="sdot3">
+      <div class="step-circle" id="scirc3">3</div>
+      <div class="step-label">Bukti Transfer</div>
+    </div>
+    <div class="step-line" id="sline3"></div>
+    <div class="step-dot" id="sdot4">
+      <div class="step-circle" id="scirc4">4</div>
+      <div class="step-label">Konfirmasi</div>
+    </div>
+  </div>
+
+  <!-- ══════════ STEP 1: Form Data Pembeli ══════════ -->
+  <div class="step-content active" id="step1">
+    <div class="purchase-card">
+      <h2>Data Pembeli</h2>
+      <p class="card-sub">Isi data di bawah untuk memproses pembelian lisensi kamu.</p>
+
+      <div class="form-group">
+        <label>Nama Lengkap <span class="req">*</span></label>
+        <input type="text" id="inputNama" class="form-control" placeholder="contoh: Budi Santoso">
+      </div>
+
+      <div class="form-group">
+        <label>Email <span class="req">*</span></label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="email@kamu.com">
+        <div class="note"><i class="fas fa-info-circle"></i> License key akan dikirim ke email ini</div>
+      </div>
+
+      <div class="form-group">
+        <label>Nomor WhatsApp <span style="font-weight:400;color:var(--gray-400)">(opsional)</span></label>
+        <input type="tel" id="inputWa" class="form-control" placeholder="contoh: 08123456789">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Pilih Produk <span class="req">*</span></label>
+          <select id="selectProduk" class="form-control" onchange="updatePaketOptions()">
+            <option value="">-- Pilih Produk --</option>
+            <option value="suruhkelola">SuruhKelola</option>
+            <option value="suruhlaundry">SuruhLaundry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Pilih Paket <span class="req">*</span></label>
+          <select id="selectPaket" class="form-control" onchange="updateOrderSummary()">
+            <option value="">-- Pilih Paket --</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="order-summary" id="orderSummary">
+        <div class="order-summary-title"><i class="fas fa-receipt"></i> Ringkasan Pesanan</div>
+        <div id="summaryContent">
+          <div class="order-empty">Pilih produk dan paket untuk melihat ringkasan</div>
+        </div>
+      </div>
+
+      <button class="btn-full btn-full-primary" onclick="goToStep2()">
+        Lanjut ke Pembayaran <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- ══════════ STEP 2: Info Pembayaran ══════════ -->
+  <div class="step-content" id="step2">
+    <div class="purchase-card">
+      <h2>Informasi Pembayaran</h2>
+      <p class="card-sub">Transfer ke salah satu rekening di bawah ini.</p>
+
+      <!-- No. Pesanan -->
+      <div class="order-number-box">
+        <div>
+          <div class="order-number-label">Nomor Pesanan</div>
+          <div class="order-number-value" id="displayOrderNum">—</div>
+        </div>
+        <button class="btn-copy" onclick="copyToClipboard(document.getElementById('displayOrderNum').textContent)">
+          <i class="fas fa-copy"></i> Salin
+        </button>
+      </div>
+
+      <!-- Peringatan -->
+      <div class="alert-warning">
+        <i class="fas fa-triangle-exclamation"></i>
+        <span>Transfer <strong>tepat nominal</strong> berikut (sudah termasuk kode unik 3 digit). Nominal berbeda dapat memperlamban verifikasi pembayaran Anda.</span>
+      </div>
+
+      <!-- Bank List -->
+      <div class="bank-list">
+        <div class="bank-item">
+          <div class="bank-info">
+            <div class="bank-name">BCA</div>
+            <div class="bank-number">1234567890</div>
+            <div class="bank-owner">a.n. SuruhNgoding</div>
+          </div>
+          <button class="btn-copy" onclick="copyToClipboard('1234567890')">
+            <i class="fas fa-copy"></i> Salin
+          </button>
+        </div>
+        <div class="bank-item">
+          <div class="bank-info">
+            <div class="bank-name">BRI</div>
+            <div class="bank-number">0987654321</div>
+            <div class="bank-owner">a.n. SuruhNgoding</div>
+          </div>
+          <button class="btn-copy" onclick="copyToClipboard('0987654321')">
+            <i class="fas fa-copy"></i> Salin
+          </button>
+        </div>
+        <div class="bank-item">
+          <div class="bank-info">
+            <div class="bank-name">Mandiri</div>
+            <div class="bank-number">1122334455</div>
+            <div class="bank-owner">a.n. SuruhNgoding</div>
+          </div>
+          <button class="btn-copy" onclick="copyToClipboard('1122334455')">
+            <i class="fas fa-copy"></i> Salin
+          </button>
+        </div>
+      </div>
+
+      <!-- Nominal Transfer -->
+      <div class="nominal-box">
+        <div class="nominal-label">Nominal Transfer</div>
+        <div class="nominal-amount" id="displayNominal">Rp —</div>
+        <div class="nominal-note" id="displayNominalNote">&nbsp;</div>
+        <div class="nominal-copy-row">
+          <button class="btn-copy" style="margin:0 auto;" onclick="copyNominal()">
+            <i class="fas fa-copy"></i> Salin Nominal
+          </button>
+        </div>
+      </div>
+
+      <!-- Timer -->
+      <div class="timer-box">
+        <i class="fas fa-clock timer-icon"></i>
+        <span class="timer-label">Batas waktu pembayaran:</span>
+        <span class="timer-value" id="timerDisplay">23:59:59</span>
+      </div>
+
+      <button class="btn-full btn-full-accent" onclick="goToStep3()">
+        Saya Sudah Transfer <i class="fas fa-arrow-right"></i>
+      </button>
+      <div class="btn-wa-link">
+        Belum bisa transfer? <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20mau%20tanya%20soal%20pembayaran" target="_blank">Hubungi WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ STEP 3: Upload Bukti Transfer ══════════ -->
+  <div class="step-content" id="step3">
+    <div class="purchase-card">
+      <h2>Upload Bukti Transfer</h2>
+      <p class="card-sub">Kirimkan bukti transfer agar kami segera memverifikasi pembayaran kamu.</p>
+
+      <div class="demo-badge">
+        <i class="fas fa-flask"></i> Mode Demo — Tidak ada upload sungguhan
+      </div>
+
+      <!-- Dropzone -->
+      <div class="dropzone" id="dropzone" ondragover="event.preventDefault();this.classList.add('dragover')" ondragleave="this.classList.remove('dragover')" ondrop="handleDrop(event)">
+        <input type="file" id="fileInput" accept="image/jpeg,image/png,application/pdf" onchange="handleFileSelect(event)">
+        <div class="dropzone-icon"><i class="fas fa-cloud-arrow-up"></i></div>
+        <div class="dropzone-title">Drag & drop atau klik untuk pilih file</div>
+        <div class="dropzone-sub">JPG, PNG, PDF — Maks. 5 MB</div>
+        <div class="dropzone-preview" id="dropzonePreview"></div>
+      </div>
+
+      <div class="form-group">
+        <label>Nama Lengkap</label>
+        <input type="text" id="uploadNama" class="form-control" disabled>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="uploadEmail" class="form-control" disabled>
+      </div>
+      <div class="form-group">
+        <label>Nomor Pesanan</label>
+        <input type="text" id="uploadOrderNum" class="form-control" readonly style="background:var(--gray-100);cursor:default;">
+      </div>
+
+      <button class="btn-full btn-full-primary" onclick="handleUpload()" style="margin-bottom:0.75rem;">
+        <i class="fas fa-paper-plane"></i> Kirim Bukti Transfer
+      </button>
+      <button class="btn-full btn-full-outline" onclick="skipToStep4()" style="border:1.5px solid var(--gray-200);">
+        <i class="fas fa-forward"></i> Lanjut Tanpa Upload (Demo)
+      </button>
+    </div>
+  </div>
+
+  <!-- ══════════ STEP 4: Konfirmasi Berhasil ══════════ -->
+  <div class="step-content" id="step4">
+    <div class="purchase-card">
+
+      <div class="success-icon">
+        <div class="success-checkmark">
+          <i class="fas fa-check"></i>
+        </div>
+      </div>
+
+      <div class="success-title">Bukti Transfer Diterima!</div>
+      <div class="success-sub">
+        Terima kasih telah melakukan pembelian. Tim kami akan segera memverifikasi pembayaran Anda.
+      </div>
+
+      <div class="success-order-box">
+        <div class="success-order-label">Nomor Pesanan Anda</div>
+        <div class="success-order-num" id="successOrderNum">—</div>
+      </div>
+
+      <div class="success-info-list">
+        <div class="success-info-item">
+          <i class="fas fa-clock"></i>
+          <span>Kami akan konfirmasi pembayaran dalam <strong>1–2 jam</strong> (jam kerja 08.00–21.00 WIB)</span>
+        </div>
+        <div class="success-info-item">
+          <i class="fas fa-envelope"></i>
+          <span>License key akan dikirim ke: <strong id="successEmail">—</strong></span>
+        </div>
+        <div class="success-info-item">
+          <i class="fas fa-headset"></i>
+          <span>Butuh bantuan? Hubungi kami via <a href="https://wa.me/62881080608167" target="_blank" style="color:var(--accent);font-weight:600;">WhatsApp</a></span>
+        </div>
+      </div>
+
+      <div class="success-actions">
+        <a href="cek-lisensi.html" class="btn-full btn-full-accent">
+          <i class="fas fa-key"></i> Cek Status Lisensi
+        </a>
+        <a href="index.html" class="btn-full btn-full-outline" style="border:1.5px solid var(--gray-200);">
+          <i class="fas fa-house"></i> Kembali ke Beranda
+        </a>
+      </div>
+
+      <div class="success-tip">
+        <i class="fas fa-lightbulb"></i>
+        <span><strong>Simpan nomor pesanan ini</strong> untuk referensi. Gunakan nomor tersebut saat menghubungi support kami.</span>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<!-- Toast -->
+<div id="toast"></div>
+
+<script src="js/beli.js"></script>
+</body>
+</html>

@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel — SuruhNgoding</title>
+<link rel="stylesheet" href="design-system.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  /* ─── RESET & BASE ─────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-sans);
+    background: #f0f2f5;
+    color: var(--dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── LOGIN SCREEN ─────────────────────── */
+  #login-screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0d1a2a 100%);
+    padding: 1.5rem;
+  }
+
+  .login-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+  }
+
+  .login-logo {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .login-logo .logo-text {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--near-black);
+    letter-spacing: -0.03em;
+  }
+
+  .login-logo .logo-text span {
+    color: var(--accent);
+  }
+
+  .login-logo p {
+    font-size: 0.85rem;
+    color: var(--gray-600);
+    margin-top: 0.25rem;
+  }
+
+  .login-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--near-black);
+    margin-bottom: 0.375rem;
+  }
+
+  .login-sub {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+    margin-bottom: 1.75rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.125rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.01em;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: var(--dark);
+    background: var(--white);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+  }
+
+  .form-control:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.12);
+  }
+
+  .form-control::placeholder { color: var(--gray-400); }
+
+  .btn-login {
+    width: 100%;
+    padding: 0.85rem;
+    background: var(--near-black);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 0.5rem;
+  }
+
+  .btn-login:hover {
+    background: var(--black);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .btn-login:active { transform: translateY(0); }
+
+  .demo-hint {
+    margin-top: 1.5rem;
+    padding: 0.875rem 1rem;
+    background: var(--gray-100);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--accent);
+  }
+
+  .demo-hint p {
+    font-size: 0.8rem;
+    color: var(--gray-600);
+    line-height: 1.5;
+  }
+
+  .demo-hint strong { color: var(--dark); }
+
+  .login-error {
+    padding: 0.75rem 1rem;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: var(--radius-md);
+    color: #dc2626;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    display: none;
+  }
+
+  /* ─── APP LAYOUT ───────────────────────── */
+  #app {
+    display: none;
+    min-height: 100vh;
+  }
+
+  .admin-layout {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ─── SIDEBAR ──────────────────────────── */
+  .sidebar {
+    width: 260px;
+    background: #1a1a1a;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 200;
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+  }
+
+  .sidebar-header {
+    padding: 1.5rem 1.25rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .sidebar-logo {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -0.03em;
+    text-decoration: none;
+  }
+
+  .sidebar-logo span { color: var(--accent); }
+
+  .sidebar-badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    background: rgba(6, 182, 212, 0.2);
+    color: var(--accent);
+    padding: 0.15rem 0.5rem;
+    border-radius: 20px;
+    margin-top: 0.2rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .sidebar-nav {
+    flex: 1;
+    padding: 1rem 0.75rem;
+  }
+
+  .nav-section-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.3);
+    padding: 0 0.5rem;
+    margin: 0.75rem 0 0.35rem;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 0.75rem;
+    border-radius: var(--radius-md);
+    color: rgba(255,255,255,0.65);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+  }
+
+  .nav-item i {
+    width: 18px;
+    font-size: 0.875rem;
+    flex-shrink: 0;
+    text-align: center;
+  }
+
+  .nav-item:hover {
+    color: var(--white);
+    background: rgba(255,255,255,0.07);
+  }
+
+  .nav-item.active {
+    color: var(--white);
+    background: rgba(6, 182, 212, 0.18);
+  }
+
+  .nav-item.active i { color: var(--accent); }
+
+  .sidebar-footer {
+    padding: 1rem 0.75rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0.75rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 0.5rem;
+  }
+
+  .user-avatar {
+    width: 32px;
+    height: 32px;
+    background: rgba(6, 182, 212, 0.25);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .user-avatar i { color: var(--accent); font-size: 0.8rem; }
+
+  .user-details { flex: 1; min-width: 0; }
+
+  .user-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--white);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .user-role {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .btn-logout {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    background: rgba(239, 68, 68, 0.12);
+    color: #f87171;
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+  }
+
+  .btn-logout:hover {
+    background: rgba(239, 68, 68, 0.22);
+    color: #fca5a5;
+  }
+
+  /* ─── MOBILE SIDEBAR TOGGLE ─────────────── */
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 199;
+  }
+
+  .mobile-topbar {
+    display: none;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.875rem 1.25rem;
+    background: #1a1a1a;
+    position: sticky;
+    top: 0;
+    z-index: 198;
+  }
+
+  .btn-menu {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.25rem;
+  }
+
+  .mobile-logo {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -0.03em;
+  }
+
+  .mobile-logo span { color: var(--accent); }
+
+  /* ─── MAIN CONTENT ─────────────────────── */
+  .main-content {
+    margin-left: 260px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .page-header {
+    background: var(--white);
+    padding: 1.25rem 2rem;
+    border-bottom: 1px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .page-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--near-black);
+  }
+
+  .page-sub {
+    font-size: 0.8rem;
+    color: var(--gray-600);
+    margin-top: 0.1rem;
+  }
+
+  .page-content {
+    padding: 1.75rem 2rem;
+    flex: 1;
+  }
+
+  /* ─── VIEWS ────────────────────────────── */
+  .view { display: none; }
+  .view.active { display: block; }
+
+  /* ─── STATS CARDS ──────────────────────── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .stat-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-200);
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: box-shadow 0.2s;
+  }
+
+  .stat-card:hover { box-shadow: var(--shadow-md); }
+
+  .stat-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.1rem;
+  }
+
+  .stat-icon.blue { background: #dbeafe; color: #2563eb; }
+  .stat-icon.amber { background: #fef3c7; color: #d97706; }
+  .stat-icon.green { background: #dcfce7; color: #16a34a; }
+  .stat-icon.purple { background: #ede9fe; color: #7c3aed; }
+
+  .stat-info { flex: 1; }
+
+  .stat-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--gray-600);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .stat-value {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--near-black);
+    line-height: 1.2;
+    margin: 0.2rem 0;
+    font-family: var(--font-display);
+  }
+
+  .stat-trend {
+    font-size: 0.78rem;
+    color: var(--gray-600);
+  }
+
+  .stat-trend.up { color: #16a34a; }
+  .stat-trend.down { color: #dc2626; }
+
+  /* ─── SECTION CARDS ────────────────────── */
+  .card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--gray-200);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+
+  .card-header {
+    padding: 1.125rem 1.5rem;
+    border-bottom: 1px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .card-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--near-black);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .card-title i { color: var(--accent); }
+
+  /* ─── TABLE ────────────────────────────── */
+  .table-wrap {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+
+  thead th {
+    background: var(--gray-100);
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gray-600);
+    white-space: nowrap;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  tbody tr {
+    border-bottom: 1px solid #f3f4f6;
+    transition: background 0.15s;
+  }
+
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: #fafafa; }
+
+  tbody td {
+    padding: 0.875rem 1rem;
+    color: var(--dark);
+    vertical-align: middle;
+  }
+
+  .td-mono {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--gray-600);
+    letter-spacing: 0.02em;
+  }
+
+  /* ─── BADGES ───────────────────────────── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  .badge::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+  }
+
+  .badge-active    { background: #dcfce7; color: #15803d; }
+  .badge-inactive  { background: #fee2e2; color: #dc2626; }
+  .badge-pending   { background: #fef9c3; color: #a16207; }
+  .badge-uploaded  { background: #dbeafe; color: #1d4ed8; }
+  .badge-confirmed { background: #dcfce7; color: #15803d; }
+  .badge-rejected  { background: #fee2e2; color: #dc2626; }
+
+  /* ─── ACTION BUTTONS ────────────────────── */
+  .btn-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    white-space: nowrap;
+  }
+
+  .btn-action.primary   { background: var(--near-black); color: var(--white); }
+  .btn-action.primary:hover { background: var(--black); }
+
+  .btn-action.accent    { background: var(--accent); color: var(--white); }
+  .btn-action.accent:hover { background: var(--accent-hover); }
+
+  .btn-action.danger    { background: #fee2e2; color: #dc2626; }
+  .btn-action.danger:hover { background: #fecaca; }
+
+  .btn-action.warning   { background: #fef3c7; color: #d97706; }
+  .btn-action.warning:hover { background: #fde68a; }
+
+  .btn-action.ghost     { background: var(--gray-100); color: var(--gray-800); }
+  .btn-action.ghost:hover { background: var(--gray-200); }
+
+  .actions-cell { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+
+  /* ─── TOOLBAR ──────────────────────────── */
+  .toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+  }
+
+  .search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 220px;
+    max-width: 360px;
+  }
+
+  .search-wrap i {
+    position: absolute;
+    left: 0.875rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray-400);
+    font-size: 0.875rem;
+    pointer-events: none;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 0.65rem 0.9rem 0.65rem 2.4rem;
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    outline: none;
+    background: var(--white);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .search-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+  }
+
+  .filter-select {
+    padding: 0.65rem 0.875rem;
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: var(--dark);
+    background: var(--white);
+    outline: none;
+    cursor: pointer;
+    min-width: 160px;
+    transition: border-color 0.2s;
+  }
+
+  .filter-select:focus { border-color: var(--accent); }
+
+  /* ─── CEK LISENSI ──────────────────────── */
+  .cek-form {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .cek-form .form-control {
+    flex: 1;
+    min-width: 280px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .license-result-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--gray-200);
+    padding: 1.75rem;
+    display: none;
+  }
+
+  .license-result-card.visible { display: block; }
+
+  .license-result-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .license-key-display {
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--near-black);
+    letter-spacing: 0.08em;
+    word-break: break-all;
+  }
+
+  .license-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .meta-item { padding: 0; }
+
+  .meta-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gray-600);
+    margin-bottom: 0.25rem;
+  }
+
+  .meta-value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--near-black);
+  }
+
+  .devices-section { margin-top: 1.5rem; }
+
+  .devices-section h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--near-black);
+    margin-bottom: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .device-list { display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .device-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    background: var(--gray-100);
+    border-radius: var(--radius-md);
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .device-info { display: flex; align-items: center; gap: 0.75rem; }
+
+  .device-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--white);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    color: var(--accent);
+    flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .device-name { font-size: 0.875rem; font-weight: 600; color: var(--near-black); }
+  .device-meta { font-size: 0.78rem; color: var(--gray-600); }
+
+  .license-not-found {
+    padding: 2rem;
+    text-align: center;
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: var(--radius-lg);
+    color: #9a3412;
+    display: none;
+  }
+
+  .license-not-found.visible { display: block; }
+  .license-not-found i { font-size: 2rem; margin-bottom: 0.75rem; color: #f97316; }
+  .license-not-found p { font-size: 0.9rem; }
+
+  /* ─── BUAT LISENSI FORM ──────────────────── */
+  .create-form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group-full { grid-column: 1 / -1; }
+
+  .generated-key-box {
+    background: #0f172a;
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    display: none;
+  }
+
+  .generated-key-box.visible { display: flex; }
+
+  .generated-key-text {
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #06b6d4;
+    letter-spacing: 0.1em;
+    word-break: break-all;
+  }
+
+  /* ─── TABS ─────────────────────────────── */
+  .tab-bar {
+    display: flex;
+    gap: 0.25rem;
+    border-bottom: 2px solid var(--gray-200);
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .tab-bar::-webkit-scrollbar { display: none; }
+
+  .tab-btn {
+    padding: 0.7rem 1.125rem;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gray-600);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .tab-btn:hover { color: var(--near-black); }
+
+  .tab-btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .tab-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 0.3rem;
+    background: var(--gray-200);
+    border-radius: 9px;
+    font-size: 0.68rem;
+  }
+
+  .tab-btn.active .tab-count {
+    background: rgba(6, 182, 212, 0.15);
+    color: var(--accent);
+  }
+
+  /* ─── MODAL ────────────────────────────── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    backdrop-filter: blur(3px);
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    width: 100%;
+    max-width: 440px;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.25);
+    animation: modalIn 0.2s ease;
+  }
+
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.95) translateY(10px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .modal-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--near-black);
+    margin-bottom: 0.5rem;
+  }
+
+  .modal-sub {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .modal-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .modal-actions .btn-action { padding: 0.6rem 1.25rem; font-size: 0.875rem; }
+
+  /* ─── TOAST ────────────────────────────── */
+  .toast-container {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .toast {
+    padding: 0.875rem 1.25rem;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    box-shadow: var(--shadow-lg);
+    animation: toastIn 0.25s ease;
+    min-width: 260px;
+    max-width: 380px;
+  }
+
+  @keyframes toastIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  .toast.success { background: #f0fdf4; color: #15803d; border-left: 3px solid #16a34a; }
+  .toast.error   { background: #fef2f2; color: #dc2626; border-left: 3px solid #ef4444; }
+  .toast.info    { background: #eff6ff; color: #1d4ed8; border-left: 3px solid #3b82f6; }
+
+  /* ─── EMPTY STATE ──────────────────────── */
+  .empty-state {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    color: var(--gray-600);
+  }
+
+  .empty-state i {
+    font-size: 2.5rem;
+    color: var(--gray-400);
+    margin-bottom: 0.875rem;
+  }
+
+  .empty-state p { font-size: 0.9rem; }
+
+  /* ─── MODE DEMO BANNER ───────────────────── */
+  .demo-banner {
+    background: linear-gradient(135deg, #fef3c7, #fef9e7);
+    border-bottom: 1px solid #fde68a;
+    padding: 0.6rem 2rem;
+    font-size: 0.8rem;
+    color: #92400e;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .demo-banner i { color: #d97706; }
+
+  /* ─── HELPERS ──────────────────────────── */
+  .flex-gap { display: flex; align-items: center; gap: 0.5rem; }
+  .text-sm  { font-size: 0.8rem; }
+  .text-muted { color: var(--gray-600); }
+  .font-mono { font-family: 'Courier New', monospace; font-size: 0.8rem; }
+
+  /* ─── RESPONSIVE ────────────────────────── */
+  @media (max-width: 768px) {
+    .sidebar {
+      transform: translateX(-100%);
+    }
+
+    .sidebar.open {
+      transform: translateX(0);
+    }
+
+    .sidebar-overlay.open { display: block; }
+
+    .main-content {
+      margin-left: 0;
+    }
+
+    .mobile-topbar { display: flex; }
+
+    .page-header { padding: 1rem 1.25rem; }
+    .page-content { padding: 1.25rem; }
+
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+
+    .card-header { padding: 1rem 1.25rem; }
+    thead th, tbody td { padding: 0.75rem 0.75rem; }
+
+    .cek-form { flex-direction: column; }
+    .cek-form .form-control { min-width: 0; }
+
+    .create-form-grid { grid-template-columns: 1fr; }
+    .form-group-full { grid-column: 1; }
+
+    .toolbar { flex-direction: column; align-items: stretch; }
+    .search-wrap { max-width: 100%; }
+
+    .tab-btn { padding: 0.6rem 0.875rem; }
+  }
+
+  @media (max-width: 480px) {
+    .stats-grid { grid-template-columns: 1fr; }
+    .license-meta-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── LOGIN SCREEN ─────────────────────────────────── -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="logo-text">Suruh<span>Ngoding</span></div>
+      <p>Admin Panel</p>
+    </div>
+    <h2 class="login-title">Selamat datang</h2>
+    <p class="login-sub">Masuk ke dashboard admin untuk mengelola lisensi dan pesanan.</p>
+    <div id="login-error" class="login-error">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      <span id="login-error-msg">Email atau password salah.</span>
+    </div>
+    <form id="login-form" onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label for="login-email">Email</label>
+        <input type="email" id="login-email" class="form-control" placeholder="admin@example.com" required autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" class="form-control" placeholder="••••••••" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn-login" id="btn-login-submit">
+        <i class="fa-solid fa-right-to-bracket"></i> Masuk sebagai Admin
+      </button>
+    </form>
+    <div class="demo-hint">
+      <p><strong>Mode Demo:</strong> Gunakan <strong>admin@demo.com</strong> / <strong>admin123</strong> untuk masuk tanpa konfigurasi Supabase.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ─── APP ──────────────────────────────────────────── -->
+<div id="app">
+
+  <!-- Mobile Top Bar -->
+  <div class="mobile-topbar">
+    <button class="btn-menu" onclick="toggleSidebar()" title="Buka menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <span class="mobile-logo">Suruh<span>Ngoding</span> Admin</span>
+  </div>
+
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+  <div class="admin-layout">
+    <!-- ─── SIDEBAR ─── -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">Suruh<span>Ngoding</span></div>
+        <div class="sidebar-badge">Admin Panel</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Utama</div>
+        <button class="nav-item active" onclick="navigate('dashboard')" id="nav-dashboard">
+          <i class="fa-solid fa-house"></i> Dashboard
+        </button>
+
+        <div class="nav-section-label">Lisensi</div>
+        <button class="nav-item" onclick="navigate('cek-lisensi')" id="nav-cek-lisensi">
+          <i class="fa-solid fa-magnifying-glass"></i> Cek Lisensi
+        </button>
+        <button class="nav-item" onclick="navigate('daftar-lisensi')" id="nav-daftar-lisensi">
+          <i class="fa-solid fa-key"></i> Daftar Lisensi
+        </button>
+        <button class="nav-item" onclick="navigate('buat-lisensi')" id="nav-buat-lisensi">
+          <i class="fa-solid fa-plus"></i> Buat Lisensi
+        </button>
+
+        <div class="nav-section-label">Transaksi</div>
+        <button class="nav-item" onclick="navigate('pesanan')" id="nav-pesanan">
+          <i class="fa-solid fa-receipt"></i> Pesanan
+        </button>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-info">
+          <div class="user-avatar"><i class="fa-solid fa-user"></i></div>
+          <div class="user-details">
+            <div class="user-name" id="sidebar-user-name">Admin</div>
+            <div class="user-role" id="sidebar-user-role">Administrator</div>
+          </div>
+        </div>
+        <button class="btn-logout" onclick="handleLogout()">
+          <i class="fa-solid fa-right-from-bracket"></i> Keluar
+        </button>
+      </div>
+    </aside>
+
+    <!-- ─── MAIN CONTENT ─── -->
+    <div class="main-content">
+      <!-- Demo Banner -->
+      <div class="demo-banner" id="demo-banner" style="display:none;">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span>Mode Demo aktif — data yang ditampilkan adalah data contoh. Konfigurasikan Supabase di <code>js/admin.js</code> untuk data nyata.</span>
+      </div>
+
+      <!-- ═══ DASHBOARD ═══════════════════════════════ -->
+      <div id="view-dashboard" class="view active">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Dashboard</div>
+            <div class="page-sub" id="dashboard-date">Selamat datang kembali</div>
+          </div>
+          <button class="btn-action accent" onclick="navigate('buat-lisensi')">
+            <i class="fa-solid fa-plus"></i> Buat Lisensi
+          </button>
+        </div>
+        <div class="page-content">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon blue"><i class="fa-solid fa-key"></i></div>
+              <div class="stat-info">
+                <div class="stat-label">Lisensi Aktif</div>
+                <div class="stat-value" id="stat-lisensi-aktif">—</div>
+                <div class="stat-trend up" id="stat-lisensi-trend">dari total lisensi</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon amber"><i class="fa-solid fa-clock"></i></div>
+              <div class="stat-info">
+                <div class="stat-label">Pesanan Pending</div>
+                <div class="stat-value" id="stat-pending">—</div>
+                <div class="stat-trend" id="stat-pending-trend">menunggu konfirmasi</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon green"><i class="fa-solid fa-bag-shopping"></i></div>
+              <div class="stat-info">
+                <div class="stat-label">Pesanan Bulan Ini</div>
+                <div class="stat-value" id="stat-pesanan-bulan">—</div>
+                <div class="stat-trend" id="stat-pesanan-bulan-trend">pesanan terkonfirmasi</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon purple"><i class="fa-solid fa-money-bill-wave"></i></div>
+              <div class="stat-info">
+                <div class="stat-label">Pendapatan Bulan Ini</div>
+                <div class="stat-value" id="stat-pendapatan">—</div>
+                <div class="stat-trend up" id="stat-pendapatan-trend">dari pesanan terkonfirmasi</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title"><i class="fa-solid fa-receipt"></i> Pesanan Terbaru</div>
+              <button class="btn-action ghost" onclick="navigate('pesanan')">Lihat Semua</button>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>No. Pesanan</th>
+                    <th>Pembeli</th>
+                    <th>Produk</th>
+                    <th>Jumlah</th>
+                    <th>Status</th>
+                    <th>Tanggal</th>
+                  </tr>
+                </thead>
+                <tbody id="dashboard-pesanan-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title"><i class="fa-solid fa-key"></i> Lisensi Terbaru</div>
+              <button class="btn-action ghost" onclick="navigate('daftar-lisensi')">Lihat Semua</button>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>License Key</th>
+                    <th>Pemilik</th>
+                    <th>Produk</th>
+                    <th>Paket</th>
+                    <th>Status</th>
+                    <th>Tanggal Beli</th>
+                  </tr>
+                </thead>
+                <tbody id="dashboard-lisensi-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ CEK LISENSI ══════════════════════════════ -->
+      <div id="view-cek-lisensi" class="view">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Cek Lisensi</div>
+            <div class="page-sub">Masukkan license key untuk melihat detail dan status lisensi</div>
+          </div>
+        </div>
+        <div class="page-content">
+          <div class="card" style="padding:1.5rem;">
+            <div class="cek-form">
+              <input type="text" id="cek-input" class="form-control"
+                placeholder="SK-XXXX-XXXX-XXXX-XXXX atau SLNDRY-XXXX-XXXX-XXXX-XXXX"
+                onkeydown="if(event.key==='Enter') cekLisensi()">
+              <button class="btn-action accent" style="padding:0.65rem 1.5rem;font-size:0.9rem;" onclick="cekLisensi()">
+                <i class="fa-solid fa-magnifying-glass"></i> Cek Lisensi
+              </button>
+            </div>
+            <p class="text-sm text-muted">Format: <span class="font-mono">SK-XXXX-XXXX-XXXX-XXXX</span> (SuruhKelola) atau <span class="font-mono">SLNDRY-XXXX-XXXX-XXXX-XXXX</span> (SuruhLaundry)</p>
+          </div>
+
+          <!-- Not Found -->
+          <div id="license-not-found" class="license-not-found">
+            <i class="fa-solid fa-circle-xmark"></i>
+            <p>License key tidak ditemukan. Periksa kembali format dan pastikan key sudah benar.</p>
+          </div>
+
+          <!-- Result Card -->
+          <div id="license-result-card" class="license-result-card">
+            <div class="license-result-header">
+              <div>
+                <div class="meta-label" style="margin-bottom:0.4rem;">License Key</div>
+                <div class="license-key-display" id="result-key"></div>
+              </div>
+              <div id="result-status-badge"></div>
+            </div>
+
+            <div class="license-meta-grid">
+              <div class="meta-item">
+                <div class="meta-label">Nama Pemilik</div>
+                <div class="meta-value" id="result-nama"></div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-label">Email Pemilik</div>
+                <div class="meta-value" id="result-email"></div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-label">Produk</div>
+                <div class="meta-value" id="result-produk"></div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-label">Paket</div>
+                <div class="meta-value" id="result-paket"></div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-label">Maks Device</div>
+                <div class="meta-value" id="result-maks-device"></div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-label">Device Terdaftar</div>
+                <div class="meta-value" id="result-device-count"></div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-label">Tanggal Beli</div>
+                <div class="meta-value" id="result-tanggal"></div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-label">Catatan</div>
+                <div class="meta-value" id="result-catatan">—</div>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1.5rem;">
+              <button class="btn-action warning" id="btn-toggle-lisensi" onclick="toggleLisensiStatus()">
+                <i class="fa-solid fa-ban"></i> Nonaktifkan Lisensi
+              </button>
+            </div>
+
+            <div class="devices-section">
+              <h4><i class="fa-solid fa-laptop" style="color:var(--accent)"></i> Perangkat Terdaftar</h4>
+              <div class="device-list" id="result-devices"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ DAFTAR LISENSI ════════════════════════════ -->
+      <div id="view-daftar-lisensi" class="view">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Daftar Lisensi</div>
+            <div class="page-sub">Kelola semua lisensi SuruhKelola &amp; SuruhLaundry</div>
+          </div>
+          <button class="btn-action accent" onclick="navigate('buat-lisensi')">
+            <i class="fa-solid fa-plus"></i> Buat Lisensi Manual
+          </button>
+        </div>
+        <div class="page-content">
+          <div class="toolbar">
+            <div class="search-wrap">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" class="search-input" id="lisensi-search"
+                placeholder="Cari license key, nama, email..."
+                oninput="filterLisensi()">
+            </div>
+            <select class="filter-select" id="filter-produk" onchange="filterLisensi()">
+              <option value="">Semua Produk</option>
+              <option value="SuruhKelola">SuruhKelola</option>
+              <option value="SuruhLaundry">SuruhLaundry</option>
+            </select>
+            <select class="filter-select" id="filter-status-lisensi" onchange="filterLisensi()">
+              <option value="">Semua Status</option>
+              <option value="active">Aktif</option>
+              <option value="inactive">Nonaktif</option>
+            </select>
+          </div>
+          <div class="card">
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>License Key</th>
+                    <th>Pemilik</th>
+                    <th>Produk</th>
+                    <th>Paket</th>
+                    <th>Device</th>
+                    <th>Status</th>
+                    <th>Tanggal Beli</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="lisensi-tbody"></tbody>
+              </table>
+            </div>
+            <div id="lisensi-empty" class="empty-state" style="display:none;">
+              <i class="fa-solid fa-key"></i>
+              <p>Tidak ada lisensi yang cocok dengan filter.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ PESANAN ══════════════════════════════════ -->
+      <div id="view-pesanan" class="view">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Pesanan</div>
+            <div class="page-sub">Kelola dan konfirmasi pembayaran pesanan</div>
+          </div>
+        </div>
+        <div class="page-content">
+          <div class="tab-bar" id="pesanan-tabs">
+            <button class="tab-btn active" data-tab="all" onclick="filterPesanan('all', this)">
+              Semua <span class="tab-count" id="tab-count-all">0</span>
+            </button>
+            <button class="tab-btn" data-tab="pending" onclick="filterPesanan('pending', this)">
+              Menunggu Bukti <span class="tab-count" id="tab-count-pending">0</span>
+            </button>
+            <button class="tab-btn" data-tab="uploaded" onclick="filterPesanan('uploaded', this)">
+              Perlu Konfirmasi <span class="tab-count" id="tab-count-uploaded">0</span>
+            </button>
+            <button class="tab-btn" data-tab="confirmed" onclick="filterPesanan('confirmed', this)">
+              Terkonfirmasi <span class="tab-count" id="tab-count-confirmed">0</span>
+            </button>
+            <button class="tab-btn" data-tab="rejected" onclick="filterPesanan('rejected', this)">
+              Ditolak <span class="tab-count" id="tab-count-rejected">0</span>
+            </button>
+          </div>
+
+          <div class="card">
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>No. Pesanan</th>
+                    <th>Pembeli</th>
+                    <th>Produk</th>
+                    <th>Paket</th>
+                    <th>Jumlah</th>
+                    <th>Status</th>
+                    <th>Tanggal</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="pesanan-tbody"></tbody>
+              </table>
+            </div>
+            <div id="pesanan-empty" class="empty-state" style="display:none;">
+              <i class="fa-solid fa-receipt"></i>
+              <p>Tidak ada pesanan dalam kategori ini.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ BUAT LISENSI ══════════════════════════════ -->
+      <div id="view-buat-lisensi" class="view">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Buat Lisensi Manual</div>
+            <div class="page-sub">Generate license key baru untuk pelanggan</div>
+          </div>
+        </div>
+        <div class="page-content">
+          <div class="card" style="padding:1.75rem;">
+            <form id="create-license-form" onsubmit="generateLicense(event)">
+              <div class="create-form-grid">
+                <div class="form-group">
+                  <label for="cl-produk">Produk <span style="color:#dc2626">*</span></label>
+                  <select id="cl-produk" class="form-control" required onchange="updatePaketOptions()">
+                    <option value="">Pilih produk</option>
+                    <option value="SuruhKelola">SuruhKelola</option>
+                    <option value="SuruhLaundry">SuruhLaundry</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="cl-paket">Paket <span style="color:#dc2626">*</span></label>
+                  <select id="cl-paket" class="form-control" required>
+                    <option value="">Pilih paket</option>
+                    <option value="Starter">Starter (1 device)</option>
+                    <option value="Bisnis">Bisnis (3 device)</option>
+                    <option value="Pro">Pro (unlimited)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="cl-nama">Nama Pemilik <span style="color:#dc2626">*</span></label>
+                  <input type="text" id="cl-nama" class="form-control" placeholder="Budi Santoso" required>
+                </div>
+                <div class="form-group">
+                  <label for="cl-email">Email Pemilik <span style="color:#dc2626">*</span></label>
+                  <input type="email" id="cl-email" class="form-control" placeholder="budi@toko.com" required>
+                </div>
+                <div class="form-group form-group-full">
+                  <label for="cl-catatan">Catatan (opsional)</label>
+                  <input type="text" id="cl-catatan" class="form-control" placeholder="Misal: pesanan manual, lisensi pengganti...">
+                </div>
+              </div>
+              <button type="submit" class="btn-action accent" style="padding:0.75rem 2rem;font-size:0.9rem;">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Generate License Key
+              </button>
+            </form>
+
+            <div id="generated-key-box" class="generated-key-box">
+              <div>
+                <div class="meta-label" style="color:rgba(255,255,255,0.5);margin-bottom:0.3rem;">License Key Baru</div>
+                <div class="generated-key-text" id="generated-key-text"></div>
+              </div>
+              <button class="btn-action ghost" onclick="copyGeneratedKey()" id="btn-copy-key" style="flex-shrink:0;">
+                <i class="fa-solid fa-copy"></i> Salin
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /main-content -->
+  </div><!-- /admin-layout -->
+</div><!-- /app -->
+
+<!-- ─── MODAL KONFIRMASI ───────────────────────────── -->
+<div class="modal-overlay" id="confirm-modal">
+  <div class="modal">
+    <div class="modal-title" id="modal-title">Konfirmasi</div>
+    <div class="modal-sub" id="modal-sub">Apakah kamu yakin?</div>
+    <div id="modal-extra-fields"></div>
+    <div class="modal-actions">
+      <button class="btn-action ghost" onclick="closeModal()">Batal</button>
+      <button class="btn-action primary" id="modal-confirm-btn" onclick="executeModalAction()">Konfirmasi</button>
+    </div>
+  </div>
+</div>
+
+<!-- ─── TOAST CONTAINER ───────────────────────────── -->
+<div class="toast-container" id="toast-container"></div>
+
+<script src="js/admin.js"></script>
+</body>
+</html>

@@ -19,7 +19,7 @@ const LANG = {
       // Portfolio
       portoTitle:   'Project Terbaru',
       portoSub:     'Beberapa website yang udah saya kerjakan — dari landing page sampe sistem POS.',
-      // Pricing
+      // Pricing Jasa
       priceTitle:   'Paket Sederhana, Transparan',
       priceSub:     'Domain .suruhngoding.com gratis 1 tahun. Yang keliatan mahal, yang bayar gak bikin sakit.',
       promoLabel:   'Promo Harian',
@@ -67,7 +67,7 @@ const LANG = {
       // Portfolio
       portoTitle:   'Latest Projects',
       portoSub:     'Some websites I built — from landing pages to POS systems.',
-      // Pricing
+      // Pricing Jasa
       priceTitle:   'Simple, Transparent Pricing',
       priceSub:     'FREE hosting & domain included. Looks premium, pays affordable.',
       promoLabel:   'Daily Promo',
@@ -151,6 +151,7 @@ const LANG = {
 
 function toggleLang() { LANG.switch(); }
 
+/* ── Mobile Menu ─────────────────────────────────── */
 function toggleMobile() {
   const menu = document.getElementById('mobileMenu');
   menu.classList.toggle('open');
@@ -159,6 +160,7 @@ function toggleMobile() {
     : 'fas fa-bars';
 }
 
+/* ── Countdown timer (promo harian) ──────────────── */
 function startCountdown() {
   function pad(n) { return String(n).padStart(2, '0'); }
   function tick() {
@@ -168,22 +170,44 @@ function startCountdown() {
     const diff = end - now;
     if (diff <= 0) {
       ['cdHours', 'cdMinutes', 'cdSeconds'].forEach(id => {
-        document.getElementById(id).textContent = '00';
+        const el = document.getElementById(id);
+        if (el) el.textContent = '00';
       });
       return;
     }
-    document.getElementById('cdHours').textContent   = pad(Math.floor(diff / 3600000));
-    document.getElementById('cdMinutes').textContent = pad(Math.floor((diff % 3600000) / 60000));
-    document.getElementById('cdSeconds').textContent = pad(Math.floor((diff % 60000) / 1000));
+    const h = document.getElementById('cdHours');
+    const m = document.getElementById('cdMinutes');
+    const s = document.getElementById('cdSeconds');
+    if (h) h.textContent = pad(Math.floor(diff / 3600000));
+    if (m) m.textContent = pad(Math.floor((diff % 3600000) / 60000));
+    if (s) s.textContent = pad(Math.floor((diff % 60000) / 1000));
   }
   tick();
   setInterval(tick, 1000);
 }
 
+/* ── Navbar scroll state ─────────────────────────── */
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
 });
 
+/* ── Pricing tab switcher (lisensi) ──────────────── */
+function switchPricingTab(product, btn) {
+  document.querySelectorAll('.pricing-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.pricing-tab-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + product).classList.add('active');
+}
+
+/* ── FAQ accordion ───────────────────────────────── */
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+/* ── Init ────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   LANG.apply();
   startCountdown();
