@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demo Gratis 7 Hari — SuruhNgoding</title>
+<meta name="description" content="Coba SuruhKelola atau SuruhLaundry gratis selama 7 hari. Tidak perlu kartu kredit, langsung aktif.">
+<link rel="stylesheet" href="design-system.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  body { background: var(--gray-100); min-height: 100vh; }
+
+  .demo-wrap {
+    max-width: 580px;
+    margin: 0 auto;
+    padding: 1.5rem 16px 5rem;
+  }
+
+  /* ─── Hero ────────────────────────────────────── */
+  .demo-hero {
+    text-align: center;
+    padding: 2rem 1rem 2.25rem;
+  }
+
+  .trial-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(77,207,255,0.12);
+    color: #0067D1;
+    border: 1.5px solid rgba(77,207,255,0.35);
+    border-radius: 100px;
+    padding: 0.35rem 1rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1.1rem;
+  }
+
+  .demo-hero h1 {
+    font-size: clamp(1.75rem, 5vw, 2.25rem);
+    font-weight: 800;
+    color: var(--dark);
+    line-height: 1.2;
+    margin: 0 0 0.65rem;
+  }
+
+  .demo-hero p {
+    color: var(--gray-600);
+    font-size: 0.975rem;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* ─── Product Selector ────────────────────────── */
+  .product-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.875rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .product-card {
+    border: 2px solid var(--gray-200);
+    border-radius: 14px;
+    padding: 1.2rem 1rem;
+    cursor: pointer;
+    background: var(--white);
+    text-align: center;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    position: relative;
+    user-select: none;
+  }
+
+  .product-card:hover {
+    border-color: #0067D1;
+    box-shadow: 0 2px 12px rgba(0,103,209,0.1);
+  }
+
+  .product-card.selected {
+    border-color: #0067D1;
+    background: #f0f7ff;
+    box-shadow: 0 0 0 3px rgba(0,103,209,0.12);
+  }
+
+  .check-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background: #0067D1;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.6rem;
+  }
+
+  .product-card.selected .check-icon { display: flex; }
+
+  .product-emoji {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    line-height: 1;
+  }
+
+  .product-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--dark);
+    margin-bottom: 0.2rem;
+  }
+
+  .product-desc {
+    font-size: 0.75rem;
+    color: var(--gray-600);
+    line-height: 1.4;
+  }
+
+  /* ─── Form Card ───────────────────────────────── */
+  .form-card {
+    background: var(--white);
+    border: 1.5px solid var(--gray-200);
+    border-radius: 18px;
+    padding: 1.75rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+  }
+
+  .form-card h2 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin: 0 0 1.25rem;
+  }
+
+  .form-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 0.875rem;
+  }
+
+  @media (max-width: 480px) { .form-grid-2 { grid-template-columns: 1fr; } }
+
+  .btn-demo {
+    width: 100%;
+    background: linear-gradient(135deg, #0067D1 0%, #000069 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 0.9rem;
+    font-size: 0.975rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: opacity 0.2s, transform 0.15s;
+    margin-top: 1.25rem;
+    font-family: inherit;
+  }
+
+  .btn-demo:hover:not(:disabled) { opacity: 0.88; transform: translateY(-1px); }
+  .btn-demo:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+
+  .error-msg {
+    background: #fee2e2;
+    color: #991b1b;
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    font-size: 0.85rem;
+    margin-top: 1rem;
+    display: none;
+  }
+
+  .info-banner {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    background: #f0f7ff;
+    border: 1px solid rgba(0,103,209,0.2);
+    border-radius: 10px;
+    padding: 0.875rem 1rem;
+    margin-top: 1.25rem;
+    font-size: 0.8rem;
+    color: var(--gray-600);
+    line-height: 1.55;
+  }
+
+  .info-banner i { color: #0067D1; margin-top: 2px; flex-shrink: 0; }
+
+  /* ─── Result Card ─────────────────────────────── */
+  .result-card {
+    background: var(--white);
+    border: 1.5px solid var(--gray-200);
+    border-radius: 18px;
+    padding: 2rem 1.75rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+  }
+
+  .result-header {
+    text-align: center;
+    margin-bottom: 1.75rem;
+  }
+
+  .success-circle {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #0067D1, #4DCFFF);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .result-header h2 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--dark);
+    margin: 0 0 0.35rem;
+  }
+
+  .result-header p {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  .key-box {
+    background: #000069;
+    border-radius: 14px;
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .key-value {
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #4DCFFF;
+    letter-spacing: 0.08em;
+    word-break: break-all;
+    line-height: 1.3;
+  }
+
+  .btn-copy {
+    background: rgba(77,207,255,0.15);
+    border: 1.5px solid rgba(77,207,255,0.3);
+    color: #4DCFFF;
+    border-radius: 8px;
+    padding: 0.45rem 0.875rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+    flex-shrink: 0;
+    font-family: inherit;
+  }
+
+  .btn-copy:hover { background: rgba(77,207,255,0.25); }
+
+  .validity-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--gray-600);
+    padding: 0.7rem 1rem;
+    background: #f0f7ff;
+    border-radius: 10px;
+    margin-bottom: 1.75rem;
+  }
+
+  .validity-info i { color: #0067D1; }
+
+  .action-buttons { display: flex; flex-direction: column; gap: 0.75rem; }
+
+  .btn-action-wa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.15s;
+    border: none;
+    font-family: inherit;
+  }
+
+  .btn-action-wa:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-action-wa-green { background: #25D366; color: white; }
+  .btn-action-wa-ghost {
+    background: var(--gray-100);
+    color: var(--dark);
+    border: 1.5px solid var(--gray-200);
+  }
+
+  .divider {
+    text-align: center;
+    color: var(--gray-400);
+    font-size: 0.78rem;
+    margin: 0.25rem 0;
+  }
+
+  .btn-buy-link {
+    display: block;
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #0067D1;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.5rem;
+  }
+
+  .btn-buy-link:hover { text-decoration: underline; }
+
+  .email-note {
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--gray-400);
+    margin-top: 1.25rem;
+  }
+
+  .product-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: rgba(0,103,209,0.08);
+    color: #0067D1;
+    border-radius: 6px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ──────────────────────────────────────── -->
+<nav class="page-nav">
+  <div class="page-nav-inner">
+    <a href="index.html" class="page-nav-logo">
+      <div class="page-nav-logo-text">Suruh<span>Ngoding</span></div>
+    </a>
+    <a href="index.html" class="page-nav-back">
+      <i class="fa-solid fa-chevron-left"></i> Beranda
+    </a>
+  </div>
+</nav>
+
+<div class="demo-wrap">
+
+  <!-- ─── HERO ──────────────────────────────────── -->
+  <div class="demo-hero">
+    <div class="trial-badge"><i class="fa-solid fa-gift"></i> Gratis 7 Hari</div>
+    <h1>Coba Sebelum Beli</h1>
+    <p>Isi formulir di bawah — license key trial langsung aktif.<br>Tanpa kartu kredit, tanpa syarat.</p>
+  </div>
+
+  <!-- ─── FORM STATE ────────────────────────────── -->
+  <div id="demo-form-wrap">
+
+    <!-- Pilih Produk -->
+    <div class="product-selector">
+      <div class="product-card" id="card-sk" onclick="selectProduct('SuruhKelola')">
+        <div class="check-icon"><i class="fa-solid fa-check"></i></div>
+        <div class="product-emoji">🏪</div>
+        <div class="product-name">SuruhKelola</div>
+        <div class="product-desc">Manajemen toko &amp; kasir digital</div>
+      </div>
+      <div class="product-card" id="card-sl" onclick="selectProduct('SuruhLaundry')">
+        <div class="check-icon"><i class="fa-solid fa-check"></i></div>
+        <div class="product-emoji">👕</div>
+        <div class="product-name">SuruhLaundry</div>
+        <div class="product-desc">Manajemen laundry &amp; nota otomatis</div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h2><i class="fa-solid fa-user-pen" style="color:#0067D1;margin-right:0.5rem;font-size:0.95rem;"></i>Data Diri</h2>
+      <form id="demo-form" onsubmit="submitDemo(event)">
+        <input type="hidden" id="d-produk" value="">
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="d-nama">Nama Lengkap <span class="req">*</span></label>
+            <input type="text" id="d-nama" class="form-control" placeholder="Budi Santoso" autocomplete="name" required>
+          </div>
+          <div class="form-group">
+            <label for="d-bisnis">Nama Bisnis <span class="req">*</span></label>
+            <input type="text" id="d-bisnis" class="form-control" placeholder="Warung Pak Budi" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="d-email">Email <span class="req">*</span></label>
+          <input type="email" id="d-email" class="form-control" placeholder="budi@toko.com" autocomplete="email" required>
+        </div>
+        <div class="form-group">
+          <label for="d-wa">No. WhatsApp <span class="req">*</span></label>
+          <input type="tel" id="d-wa" class="form-control" placeholder="08123456789" autocomplete="tel" required>
+        </div>
+
+        <div id="error-msg" class="error-msg"></div>
+
+        <button type="submit" class="btn-demo" id="btn-submit">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> Aktifkan License Demo Gratis
+        </button>
+      </form>
+
+      <div class="info-banner">
+        <i class="fa-solid fa-circle-info"></i>
+        <span>License trial berlaku <strong>7 hari</strong>, kuota <strong>1 device</strong>, paket Starter.
+          Satu email hanya bisa request satu kali demo per produk.
+          Setelah trial habis, beli lisensi selamanya di halaman pembelian.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── RESULT STATE (hidden) ────────────────── -->
+  <div id="demo-result-wrap" style="display:none;">
+    <div class="result-card">
+      <div class="result-header">
+        <div class="success-circle"><i class="fa-solid fa-key"></i></div>
+        <h2>License Key Siap!</h2>
+        <p>Selamat, <strong id="result-nama"></strong>! Trial kamu sudah aktif.</p>
+      </div>
+
+      <div style="text-align:center;margin-bottom:0.75rem;">
+        <div class="product-tag" id="result-product-tag"></div>
+      </div>
+
+      <div class="key-box">
+        <div class="key-value" id="result-key-display">—</div>
+        <button class="btn-copy" onclick="copyKey()" id="btn-copy-key">
+          <i class="fa-solid fa-copy"></i> Salin
+        </button>
+      </div>
+
+      <div class="validity-info">
+        <i class="fa-solid fa-calendar-days"></i>
+        <span>Berlaku sampai <strong id="result-valid-until">—</strong> &bull; Starter &bull; 1 device</span>
+      </div>
+
+      <div class="action-buttons">
+        <a id="btn-wa-user" href="#" target="_blank" rel="noopener" class="btn-action-wa btn-action-wa-green">
+          <i class="fa-brands fa-whatsapp" style="font-size:1.1rem;"></i>
+          Kirim License Key ke WhatsApp Saya
+        </a>
+        <div class="divider">atau</div>
+        <a id="btn-wa-admin" href="#" target="_blank" rel="noopener" class="btn-action-wa btn-action-wa-ghost">
+          <i class="fa-brands fa-whatsapp" style="font-size:1.1rem;color:#25D366;"></i>
+          Tanya Admin via WhatsApp
+        </a>
+      </div>
+
+      <p class="email-note" id="email-note"></p>
+
+      <a href="beli.html" class="btn-buy-link">
+        Puas dengan trial? Beli lisensi selamanya <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /demo-wrap -->
+
+<div id="toast"></div>
+<script src="js/shared.js"></script>
+<script src="js/demo.js"></script>
+</body>
+</html>
