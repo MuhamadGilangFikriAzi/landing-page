@@ -116,6 +116,16 @@ async function handleActivate(
     }, 403)
   }
 
+  // Cek masa berlaku (trial license)
+  if (license.valid_until && new Date(license.valid_until) < new Date()) {
+    return json({
+      success: false,
+      code: 'expired',
+      message: 'Masa berlaku lisensi telah habis. Hubungi support SuruhNgoding untuk perpanjangan.',
+      expired_at: license.valid_until,
+    }, 403)
+  }
+
   if (license.product !== appProduct) {
     return json({
       success: false,
@@ -209,6 +219,16 @@ async function handleVerify(
     return json({ success: false, code: 'inactive', message: 'Lisensi tidak aktif' }, 403)
   }
 
+  // Cek masa berlaku
+  if (license.valid_until && new Date(license.valid_until) < new Date()) {
+    return json({
+      success: false,
+      code: 'expired',
+      message: 'Masa berlaku lisensi telah habis. Hubungi support untuk perpanjangan.',
+      expired_at: license.valid_until,
+    }, 403)
+  }
+
   const devices: any[] = license.devices ?? []
   const registered = devices.find((d: any) => d.device_id === device_id)
 
@@ -237,11 +257,12 @@ async function handleVerify(
 /* ── Helper ────────────────────────────────────────────── */
 function buildLicenseInfo(license: any, deviceCount: number) {
   return {
-    product:      license.product,
-    package:      license.package,
-    owner_name:   license.owner_name,
-    max_devices:  license.max_devices >= 99 ? 'unlimited' : license.max_devices,
-    device_count: deviceCount,
-    valid_until:  null,  // lifetime license
+    product:       license.product,
+    package:       license.package,
+    owner_name:    license.owner_name,
+    license_type:  license.license_type ?? 'lifetime',
+    max_devices:   license.max_devices >= 99 ? 'unlimited' : license.max_devices,
+    device_count:  deviceCount,
+    valid_until:   license.valid_until ?? null,   // null = selamanya
   }
 }

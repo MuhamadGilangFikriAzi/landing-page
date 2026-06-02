@@ -89,12 +89,29 @@ const MOCK_LICENSES = [
     owner_name: 'Rizki Pratama',
     owner_email: 'rizki@warungrizki.com',
     status: 'active',
+    license_type: 'lifetime',
+    valid_until: null,
     max_devices: 1,
     created_at: '2026-01-10T11:45:00Z',
     notes: '',
     devices: [
       { id: 'd7', name: 'HP Xiaomi Redmi', platform: 'Android 12', last_seen: '2026-05-29T08:55:00Z' },
     ]
+  },
+  {
+    id: 'lic-006',
+    license_key: 'SLNDRY-T7R1-A2L9-X4Q8-Z3P0',
+    product: 'SuruhLaundry',
+    package: 'Starter',
+    owner_name: 'Candra Wijaya',
+    owner_email: 'candra@gmail.com',
+    status: 'active',
+    license_type: 'trial',
+    valid_until: '2026-06-09T23:59:59Z',
+    max_devices: 1,
+    created_at: '2026-06-02T09:00:00Z',
+    notes: 'Trial 7 hari',
+    devices: [],
   },
 ];
 
@@ -445,6 +462,10 @@ function renderLicenseResult(license) {
   document.getElementById('result-device-count').textContent =
     `${license.devices.length} device`;
   document.getElementById('result-tanggal').textContent = formatDate(license.created_at);
+  document.getElementById('result-tipe-lisensi').textContent =
+    license.license_type === 'trial' ? 'Trial' : 'Lifetime';
+  document.getElementById('result-masa-berlaku').textContent =
+    license.valid_until ? formatDate(license.valid_until) : 'Selamanya';
   document.getElementById('result-catatan').textContent = license.notes || '—';
 
   // Toggle button
@@ -568,6 +589,7 @@ function renderLisensiTable() {
         <span class="text-muted"> / ${l.max_devices >= 99 ? '∞' : l.max_devices}</span>
       </td>
       <td>${statusBadge(l.status)}</td>
+      <td class="text-muted text-sm">${l.valid_until ? formatDate(l.valid_until) : 'Selamanya'}</td>
       <td class="text-muted text-sm">${formatDate(l.created_at)}</td>
       <td>
         <div class="actions-cell">
@@ -744,17 +766,54 @@ function updatePaketOptions() {
   // Untuk saat ini tidak ada perubahan opsi, tapi fungsi ini dipanggil saat produk berubah
 }
 
+function toggleCustomDate() {
+  const tipe = document.getElementById('cl-tipe-lisensi').value;
+  const group = document.getElementById('custom-date-group');
+  const input = document.getElementById('cl-valid-until');
+  if (tipe === 'custom') {
+    group.style.display = '';
+    input.required = true;
+  } else {
+    group.style.display = 'none';
+    input.required = false;
+    input.value = '';
+  }
+}
+
 function generateLicense(event) {
   event.preventDefault();
-  const produk  = document.getElementById('cl-produk').value;
-  const paket   = document.getElementById('cl-paket').value;
-  const nama    = document.getElementById('cl-nama').value.trim();
-  const email   = document.getElementById('cl-email').value.trim();
-  const catatan = document.getElementById('cl-catatan').value.trim();
+  const produk     = document.getElementById('cl-produk').value;
+  const paket      = document.getElementById('cl-paket').value;
+  const nama       = document.getElementById('cl-nama').value.trim();
+  const email      = document.getElementById('cl-email').value.trim();
+  const catatan    = document.getElementById('cl-catatan').value.trim();
+  const tipeLisensi = document.getElementById('cl-tipe-lisensi').value;
+  const customDate  = document.getElementById('cl-valid-until').value;
 
   if (!produk || !paket || !nama || !email) {
     showToast('Lengkapi semua field yang wajib diisi.', 'error');
     return;
+  }
+
+  if (tipeLisensi === 'custom' && !customDate) {
+    showToast('Pilih tanggal berlaku untuk tipe Custom.', 'error');
+    return;
+  }
+
+  // Hitung valid_until dan license_type
+  let validUntil = null;
+  let licenseType = 'lifetime';
+  if (tipeLisensi === 'trial7') {
+    licenseType = 'trial';
+    const d = new Date(); d.setDate(d.getDate() + 7); d.setHours(23, 59, 59, 0);
+    validUntil = d.toISOString();
+  } else if (tipeLisensi === 'trial30') {
+    licenseType = 'trial';
+    const d = new Date(); d.setDate(d.getDate() + 30); d.setHours(23, 59, 59, 0);
+    validUntil = d.toISOString();
+  } else if (tipeLisensi === 'custom') {
+    licenseType = 'trial';
+    validUntil = new Date(customDate + 'T23:59:59').toISOString();
   }
 
   const newKey = generateMockLicenseKey(produk);
@@ -768,6 +827,8 @@ function generateLicense(event) {
     owner_name: nama,
     owner_email: email,
     status: 'active',
+    license_type: licenseType,
+    valid_until: validUntil,
     max_devices: maxDev,
     created_at: new Date().toISOString(),
     notes: catatan,
@@ -783,6 +844,8 @@ function generateLicense(event) {
       owner_name: nama,
       owner_email: email,
       status: 'active',
+      license_type: licenseType,
+      valid_until: validUntil,
       max_devices: maxDev,
       notes: catatan,
     }]).then(({ error }) => {
@@ -889,6 +952,7 @@ function statusBadge(status, size = '') {
   const map = {
     active:    { cls: 'badge-active',    label: 'Aktif' },
     inactive:  { cls: 'badge-inactive',  label: 'Nonaktif' },
+    expired:   { cls: 'badge-rejected',  label: 'Kedaluwarsa' },
     pending:   { cls: 'badge-pending',   label: 'Menunggu Bukti' },
     uploaded:  { cls: 'badge-uploaded',  label: 'Perlu Konfirmasi' },
     confirmed: { cls: 'badge-confirmed', label: 'Terkonfirmasi' },

@@ -1314,6 +1314,14 @@
                 <div class="meta-value" id="result-tanggal"></div>
               </div>
               <div class="meta-item">
+                <div class="meta-label">Tipe Lisensi</div>
+                <div class="meta-value" id="result-tipe-lisensi">Lifetime</div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-label">Masa Berlaku</div>
+                <div class="meta-value" id="result-masa-berlaku">Selamanya</div>
+              </div>
+              <div class="meta-item">
                 <div class="meta-label">Catatan</div>
                 <div class="meta-value" id="result-catatan">—</div>
               </div>
@@ -1374,6 +1382,7 @@
                     <th>Paket</th>
                     <th>Device</th>
                     <th>Status</th>
+                    <th>Masa Berlaku</th>
                     <th>Tanggal Beli</th>
                     <th>Aksi</th>
                   </tr>
@@ -1478,6 +1487,19 @@
                 <div class="form-group">
                   <label for="cl-email">Email Pemilik <span style="color:#dc2626">*</span></label>
                   <input type="email" id="cl-email" class="form-control" placeholder="budi@toko.com" required>
+                </div>
+                <div class="form-group">
+                  <label for="cl-tipe-lisensi">Tipe Lisensi</label>
+                  <select id="cl-tipe-lisensi" class="form-control" onchange="toggleCustomDate()">
+                    <option value="lifetime">Selamanya (Lifetime)</option>
+                    <option value="trial7">Trial 7 Hari</option>
+                    <option value="trial30">Trial 30 Hari</option>
+                    <option value="custom">Custom (Pilih Tanggal)</option>
+                  </select>
+                </div>
+                <div class="form-group" id="custom-date-group" style="display:none;">
+                  <label for="cl-valid-until">Berlaku Sampai <span style="color:#dc2626">*</span></label>
+                  <input type="date" id="cl-valid-until" class="form-control">
                 </div>
                 <div class="form-group form-group-full">
                   <label for="cl-catatan">Catatan (opsional)</label>
