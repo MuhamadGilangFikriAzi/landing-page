@@ -10,17 +10,19 @@ const PRODUCTS = {
   suruhkelola: {
     label: 'SuruhKelola',
     paket: {
-      starter: { label: 'Starter', harga: 299000,  device: 1  },
-      bisnis:  { label: 'Bisnis',  harga: 699000,  device: 3  },
-      pro:     { label: 'Pro',     harga: 1499000, device: 10 },
+      starter:    { label: 'Starter',    harga: 299000,  device: 1  },
+      bisnis:     { label: 'Bisnis',     harga: 599000,  device: 3  },
+      pro:        { label: 'Pro',        harga: 999000,  device: 10 },
+      enterprise: { label: 'Enterprise', harga: 2500000, device: 9999 },
     }
   },
   suruhlaundry: {
     label: 'SuruhLaundry',
     paket: {
-      starter: { label: 'Starter', harga: 249000,  device: 1  },
-      bisnis:  { label: 'Bisnis',  harga: 549000,  device: 3  },
-      pro:     { label: 'Pro',     harga: 1199000, device: 10 },
+      starter:    { label: 'Starter',    harga: 299000,  device: 1  },
+      bisnis:     { label: 'Bisnis',     harga: 599000,  device: 3  },
+      pro:        { label: 'Pro',        harga: 999000,  device: 10 },
+      enterprise: { label: 'Enterprise', harga: 2500000, device: 9999 },
     }
   }
 };

@@ -4,8 +4,8 @@
    ═══════════════════════════════════════════════════════════ */
 
 /* ─── KONFIGURASI SUPABASE ────────────────────────────────── */
-const SUPABASE_URL      = '';  // isi dengan URL Supabase kamu
-const SUPABASE_ANON_KEY = '';  // isi dengan anon key kamu
+const SUPABASE_URL      = 'https://brztqbrvecpatynhfdes.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_N35nTAvW7ETLJlslMUSIfw_17bu89o7';
 
 /* ─── MODE DETEKSI ────────────────────────────────────────── */
 const IS_SUPABASE_CONFIGURED = SUPABASE_URL !== '' && SUPABASE_ANON_KEY !== '';
