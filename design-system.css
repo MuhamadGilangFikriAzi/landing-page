@@ -997,11 +997,11 @@ body {
 .fade-up-d3 { animation-delay: 0.3s; }
 .fade-up-d4 { animation-delay: 0.4s; }
 
-/* ─── FOOTER ──────────────────────────── */
+/* FOOTER */
 .footer {
-  background: var(--black);
-  color: rgba(255,255,255,0.7);
-  padding: 60px 24px 30px;
+  background: var(--near-black) !important;
+  color: rgba(255,255,255,0.7) !important;
+  padding: 60px 24px 30px !important;
 }
 .footer-inner {
   max-width: 1200px;
