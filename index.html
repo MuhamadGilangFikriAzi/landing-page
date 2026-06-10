@@ -170,85 +170,92 @@ gtag('config', 'G-XXXXXXXXXX');
 
 
 <!-- ═══════════════ PRICING JASA WEBSITE ═══════════════ -->
-<section class="section" style="background:var(--gray-100)" id="pricing">
+
+
+<!-- ============ PORTOFOLIO ============ -->
+<section class="section" id="portfolio">
   <div class="container">
     <div class="section-header fade-up">
-      <div class="section-label">Harga Jasa</div>
-      <h2 class="section-title" id="priceTitle">Paket Sederhana, Transparan</h2>
-      <p class="section-sub" id="priceSub">Domain .suruhngoding.com gratis 1 tahun. Yang keliatan mahal, yang bayar gak bikin sakit.</p>
+      <div class="section-label">Portofolio</div>
+      <h2 class="section-title">Beberapa Project Terbaru</h2>
+      <p class="section-sub">Lihat sendiri kualitas hasil kerja kami — dari landing page sampai aplikasi full-stack.</p>
     </div>
-
-    <!-- Promo Banner -->
-    <div class="promo-banner fade-up fade-up-d1" id="promoBanner" style="margin-bottom:2rem;">
-      <div class="promo-label" id="promoLabel">Promo Harian</div>
-      <div class="promo-title" id="promoTitle">Diskon 30% Semua Layanan!</div>
-      <div class="promo-timer" id="countdown">
-        <div class="promo-timer-item"><span class="promo-timer-num" id="cdHours">00</span><span class="promo-timer-label">Jam</span></div>
-        <span class="promo-timer-sep">:</span>
-        <div class="promo-timer-item"><span class="promo-timer-num" id="cdMinutes">00</span><span class="promo-timer-label">Menit</span></div>
-        <span class="promo-timer-sep">:</span>
-        <div class="promo-timer-item"><span class="promo-timer-num" id="cdSeconds">00</span><span class="promo-timer-label">Detik</span></div>
-      </div>
-      <div class="promo-reset" id="promoReset">&#9881; Promo terbatas — buruan sebelum kehabisan!</div>
+    <div class="portfolio-filters fade-up">
+      <button class="portfolio-filter active" data-filter="all">Semua</button>
+      <button class="portfolio-filter" data-filter="web">Website</button>
+      <button class="portfolio-filter" data-filter="app">Aplikasi</button>
     </div>
-
-    <div class="pricing-grid">
-      <div class="pricing-card fade-up">
-        <div class="pricing-name">Landing Page</div>
-        <div class="pricing-original" id="olLanding">Rp 1.600.000</div>
-        <div class="pricing-price" id="pLanding">Rp 800.000</div>
-        <div class="pricing-desc" id="dLanding">1 halaman, responsif, integrase WA, SEO</div>
-        <a href="https://wa.me/62881080608167?text=Halo%20Sari!%20Saya%20tertarik%20paket%20Landing%20Page%20(Rp%20800rb)%20dari%20Google%20Ads" target="_blank" class="pricing-cta">Pilih Paket</a>
+    <div class="portfolio-grid">
+      <div class="portfolio-card fade-up">
+        <div class="portfolio-card-img">
+          <img src="images/porto-desadigital.jpg" alt="Desa Digital - Website Profile Desa" onerror="this.style.display='none'">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="portfolio-card-tag">Website</span>
+          <h3 class="portfolio-card-title">Desa Digital</h3>
+          <p class="portfolio-card-desc">Website profil desa dengan fitur berita, layanan, dan data demografi.</p>
+        </div>
       </div>
-
-      <div class="pricing-card pricing-card featured fade-up fade-up-d1">
-        <div class="pricing-card-badge">Terlaris</div>
-        <div class="pricing-name">Company Profile</div>
-        <div class="pricing-original" id="olCompany">Rp 2.500.000</div>
-        <div class="pricing-price" id="pCompany">Rp 1.500.000</div>
-        <div class="pricing-desc" id="dCompany">Multi halaman, gallery, Google Maps, integrase WA</div>
-        <a href="https://wa.me/62881080608167?text=Halo%20Sari!%20Saya%20tertarik%20paket%20Company%20Profile%20(Rp%201,5jt)%20dari%20Google%20Ads" target="_blank" class="pricing-cta">Pilih Paket</a>
+      <div class="portfolio-card fade-up fade-up-d1">
+        <div class="portfolio-img">
+          <img src="images/porto-pos.jpg" alt="POS System - Aplikasi Kasir" onerror="this.style.display='none'">
+        </div>
+        <div class="portfolio-info">
+          <span class="portfolio-tag">Aplikasi</span>
+          <h3 class="portfolio-card-title">POS System</h3>
+          <p class="portfolio-card-desc">Sistem kasir lengkap dengan manajemen stok, multi-outlet, dan laporan keuangan.</p>
+        </div>
       </div>
-
-      <div class="pricing-card fade-up fade-up-d2">
-        <div class="pricing-name">Toko Online</div>
-        <div class="pricing-original" id="olToko">Rp 4.000.000</div>
-        <div class="pricing-price" id="pToko">Rp 2.500.000</div>
-        <div class="pricing-desc" id="dToko">Katalog + keranjang + payment gateway + integrase WA</div>
-        <a href="https://wa.me/62881080608167?text=Halo%20Sari!%20Saya%20tertarik%20paket%20Toko%20Online%20(Rp%202,5jt)%20dari%20Google%20Ads" target="_blank" class="pricing-cta">Pilih Paket</a>
+      <div class="portfolio-card fade-up fade-up-d2">
+        <div class="portfolio-img">
+          <img src="images/porto-undangan.jpg" alt="Undangan Digital" onerror="this.style.display='none'">
+        </div>
+        <div class="portfolio-info">
+          <span class="portfolio-tag">Website</span>
+          <h3 class="portfolio-card-title">Undangan Digital</h3>
+          <p class="portfolio-card-desc">25 template undangan pernikahan premium dengan RSVP dan music latar.</p>
+        </div>
       </div>
-
-      <div class="pricing-card fade-up">
-        <div class="pricing-name">Undangan Digital</div>
-        <div class="pricing-original" id="olUndangan">Rp 300.000</div>
-        <div class="pricing-price" id="pUndangan">Rp 150.000</div>
-        <div class="pricing-desc" id="dUndangan">25 template premium, RSVP online, music latar</div>
-        <a href="https://wa.me/62881080608167?text=Halo%20Sari!%20Saya%20tertarik%20paket%20Undangan%20Digital%20dari%20Google%20Ads" target="_blank" class="pricing-cta">Pilih Paket</a>
+      <div class="portfolio-card fade-up fade-up-d3">
+        <div class="portfolio-img">
+          <img src="images/porto-laundry.jpg" alt="SuruhLaundry - Aplikasi Manajemen Laundry" onerror="this.style.display='none'">
+        </div>
+        <div class="portfolio-info">
+          <span class="portfolio-tag">Aplikasi</span>
+          <h3 class="portfolio-card-title">SuruhLaundry</h3>
+          <p class="portfolio-card-desc">Aplikasi manajemen laundry dengan tracking order, antar jemput, notifikasi WA.</p>
+        </div>
       </div>
-
-      <div class="pricing-card fade-up fade-up-d1">
-        <div class="pricing-name">POS System</div>
-        <div class="pricing-original" id="olPos">Rp 5.000.000</div>
-        <div class="pricing-price" id="pPos">Rp 3.000.000</div>
-        <div class="pricing-desc" id="dPos">Stok barang, multi-kasir, laporan laba/rugi</div>
-        <a href="https://wa.me/62881080608167?text=Halo%20Sari!%20Saya%20tertarik%20paket%20POS%20System%20dari%20Google%20Ads" target="_blank" class="pricing-cta">Pilih Paket</a>
+      <div class="portfolio-card fade-up">
+        <div class="portfolio-img">
+          <img src="images/porto-sweetbake.jpg" alt="Sweet Bake - Toko Kue Online" onerror="this.style.display='none'">
+        </div>
+        <div class="portfolio-info">
+          <span class="portfolio-tag">Website</span>
+          <h3 class="portfolio-card-title">Sweet Bake</h3>
+          <p class="portfolio-card-desc">Toko kue online dengan katalog produk, sistem pre-order, dan payment gateway.</p>
+        </div>
       </div>
-
-      <div class="pricing-card fade-up fade-up-d2">
-        <div class="pricing-name">Web App Custom</div>
-        <div class="pricing-price" id="pCustom">Mulai Rp 5.000.000+</div>
-        <div class="pricing-desc" id="dCustom">Sistem sesuai kebutuhan — inventory, CRM, booking, dll</div>
-        <a href="https://wa.me/62881080608167?text=Halo%20Sari!%20Saya%20tertarik%20paket%20Web%20App%20Custom%20dari%20SuruhNgoding" target="_blank" class="pricing-cta">Konsultasi</a>
+      <div class="portfolio-card fade-up fade-up-d1">
+        <div class="portfolio-img">
+          <img src="images/porto-kelola.jpg" alt="SuruhKelola - Aplikasi Kasir UMKM" onerror="this.style.display='none'">
+        </div>
+        <div class="portfolio-info">
+          <span class="portfolio-tag">Aplikasi</span>
+          <h3 class="portfolio-card-title">SuruhKelola</h3>
+          <p class="portfolio-card-desc">Aplikasi kasir & manajemen bisnis UMKM. Multi-platform Android & Windows.</p>
+        </div>
       </div>
     </div>
-
-    <div class="pricing-note fade-up">
-      Ada kebutuhan lain? <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20mau%20tanya%20soal%20project" target="_blank">Tanya aja langsung</a>, saya respon cepat kok.
+    <div class="portfolio-cta fade-up" style="text-align:center;margin-top:2.5rem;">
+      <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20mau%20lihat%20portofolio%20lebih%20lengkap" target="_blank" class="btn btn-primary" style="justify-content:center;">
+        <i class="fab fa-whatsapp"></i> Mau project kayak gini? Chat aja
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ PRODUK APLIKASI ═══════════════ -->
+
 <section class="section" id="produk-app">
   <div class="container">
     <div class="section-header fade-up">
@@ -360,6 +367,89 @@ gtag('config', 'G-XXXXXXXXXX');
 </section>
 
 <!-- ═══════════════ HARGA LISENSI ═══════════════ -->
+
+
+<section class="section" style="background:var(--gray-100)" id="pricing">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-label">Harga Jasa</div>
+      <h2 class="section-title" id="priceTitle">Paket Sederhana, Transparan</h2>
+      <p class="section-sub" id="priceSub">Domain .suruhngoding.com gratis 1 tahun. Yang keliatan mahal, yang bayar gak bikin sakit.</p>
+    </div>
+
+    <!-- Promo Banner -->
+    <div class="promo-banner fade-up fade-up-d1" id="promoBanner" style="margin-bottom:2rem;">
+      <div class="promo-label" id="promoLabel">Promo Harian</div>
+      <div class="promo-title" id="promoTitle">Diskon 30% Semua Layanan!</div>
+      <div class="promo-timer" id="countdown">
+        <div class="promo-timer-item"><span class="promo-timer-num" id="cdHours">00</span><span class="promo-timer-label">Jam</span></div>
+        <span class="promo-timer-sep">:</span>
+        <div class="promo-timer-item"><span class="promo-timer-num" id="cdMinutes">00</span><span class="promo-timer-label">Menit</span></div>
+        <span class="promo-timer-sep">:</span>
+        <div class="promo-timer-item"><span class="promo-timer-num" id="cdSeconds">00</span><span class="promo-timer-label">Detik</span></div>
+      </div>
+      <div class="promo-reset" id="promoReset">&#9881; Promo terbatas — buruan sebelum kehabisan!</div>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="pricing-card fade-up">
+        <div class="pricing-name">Landing Page</div>
+        <div class="pricing-original" id="olLanding">Rp 1.600.000</div>
+        <div class="pricing-price" id="pLanding">Rp 800.000</div>
+        <div class="pricing-desc" id="dLanding">1 halaman, responsif, integrase WA, SEO</div>
+        <a href="https://wa.me/62881080608167?text=Halo%20Sari!%20Saya%20tertarik%20paket%20Landing%20Page%20(Rp%20800rb)%20dari%20Google%20Ads" target="_blank" class="pricing-cta">Pilih Paket</a>
+      </div>
+
+      <div class="pricing-card pricing-card featured fade-up fade-up-d1">
+        <div class="pricing-card-badge">Terlaris</div>
+        <div class="pricing-name">Company Profile</div>
+        <div class="pricing-original" id="olCompany">Rp 2.500.000</div>
+        <div class="pricing-price" id="pCompany">Rp 1.500.000</div>
+        <div class="pricing-desc" id="dCompany">Multi halaman, gallery, Google Maps, integrase WA</div>
+        <a href="https://wa.me/62881080608167?text=Halo%20Sari!%20Saya%20tertarik%20paket%20Company%20Profile%20(Rp%201,5jt)%20dari%20Google%20Ads" target="_blank" class="pricing-cta">Pilih Paket</a>
+      </div>
+
+      <div class="pricing-card fade-up fade-up-d2">
+        <div class="pricing-name">Toko Online</div>
+        <div class="pricing-original" id="olToko">Rp 4.000.000</div>
+        <div class="pricing-price" id="pToko">Rp 2.500.000</div>
+        <div class="pricing-desc" id="dToko">Katalog + keranjang + payment gateway + integrase WA</div>
+        <a href="https://wa.me/62881080608167?text=Halo%20Sari!%20Saya%20tertarik%20paket%20Toko%20Online%20(Rp%202,5jt)%20dari%20Google%20Ads" target="_blank" class="pricing-cta">Pilih Paket</a>
+      </div>
+
+      <div class="pricing-card fade-up">
+        <div class="pricing-name">Undangan Digital</div>
+        <div class="pricing-original" id="olUndangan">Rp 300.000</div>
+        <div class="pricing-price" id="pUndangan">Rp 150.000</div>
+        <div class="pricing-desc" id="dUndangan">25 template premium, RSVP online, music latar</div>
+        <a href="https://wa.me/62881080608167?text=Halo%20Sari!%20Saya%20tertarik%20paket%20Undangan%20Digital%20dari%20Google%20Ads" target="_blank" class="pricing-cta">Pilih Paket</a>
+      </div>
+
+      <div class="pricing-card fade-up fade-up-d1">
+        <div class="pricing-name">POS System</div>
+        <div class="pricing-original" id="olPos">Rp 5.000.000</div>
+        <div class="pricing-price" id="pPos">Rp 3.000.000</div>
+        <div class="pricing-desc" id="dPos">Stok barang, multi-kasir, laporan laba/rugi</div>
+        <a href="https://wa.me/62881080608167?text=Halo%20Sari!%20Saya%20tertarik%20paket%20POS%20System%20dari%20Google%20Ads" target="_blank" class="pricing-cta">Pilih Paket</a>
+      </div>
+
+      <div class="pricing-card fade-up fade-up-d2">
+        <div class="pricing-name">Web App Custom</div>
+        <div class="pricing-price" id="pCustom">Mulai Rp 5.000.000+</div>
+        <div class="pricing-desc" id="dCustom">Sistem sesuai kebutuhan — inventory, CRM, booking, dll</div>
+        <a href="https://wa.me/62881080608167?text=Halo%20Sari!%20Saya%20tertarik%20paket%20Web%20App%20Custom%20dari%20SuruhNgoding" target="_blank" class="pricing-cta">Konsultasi</a>
+      </div>
+    </div>
+
+    <div class="pricing-note fade-up">
+      Ada kebutuhan lain? <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20mau%20tanya%20soal%20project" target="_blank">Tanya aja langsung</a>, saya respon cepat kok.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PRODUK APLIKASI ═══════════════ -->
+
+
 <section class="section" style="background:var(--gray-100)" id="lisensi">
   <div class="container">
     <div class="section-header fade-up">
@@ -536,6 +626,8 @@ gtag('config', 'G-XXXXXXXXXX');
 </section>
 
 <!-- ═══════════════ CARA BELI LISENSI ═══════════════ -->
+
+
 <section class="section" id="cara-beli">
   <div class="container">
     <div class="section-header fade-up">
@@ -592,6 +684,8 @@ gtag('config', 'G-XXXXXXXXXX');
 </section>
 
 <!-- ═══════════════ AI SECTION ═══════════════ -->
+
+
 <section class="section ai-section" id="ai">
   <div class="container">
     <div class="section-header fade-up">
@@ -706,6 +800,8 @@ gtag('config', 'G-XXXXXXXXXX');
 </section>
 
 <!-- ═══════════════ FAQ ═══════════════ -->
+
+
 <section class="section" id="faq">
   <div class="container">
     <div class="section-header fade-up">
@@ -805,6 +901,8 @@ gtag('config', 'G-XXXXXXXXXX');
 </section>
 
 <!-- ═══════════════ CONTACT ═══════════════ -->
+
+
 <section class="section contact-section" id="contact">
   <div class="container">
     <div class="section-header fade-up">
@@ -837,6 +935,8 @@ gtag('config', 'G-XXXXXXXXXX');
 </section>
 
 <!-- ═══════════════ FOOTER ═══════════════ -->
+
+
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
