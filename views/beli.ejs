@@ -5,16 +5,16 @@
       <div>
         <label class="block text-sm font-medium mb-1">Produk</label>
         <select name="app" class="w-full px-4 py-3 border border-gray-300 rounded-xl">
-          <option value="suruhkelola">SuruhKelola — Manajemen Toko</option>
-          <option value="suruhlaundry">SuruhLaundry — Manajemen Laundry</option>
+          <option value="suruhkelola" <%= selectedApp === 'suruhkelola' ? 'selected' : '' %>>SuruhKelola — Manajemen Toko</option>
+          <option value="suruhlaundry" <%= selectedApp === 'suruhlaundry' ? 'selected' : '' %>>SuruhLaundry — Manajemen Laundry</option>
         </select>
       </div>
       <div>
         <label class="block text-sm font-medium mb-1">Paket</label>
         <select name="pkg" class="w-full px-4 py-3 border border-gray-300 rounded-xl">
-          <option value="starter">Starter</option>
-          <option value="bisnis">Bisnis</option>
-          <option value="pro">Pro</option>
+          <option value="starter" <%= selectedPkg === 'starter' ? 'selected' : '' %>>Starter</option>
+          <option value="bisnis" <%= selectedPkg === 'bisnis' ? 'selected' : '' %>>Bisnis</option>
+          <option value="pro" <%= selectedPkg === 'pro' ? 'selected' : '' %>>Pro</option>
         </select>
       </div>
     </div>

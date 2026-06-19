@@ -120,10 +120,16 @@ app.get('/', (req, res) => { renderWithLayout(res, 'index.ejs', { title: 'SuruhN
 
 app.get('/beli', (req, res) => {
   if (!req.session.userId) {
-    req.session.redirectAfterLogin = '/beli';
+    req.session.redirectAfterLogin = '/beli' + (req.originalUrl.includes('?') ? '?' + req.originalUrl.split('?')[1] : '');
     return res.redirect('/login');
   }
-  renderWithLayout(res, 'beli.ejs', { title: 'Beli Lisensi - SuruhNgoding' });
+  const validApps = ['suruhkelola', 'suruhlaundry'];
+  const validPkgs = ['starter', 'bisnis', 'pro'];
+  renderWithLayout(res, 'beli.ejs', {
+    title: 'Beli Lisensi - SuruhNgoding',
+    selectedApp: validApps.includes(req.query.app) ? req.query.app : '',
+    selectedPkg: validPkgs.includes(req.query.pkg) ? req.query.pkg : ''
+  });
 });
 
 app.post('/beli', (req, res) => {

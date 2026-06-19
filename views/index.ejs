@@ -1,247 +1,546 @@
-<div class="relative overflow-hidden">
+<style>
+  @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-up { animation: fadeUp .7s ease-out both; }
+  .fade-up-d1 { animation-delay: .1s; } .fade-up-d2 { animation-delay: .2s; } .fade-up-d3 { animation-delay: .3s; }
+
+  .blob { position: absolute; border-radius: 50%; filter: blur(60px); pointer-events: none; }
+
+  .float-card { animation: floatY 5s ease-in-out infinite; }
+
+  .glass-card { background: rgba(255,255,255,.65); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,.5); box-shadow: 0 16px 48px rgba(21,101,216,.12); }
+
+  .feature-card { background: #fff; border-radius: 22px; border: 1px solid var(--border); padding: 36px 28px; transition: all .3s; }
+  .feature-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--c2); }
+
+  .icon-tile { width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #fff; background: var(--gradient-btn); box-shadow: 0 8px 20px rgba(21,101,216,.25); }
+
+  .browser-mock { border-radius: 18px; overflow: hidden; border: 1px solid var(--border); background: #fff; box-shadow: var(--shadow); transition: all .3s; }
+  .browser-mock:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+  .browser-mock-bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: #F1F5FB; border-bottom: 1px solid var(--border); }
+  .browser-mock-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .browser-mock-url { margin-left: 8px; font-size: 11px; color: var(--text-secondary); background: #fff; border-radius: 6px; padding: 3px 10px; flex: 1; }
+  .browser-mock-body { aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center; font-size: 2.75rem; }
+
+  .produk-tab-btn { padding: 12px 28px; border-radius: 14px; font-weight: 600; font-size: 15px; color: var(--text-secondary); background: #fff; border: 1.5px solid var(--border); transition: all .25s; cursor: pointer; }
+  .produk-tab-btn.active { background: var(--gradient-btn); color: #fff; border-color: transparent; box-shadow: 0 8px 20px rgba(21,101,216,.28); }
+
+  .pricing-card { background: #fff; border-radius: 22px; border: 1.5px solid var(--border); padding: 36px 28px; position: relative; transition: all .3s; }
+  .pricing-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .pricing-card.popular { border-color: var(--c3); box-shadow: 0 12px 36px rgba(21,101,216,.16); }
+  .pricing-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--gradient-btn); color: #fff; font-size: 12px; font-weight: 700; padding: 6px 18px; border-radius: 100px; white-space: nowrap; box-shadow: 0 6px 16px rgba(21,101,216,.3); }
+
+  .star-row i { color: #FBBF24; }
+
+  .footer-link { display: block; font-size: 14px; color: rgba(255,255,255,.6); padding: 5px 0; transition: color .2s; }
+  .footer-link:hover { color: #fff; }
+
+  .social-icon { width: 38px; height: 38px; border-radius: 11px; background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center; color: #fff; transition: all .2s; }
+  .social-icon:hover { background: var(--gradient-btn); transform: translateY(-2px); }
+</style>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="relative overflow-hidden">
   <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-cyan-50"></div>
-  <div class="relative max-w-7xl mx-auto px-4 pt-20 pb-32 text-center">
-    <div class="flex justify-center mb-8">
-      <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold">🚀 Ekosistem Digital untuk UMKM Indonesia</span>
+  <div class="blob" style="top:-10%; right:-6%; width:420px; height:420px; background:radial-gradient(circle, rgba(66,212,255,.35), transparent 70%);"></div>
+  <div class="blob" style="bottom:-15%; left:-8%; width:380px; height:380px; background:radial-gradient(circle, rgba(0,0,184,.18), transparent 70%);"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24 grid lg:grid-cols-2 gap-16 items-center">
+    <div class="fade-up">
+      <span class="badge-pill mb-6"><i class="fa-solid fa-bolt"></i> Ekosistem Digital Terpercaya</span>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08] mb-6">Solusi Digital untuk <span class="gradient-text">Bisnis Anda</span></h1>
+      <p class="text-lg text-[var(--text-secondary)] max-w-xl mb-9 leading-relaxed">Bangun website profesional dan kelola bisnis lebih mudah dengan SuruhLaundry dan SuruhKelola dalam satu ekosistem digital terpercaya.</p>
+      <div class="flex gap-4 flex-wrap">
+        <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20mau%20konsultasi%20soal%20kebutuhan%20digital%20bisnis%20saya" target="_blank" class="btn-primary text-base"><i class="fa-brands fa-whatsapp"></i> Konsultasi Gratis</a>
+        <a href="#produk" class="btn-outline text-base">Lihat Produk</a>
+      </div>
+      <div class="flex items-center gap-8 mt-12">
+        <div><div class="text-3xl font-extrabold">150+</div><div class="text-sm text-[var(--text-secondary)]">Klien Puas</div></div>
+        <div class="w-px h-10 bg-gray-200"></div>
+        <div><div class="text-3xl font-extrabold">5+</div><div class="text-sm text-[var(--text-secondary)]">Tahun Pengalaman</div></div>
+        <div class="w-px h-10 bg-gray-200"></div>
+        <div><div class="text-3xl font-extrabold">99.9%</div><div class="text-sm text-[var(--text-secondary)]">Uptime Sistem</div></div>
+      </div>
     </div>
-    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">Solusi Digital untuk <span class="gradient-text">Bisnis Anda</span></h1>
-    <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">Dari website profesional, AI chatbot, hingga aplikasi manajemen laundry dan toko — semua dalam satu ekosistem.</p>
+
+    <div class="relative fade-up fade-up-d2 hidden md:block">
+      <!-- Laptop mockup -->
+      <div class="rounded-2xl border border-gray-200 bg-white shadow-2xl overflow-hidden">
+        <div class="flex items-center gap-1.5 px-4 py-3 bg-gray-50 border-b border-gray-100">
+          <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span><span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span><span class="w-2.5 h-2.5 rounded-full bg-green-400"></span>
+          <span class="ml-3 text-xs text-gray-400">app.suruhngoding.com/dashboard</span>
+        </div>
+        <div class="p-6" style="background:linear-gradient(135deg,#F7FAFF,#EAF6FF);">
+          <div class="grid grid-cols-3 gap-3 mb-4">
+            <div class="rounded-xl bg-white p-4 shadow-sm"><div class="text-xs text-gray-400 mb-1">Pendapatan</div><div class="text-lg font-bold" style="color:var(--c3)">Rp 24,8jt</div></div>
+            <div class="rounded-xl bg-white p-4 shadow-sm"><div class="text-xs text-gray-400 mb-1">Transaksi</div><div class="text-lg font-bold" style="color:var(--c4)">1.284</div></div>
+            <div class="rounded-xl bg-white p-4 shadow-sm"><div class="text-xs text-gray-400 mb-1">Pelanggan</div><div class="text-lg font-bold" style="color:var(--c2)">320</div></div>
+          </div>
+          <div class="rounded-xl bg-white p-4 shadow-sm h-32 flex items-end gap-2">
+            <div class="flex-1 rounded-t" style="height:40%;background:var(--c1)"></div>
+            <div class="flex-1 rounded-t" style="height:65%;background:var(--c2)"></div>
+            <div class="flex-1 rounded-t" style="height:45%;background:var(--c2)"></div>
+            <div class="flex-1 rounded-t" style="height:85%;background:var(--c3)"></div>
+            <div class="flex-1 rounded-t" style="height:60%;background:var(--c3)"></div>
+            <div class="flex-1 rounded-t" style="height:95%;background:var(--c4)"></div>
+            <div class="flex-1 rounded-t" style="height:70%;background:var(--c5)"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone mockup -->
+      <div class="absolute -bottom-10 -left-10 w-36 rounded-2xl border border-gray-200 bg-white shadow-2xl overflow-hidden hidden lg:block">
+        <div class="px-3 py-2 bg-gray-50 border-b border-gray-100 text-[10px] text-gray-400 text-center">SuruhKelola</div>
+        <div class="p-3 space-y-2">
+          <div class="h-12 rounded-lg" style="background:var(--gradient-btn)"></div>
+          <div class="h-3 rounded bg-gray-100 w-4/5"></div>
+          <div class="h-3 rounded bg-gray-100 w-3/5"></div>
+          <div class="h-8 rounded-lg bg-gray-50 border border-gray-100"></div>
+        </div>
+      </div>
+
+      <!-- Floating chips -->
+      <div class="float-card absolute -top-6 -left-6 glass-card rounded-2xl px-4 py-3 flex items-center gap-2 hidden sm:flex">
+        <i class="fa-solid fa-arrow-trend-up text-emerald-500"></i>
+        <span class="text-sm font-semibold">+24% Pertumbuhan</span>
+      </div>
+      <div class="float-card absolute top-1/3 -right-8 glass-card rounded-2xl px-4 py-3 flex items-center gap-2 hidden sm:flex" style="animation-delay:1.5s">
+        <i class="fa-solid fa-shield-halved" style="color:var(--c3)"></i>
+        <span class="text-sm font-semibold">Data Aman</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ LAYANAN ═══════════════ -->
+<section id="layanan" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+  <div class="text-center max-w-2xl mx-auto mb-16 fade-up">
+    <span class="badge-pill mb-4">Layanan Kami</span>
+    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4">Satu Mitra, <span class="gradient-text">Banyak Solusi</span></h2>
+    <p class="text-[var(--text-secondary)] text-lg">Dari website profesional hingga software manajemen usaha — semua kami siapkan untuk pertumbuhan bisnis Anda.</p>
+  </div>
+
+  <div class="grid md:grid-cols-3 gap-7">
+    <div class="feature-card fade-up">
+      <div class="icon-tile mb-6"><i class="fa-solid fa-laptop-code"></i></div>
+      <h3 class="text-xl font-bold mb-3">Pembuatan Website</h3>
+      <p class="text-[var(--text-secondary)] text-sm mb-5">Website custom yang dikerjakan langsung oleh developer, bukan template instan.</p>
+      <ul class="space-y-2 text-sm text-[var(--text-secondary)] mb-6">
+        <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Company Profile</li>
+        <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Landing Page</li>
+        <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Sistem Informasi</li>
+        <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Portal Desa</li>
+        <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>E-Commerce</li>
+        <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Web Application Custom</li>
+      </ul>
+      <a href="#harga" class="text-sm font-semibold" style="color:var(--c3)">Lihat paket harga <i class="fa-solid fa-arrow-right ml-1"></i></a>
+    </div>
+
+    <div class="feature-card fade-up fade-up-d1">
+      <div class="icon-tile mb-6"><i class="fa-solid fa-jug-detergent"></i></div>
+      <h3 class="text-xl font-bold mb-3">SuruhLaundry</h3>
+      <p class="text-[var(--text-secondary)] text-sm mb-5">Sistem manajemen laundry lengkap untuk operasional yang lebih rapi dan efisien.</p>
+      <ul class="space-y-2 text-sm text-[var(--text-secondary)] mb-6">
+        <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Transaksi & POS</li>
+        <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Manajemen Pelanggan</li>
+        <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Laporan Keuangan</li>
+        <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Monitoring Usaha</li>
+      </ul>
+      <a href="#produk" class="text-sm font-semibold" style="color:var(--c3)">Pelajari fitur <i class="fa-solid fa-arrow-right ml-1"></i></a>
+    </div>
+
+    <div class="feature-card fade-up fade-up-d2">
+      <div class="icon-tile mb-6"><i class="fa-solid fa-store"></i></div>
+      <h3 class="text-xl font-bold mb-3">SuruhKelola</h3>
+      <p class="text-[var(--text-secondary)] text-sm mb-5">Sistem pengelolaan usaha & administrasi yang terintegrasi dalam satu dashboard.</p>
+      <ul class="space-y-2 text-sm text-[var(--text-secondary)] mb-6">
+        <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Administrasi</li>
+        <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Inventaris</li>
+        <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Keuangan</li>
+        <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Dashboard Monitoring</li>
+      </ul>
+      <a href="#produk" class="text-sm font-semibold" style="color:var(--c3)">Pelajari fitur <i class="fa-solid fa-arrow-right ml-1"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PRODUK UNGGULAN ═══════════════ -->
+<section id="produk" class="py-24" style="background:linear-gradient(180deg,#F7FAFF,#fff);">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-12 fade-up">
+      <span class="badge-pill mb-4">Produk Unggulan</span>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4">Software yang <span class="gradient-text">Siap Pakai</span></h2>
+      <p class="text-[var(--text-secondary)] text-lg">Lisensi seumur hidup, bayar sekali, pakai selamanya — dengan update gratis.</p>
+    </div>
+
+    <div class="flex justify-center gap-3 mb-12 fade-up">
+      <button id="tab-btn-laundry" class="produk-tab-btn active" onclick="switchProdukTab('laundry')"><i class="fa-solid fa-jug-detergent mr-2"></i>SuruhLaundry</button>
+      <button id="tab-btn-kelola" class="produk-tab-btn" onclick="switchProdukTab('kelola')"><i class="fa-solid fa-store mr-2"></i>SuruhKelola</button>
+    </div>
+
+    <!-- Tab: SuruhLaundry -->
+    <div id="tab-panel-laundry" class="produk-tab-panel grid lg:grid-cols-2 gap-12 items-center">
+      <div class="fade-up">
+        <h3 class="text-2xl font-bold mb-5">Kelola Laundry Lebih Profesional</h3>
+        <div class="space-y-3 mb-8">
+          <div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg flex items-center justify-center text-white text-sm" style="background:var(--gradient-btn)"><i class="fa-solid fa-cash-register"></i></div><span class="font-medium">POS Laundry</span></div>
+          <div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg flex items-center justify-center text-white text-sm" style="background:var(--gradient-btn)"><i class="fa-solid fa-location-dot"></i></div><span class="font-medium">Tracking Order</span></div>
+          <div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg flex items-center justify-center text-white text-sm" style="background:var(--gradient-btn)"><i class="fa-brands fa-whatsapp"></i></div><span class="font-medium">WhatsApp Notification</span></div>
+          <div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg flex items-center justify-center text-white text-sm" style="background:var(--gradient-btn)"><i class="fa-solid fa-shop"></i></div><span class="font-medium">Multi Outlet</span></div>
+          <div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg flex items-center justify-center text-white text-sm" style="background:var(--gradient-btn)"><i class="fa-solid fa-users"></i></div><span class="font-medium">Manajemen Pelanggan</span></div>
+          <div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg flex items-center justify-center text-white text-sm" style="background:var(--gradient-btn)"><i class="fa-solid fa-chart-line"></i></div><span class="font-medium">Laporan Keuangan</span></div>
+        </div>
+        <div class="flex gap-3 flex-wrap">
+          <a href="/beli?app=suruhlaundry" class="btn-primary"><i class="fa-solid fa-cart-plus"></i> Beli Lisensi</a>
+          <a href="/SuruhLaundry.apk" download class="btn-outline"><i class="fa-solid fa-download"></i> Download APK</a>
+        </div>
+      </div>
+      <div class="browser-mock fade-up fade-up-d1">
+        <div class="browser-mock-bar">
+          <span class="browser-mock-dot bg-red-400"></span><span class="browser-mock-dot bg-yellow-400"></span><span class="browser-mock-dot bg-green-400"></span>
+          <span class="browser-mock-url">suruhlaundry.app/dashboard</span>
+        </div>
+        <div class="browser-mock-body" style="background:linear-gradient(135deg,#EAF6FF,#E0F0FF); color:var(--c3)"><i class="fa-solid fa-jug-detergent"></i></div>
+      </div>
+    </div>
+
+    <!-- Tab: SuruhKelola -->
+    <div id="tab-panel-kelola" class="produk-tab-panel hidden grid lg:grid-cols-2 gap-12 items-center">
+      <div class="fade-up">
+        <h3 class="text-2xl font-bold mb-5">Satu Dashboard untuk Semua Operasional</h3>
+        <div class="space-y-3 mb-8">
+          <div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg flex items-center justify-center text-white text-sm" style="background:var(--gradient-btn)"><i class="fa-solid fa-database"></i></div><span class="font-medium">Manajemen Data</span></div>
+          <div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg flex items-center justify-center text-white text-sm" style="background:var(--gradient-btn)"><i class="fa-solid fa-boxes-stacked"></i></div><span class="font-medium">Inventaris</span></div>
+          <div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg flex items-center justify-center text-white text-sm" style="background:var(--gradient-btn)"><i class="fa-solid fa-coins"></i></div><span class="font-medium">Keuangan</span></div>
+          <div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg flex items-center justify-center text-white text-sm" style="background:var(--gradient-btn)"><i class="fa-solid fa-file-invoice"></i></div><span class="font-medium">Laporan Otomatis</span></div>
+          <div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg flex items-center justify-center text-white text-sm" style="background:var(--gradient-btn)"><i class="fa-solid fa-gauge-high"></i></div><span class="font-medium">Dashboard Monitoring</span></div>
+          <div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg flex items-center justify-center text-white text-sm" style="background:var(--gradient-btn)"><i class="fa-solid fa-user-shield"></i></div><span class="font-medium">Hak Akses Pengguna</span></div>
+        </div>
+        <a href="/beli?app=suruhkelola" class="btn-primary"><i class="fa-solid fa-cart-plus"></i> Beli Lisensi</a>
+      </div>
+      <div class="browser-mock fade-up fade-up-d1">
+        <div class="browser-mock-bar">
+          <span class="browser-mock-dot bg-red-400"></span><span class="browser-mock-dot bg-yellow-400"></span><span class="browser-mock-dot bg-green-400"></span>
+          <span class="browser-mock-url">suruhkelola.app/dashboard</span>
+        </div>
+        <div class="browser-mock-body" style="background:linear-gradient(135deg,#EAF6FF,#E0F0FF); color:var(--c4)"><i class="fa-solid fa-store"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ KEUNGGULAN ═══════════════ -->
+<section id="keunggulan" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+  <div class="text-center max-w-2xl mx-auto mb-16 fade-up">
+    <span class="badge-pill mb-4">Keunggulan</span>
+    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4">Mengapa Memilih <span class="gradient-text">SuruhNgoding?</span></h2>
+  </div>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="card p-7 fade-up">
+      <div class="icon-tile mb-5"><i class="fa-solid fa-user-tie"></i></div>
+      <h3 class="font-bold text-lg mb-2">Tim Berpengalaman</h3>
+      <p class="text-[var(--text-secondary)] text-sm">Dikerjakan langsung oleh developer berpengalaman, bukan tim outsourcing dadakan.</p>
+    </div>
+    <div class="card p-7 fade-up fade-up-d1">
+      <div class="icon-tile mb-5"><i class="fa-solid fa-headset"></i></div>
+      <h3 class="font-bold text-lg mb-2">Support Berkelanjutan</h3>
+      <p class="text-[var(--text-secondary)] text-sm">Bantuan instalasi, update, dan pendampingan setelah produk Anda live.</p>
+    </div>
+    <div class="card p-7 fade-up fade-up-d2">
+      <div class="icon-tile mb-5"><i class="fa-solid fa-microchip"></i></div>
+      <h3 class="font-bold text-lg mb-2">Teknologi Modern</h3>
+      <p class="text-[var(--text-secondary)] text-sm">Stack teknologi terkini agar sistem Anda tetap relevan untuk jangka panjang.</p>
+    </div>
+    <div class="card p-7 fade-up">
+      <div class="icon-tile mb-5"><i class="fa-solid fa-tags"></i></div>
+      <h3 class="font-bold text-lg mb-2">Harga Kompetitif</h3>
+      <p class="text-[var(--text-secondary)] text-sm">Paket transparan tanpa biaya tersembunyi, sebanding dengan kualitas yang didapat.</p>
+    </div>
+    <div class="card p-7 fade-up fade-up-d1">
+      <div class="icon-tile mb-5"><i class="fa-solid fa-shield-halved"></i></div>
+      <h3 class="font-bold text-lg mb-2">Keamanan Data</h3>
+      <p class="text-[var(--text-secondary)] text-sm">Data bisnis dan lisensi Anda terlindungi dengan praktik keamanan terbaik.</p>
+    </div>
+    <div class="card p-7 fade-up fade-up-d2">
+      <div class="icon-tile mb-5"><i class="fa-solid fa-hand-pointer"></i></div>
+      <h3 class="font-bold text-lg mb-2">Mudah Digunakan</h3>
+      <p class="text-[var(--text-secondary)] text-sm">Antarmuka simpel sehingga tim Anda bisa langsung pakai tanpa training panjang.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PORTOFOLIO ═══════════════ -->
+<section id="portofolio" class="py-24" style="background:linear-gradient(180deg,#fff,#F7FAFF);">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-16 fade-up">
+      <span class="badge-pill mb-4">Portofolio</span>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4">Project yang <span class="gradient-text">Sudah Berjalan</span></h2>
+      <p class="text-[var(--text-secondary)] text-lg">Beberapa hasil kerja kami — dari website hingga sistem aplikasi.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="browser-mock fade-up">
+        <div class="browser-mock-bar"><span class="browser-mock-dot bg-red-400"></span><span class="browser-mock-dot bg-yellow-400"></span><span class="browser-mock-dot bg-green-400"></span><span class="browser-mock-url">desa-digital.id</span></div>
+        <div class="browser-mock-body" style="background:linear-gradient(135deg,#E8F9F0,#DFF5EA); color:#0F9D58"><i class="fa-solid fa-tree"></i></div>
+        <div class="p-5"><span class="badge-pill text-xs mb-2">Portal Desa</span><h3 class="font-bold">Website Desa Digital</h3></div>
+      </div>
+      <div class="browser-mock fade-up fade-up-d1">
+        <div class="browser-mock-bar"><span class="browser-mock-dot bg-red-400"></span><span class="browser-mock-dot bg-yellow-400"></span><span class="browser-mock-dot bg-green-400"></span><span class="browser-mock-url">company.suruhngoding.com</span></div>
+        <div class="browser-mock-body" style="background:linear-gradient(135deg,#EAF6FF,#E0F0FF); color:var(--c3)"><i class="fa-solid fa-building"></i></div>
+        <div class="p-5"><span class="badge-pill text-xs mb-2">Company Profile</span><h3 class="font-bold">Website Perusahaan</h3></div>
+      </div>
+      <div class="browser-mock fade-up fade-up-d2">
+        <div class="browser-mock-bar"><span class="browser-mock-dot bg-red-400"></span><span class="browser-mock-dot bg-yellow-400"></span><span class="browser-mock-dot bg-green-400"></span><span class="browser-mock-url">sim.suruhngoding.com</span></div>
+        <div class="browser-mock-body" style="background:linear-gradient(135deg,#F1EAFF,#E6DCFF); color:#6D28D9"><i class="fa-solid fa-layer-group"></i></div>
+        <div class="p-5"><span class="badge-pill text-xs mb-2">Sistem Informasi</span><h3 class="font-bold">Sistem Informasi Instansi</h3></div>
+      </div>
+      <div class="browser-mock fade-up">
+        <div class="browser-mock-bar"><span class="browser-mock-dot bg-red-400"></span><span class="browser-mock-dot bg-yellow-400"></span><span class="browser-mock-dot bg-green-400"></span><span class="browser-mock-url">suruhlaundry.app</span></div>
+        <div class="browser-mock-body" style="background:linear-gradient(135deg,#EAF6FF,#E0F0FF); color:var(--c2)"><i class="fa-solid fa-jug-detergent"></i></div>
+        <div class="p-5"><span class="badge-pill text-xs mb-2">Aplikasi Laundry</span><h3 class="font-bold">SuruhLaundry</h3></div>
+      </div>
+      <div class="browser-mock fade-up fade-up-d1">
+        <div class="browser-mock-bar"><span class="browser-mock-dot bg-red-400"></span><span class="browser-mock-dot bg-yellow-400"></span><span class="browser-mock-dot bg-green-400"></span><span class="browser-mock-url">admin.suruhkelola.app</span></div>
+        <div class="browser-mock-body" style="background:linear-gradient(135deg,#EAF6FF,#E0F0FF); color:var(--c5)"><i class="fa-solid fa-gauge-high"></i></div>
+        <div class="p-5"><span class="badge-pill text-xs mb-2">Dashboard Admin</span><h3 class="font-bold">SuruhKelola</h3></div>
+      </div>
+      <div class="browser-mock fade-up fade-up-d2 flex flex-col items-center justify-center text-center p-8" style="background:var(--gradient-dark);">
+        <p class="text-white font-bold text-lg mb-2">Mau jadi project selanjutnya?</p>
+        <a href="https://wa.me/62881080608167" target="_blank" class="btn-secondary text-sm mt-2"><i class="fa-brands fa-whatsapp"></i> Diskusi Project</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ TESTIMONI ═══════════════ -->
+<section id="testimoni" class="relative py-24 overflow-hidden" style="background:linear-gradient(135deg,#EAF6FF,#F3EFFF);">
+  <div class="blob" style="top:10%; left:-5%; width:300px; height:300px; background:radial-gradient(circle, rgba(42,167,255,.3), transparent 70%);"></div>
+  <div class="blob" style="bottom:5%; right:-5%; width:280px; height:280px; background:radial-gradient(circle, rgba(0,0,184,.18), transparent 70%);"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-16 fade-up">
+      <span class="badge-pill mb-4">Testimoni</span>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4">Apa Kata <span class="gradient-text">Klien Kami</span></h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="glass-card rounded-2xl p-7 fade-up">
+        <div class="star-row mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        <p class="text-[var(--text-secondary)] text-sm mb-5">"Website desa kami jadi terlihat sangat profesional. Pelayanan publik makin mudah diakses warga."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-full flex items-center justify-center font-bold text-white text-sm" style="background:var(--gradient-btn)">BS</div>
+          <div><p class="font-semibold text-sm">Budi S.</p><p class="text-xs text-[var(--text-secondary)]">Perangkat Desa</p></div>
+        </div>
+      </div>
+      <div class="glass-card rounded-2xl p-7 fade-up fade-up-d1">
+        <div class="star-row mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        <p class="text-[var(--text-secondary)] text-sm mb-5">"SuruhLaundry bikin operasional jadi rapi, semua order tercatat otomatis. Gak perlu catat manual lagi."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-full flex items-center justify-center font-bold text-white text-sm" style="background:var(--gradient-btn)">RS</div>
+          <div><p class="font-semibold text-sm">Rina S.</p><p class="text-xs text-[var(--text-secondary)]">Pemilik Laundry, Bandung</p></div>
+        </div>
+      </div>
+      <div class="glass-card rounded-2xl p-7 fade-up fade-up-d2">
+        <div class="star-row mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+        <p class="text-[var(--text-secondary)] text-sm mb-5">"SuruhKelola bikin manajemen toko lebih gampang. Stok, kasir, laporan — semua terintegrasi dalam satu dashboard."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-full flex items-center justify-center font-bold text-white text-sm" style="background:var(--gradient-btn)">AP</div>
+          <div><p class="font-semibold text-sm">Ahmad P.</p><p class="text-xs text-[var(--text-secondary)]">Pemilik Toko, Jakarta</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ HARGA ═══════════════ -->
+<section id="harga" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+  <div class="text-center max-w-2xl mx-auto mb-16 fade-up">
+    <span class="badge-pill mb-4">Harga</span>
+    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4">Paket yang <span class="gradient-text">Sesuai Kebutuhan</span></h2>
+    <p class="text-[var(--text-secondary)] text-lg">Transparan tanpa biaya tersembunyi — pilih yang paling pas untuk bisnis Anda.</p>
+  </div>
+
+  <!-- Jasa Website -->
+  <div class="mb-20">
+    <h3 class="text-xl font-bold mb-7 flex items-center gap-3"><span class="icon-tile" style="width:40px;height:40px;font-size:16px;"><i class="fa-solid fa-laptop-code"></i></span>Jasa Pembuatan Website</h3>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="pricing-card fade-up">
+        <h4 class="font-bold text-lg mb-1">Basic</h4>
+        <p class="text-sm text-[var(--text-secondary)] mb-4">Untuk UMKM & personal</p>
+        <div class="text-3xl font-extrabold mb-5">Rp 1.500.000</div>
+        <ul class="space-y-2 text-sm text-[var(--text-secondary)] mb-7">
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>1 Halaman / Landing Page</li>
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Desain Responsif</li>
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Integrasi WhatsApp</li>
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Free Domain & Hosting 1 Tahun</li>
+        </ul>
+        <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20tertarik%20paket%20Basic%20Website" target="_blank" class="btn-outline w-full justify-center">Konsultasi</a>
+      </div>
+      <div class="pricing-card popular fade-up fade-up-d1">
+        <span class="pricing-badge">Paling Populer</span>
+        <h4 class="font-bold text-lg mb-1">Professional</h4>
+        <p class="text-sm text-[var(--text-secondary)] mb-4">Untuk perusahaan & instansi</p>
+        <div class="text-3xl font-extrabold mb-5">Rp 3.500.000</div>
+        <ul class="space-y-2 text-sm text-[var(--text-secondary)] mb-7">
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Multi Halaman</li>
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Company Profile / Sistem Informasi</li>
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>SEO Dasar</li>
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Revisi Desain 3x</li>
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Free Domain & Hosting 1 Tahun</li>
+        </ul>
+        <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20tertarik%20paket%20Professional%20Website" target="_blank" class="btn-primary w-full justify-center">Konsultasi</a>
+      </div>
+      <div class="pricing-card fade-up fade-up-d2">
+        <h4 class="font-bold text-lg mb-1">Enterprise</h4>
+        <p class="text-sm text-[var(--text-secondary)] mb-4">Untuk kebutuhan sistem kompleks</p>
+        <div class="text-3xl font-extrabold mb-5">Mulai Rp 7.500.000</div>
+        <ul class="space-y-2 text-sm text-[var(--text-secondary)] mb-7">
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Web Application Custom</li>
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>E-Commerce / Portal Desa</li>
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Sistem Terintegrasi</li>
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Support Prioritas</li>
+        </ul>
+        <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20tertarik%20paket%20Enterprise%20Website" target="_blank" class="btn-outline w-full justify-center">Konsultasi</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SuruhLaundry -->
+  <div class="mb-20">
+    <h3 class="text-xl font-bold mb-7 flex items-center gap-3"><span class="icon-tile" style="width:40px;height:40px;font-size:16px;"><i class="fa-solid fa-jug-detergent"></i></span>SuruhLaundry</h3>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="pricing-card fade-up">
+        <h4 class="font-bold text-lg mb-1">Starter</h4>
+        <p class="text-sm text-[var(--text-secondary)] mb-4">1 device</p>
+        <div class="text-3xl font-extrabold mb-5">Rp 249.000</div>
+        <ul class="space-y-2 text-sm text-[var(--text-secondary)] mb-7">
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Order & Manajemen Pelanggan</li>
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Cetak Struk via Bluetooth</li>
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Laporan Harian</li>
+        </ul>
+        <a href="/beli?app=suruhlaundry&pkg=starter" class="btn-outline w-full justify-center">Beli Sekarang</a>
+      </div>
+      <div class="pricing-card popular fade-up fade-up-d1">
+        <span class="pricing-badge">Paling Populer</span>
+        <h4 class="font-bold text-lg mb-1">Business</h4>
+        <p class="text-sm text-[var(--text-secondary)] mb-4">3 devices</p>
+        <div class="text-3xl font-extrabold mb-5">Rp 549.000</div>
+        <ul class="space-y-2 text-sm text-[var(--text-secondary)] mb-7">
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Semua fitur Starter</li>
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Antar-Jemput & Driver</li>
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Multi Outlet (3 device)</li>
+        </ul>
+        <a href="/beli?app=suruhlaundry&pkg=bisnis" class="btn-primary w-full justify-center">Beli Sekarang</a>
+      </div>
+      <div class="pricing-card fade-up fade-up-d2">
+        <h4 class="font-bold text-lg mb-1">Enterprise</h4>
+        <p class="text-sm text-[var(--text-secondary)] mb-4">Unlimited devices</p>
+        <div class="text-3xl font-extrabold mb-5">Rp 1.199.000</div>
+        <ul class="space-y-2 text-sm text-[var(--text-secondary)] mb-7">
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Semua fitur Business</li>
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Multi Outlet Unlimited</li>
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Laporan Keuangan Lengkap</li>
+        </ul>
+        <a href="/beli?app=suruhlaundry&pkg=pro" class="btn-outline w-full justify-center">Beli Sekarang</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SuruhKelola -->
+  <div>
+    <h3 class="text-xl font-bold mb-7 flex items-center gap-3"><span class="icon-tile" style="width:40px;height:40px;font-size:16px;"><i class="fa-solid fa-store"></i></span>SuruhKelola</h3>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="pricing-card fade-up">
+        <h4 class="font-bold text-lg mb-1">Starter</h4>
+        <p class="text-sm text-[var(--text-secondary)] mb-4">1 device</p>
+        <div class="text-3xl font-extrabold mb-5">Rp 299.000</div>
+        <ul class="space-y-2 text-sm text-[var(--text-secondary)] mb-7">
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Kasir & Manajemen Produk</li>
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Manajemen Stok & Gudang</li>
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Laporan Keuangan Harian</li>
+        </ul>
+        <a href="/beli?app=suruhkelola&pkg=starter" class="btn-outline w-full justify-center">Beli Sekarang</a>
+      </div>
+      <div class="pricing-card popular fade-up fade-up-d1">
+        <span class="pricing-badge">Paling Populer</span>
+        <h4 class="font-bold text-lg mb-1">Business</h4>
+        <p class="text-sm text-[var(--text-secondary)] mb-4">3 devices</p>
+        <div class="text-3xl font-extrabold mb-5">Rp 699.000</div>
+        <ul class="space-y-2 text-sm text-[var(--text-secondary)] mb-7">
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Semua fitur Starter</li>
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Multi-Outlet (3 device)</li>
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Hak Akses Pengguna</li>
+        </ul>
+        <a href="/beli?app=suruhkelola&pkg=bisnis" class="btn-primary w-full justify-center">Beli Sekarang</a>
+      </div>
+      <div class="pricing-card fade-up fade-up-d2">
+        <h4 class="font-bold text-lg mb-1">Enterprise</h4>
+        <p class="text-sm text-[var(--text-secondary)] mb-4">Unlimited devices</p>
+        <div class="text-3xl font-extrabold mb-5">Rp 1.499.000</div>
+        <ul class="space-y-2 text-sm text-[var(--text-secondary)] mb-7">
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Semua fitur Business</li>
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Multi-Outlet Unlimited</li>
+          <li><i class="fa-solid fa-check mr-2" style="color:var(--c3)"></i>Dashboard Monitoring Lengkap</li>
+        </ul>
+        <a href="/beli?app=suruhkelola&pkg=pro" class="btn-outline w-full justify-center">Beli Sekarang</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CTA ═══════════════ -->
+<section id="kontak" class="relative overflow-hidden py-24 text-center" style="background:var(--gradient-dark);">
+  <div class="blob" style="top:-20%; right:10%; width:380px; height:380px; background:radial-gradient(circle, rgba(66,212,255,.25), transparent 70%);"></div>
+  <div class="relative max-w-3xl mx-auto px-4 fade-up">
+    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-5">Siap Mendigitalisasi Bisnis Anda?</h2>
+    <p class="text-white/70 text-lg mb-10">Konsultasikan kebutuhan website atau software bisnis Anda — gratis, tanpa kewajiban lanjut.</p>
     <div class="flex gap-4 justify-center flex-wrap">
-      <a href="/beli" class="btn-primary text-lg px-8 py-4"><i class="fa-solid fa-cart-plus"></i> Beli Lisensi</a>
-      <a href="/cek-lisensi" class="btn-secondary text-lg px-8 py-4"><i class="fa-solid fa-search"></i> Cek Lisensi</a>
+      <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20mau%20konsultasi%20sekarang" target="_blank" class="bg-white text-[var(--c4)] font-semibold px-8 py-4 rounded-2xl inline-flex items-center gap-2 hover:-translate-y-0.5 transition shadow-xl"><i class="fa-brands fa-whatsapp"></i> Konsultasi Sekarang</a>
+      <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20mau%20request%20demo%20produk" target="_blank" class="border border-white/30 text-white font-semibold px-8 py-4 rounded-2xl inline-flex items-center gap-2 hover:bg-white/10 transition"><i class="fa-solid fa-display"></i> Request Demo</a>
     </div>
   </div>
-</div>
+</section>
 
-<!-- ─── Fitur Unggulan ─── -->
-<div class="max-w-7xl mx-auto px-4 py-20">
-  <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-4">Kenapa <span class="gradient-text">SuruhNgoding</span>?</h2>
-  <p class="text-gray-600 text-center max-w-2xl mx-auto mb-16 text-lg">Kami bangun solusi digital yang tepat guna, bukan cuma template kosong.</p>
-  <div class="grid md:grid-cols-3 gap-8">
-    <div class="card p-8 text-center">
-      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-5"><i class="fa-solid fa-shield-halved text-blue-600 text-2xl"></i></div>
-      <h3 class="text-xl font-bold mb-3">Lisensi Aman</h3>
-      <p class="text-gray-600">Setiap lisensi diverifikasi online. Anti-pembajakan dengan aktivasi device terbatas sesuai paket.</p>
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer style="background:#0B1B3A;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
+    <div class="lg:col-span-2">
+      <div class="text-2xl font-extrabold text-white mb-3">Suruh<span class="gradient-text" style="background:linear-gradient(135deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Ngoding</span></div>
+      <p class="text-white/50 text-sm max-w-sm leading-relaxed mb-5">Software house yang membangun website profesional dan software manajemen usaha — SuruhLaundry & SuruhKelola — dalam satu ekosistem digital terpercaya.</p>
+      <div class="flex gap-3">
+        <a href="https://wa.me/62881080608167" target="_blank" class="social-icon"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
     </div>
-    <div class="card p-8 text-center">
-      <div class="w-16 h-16 bg-cyan-100 rounded-2xl flex items-center justify-center mx-auto mb-5"><i class="fa-solid fa-bolt text-cyan-600 text-2xl"></i></div>
-      <h3 class="text-xl font-bold mb-3">Instan & Offline</h3>
-      <p class="text-gray-600">Aplikasi Android berjalan offline penuh. Lisensi diverifikasi sekal, sisa hari bebas tanpa internet.</p>
+    <div>
+      <h5 class="text-white font-bold text-sm uppercase tracking-wide mb-4">Navigasi</h5>
+      <a href="/" class="footer-link">Home</a>
+      <a href="/#layanan" class="footer-link">Layanan</a>
+      <a href="/#produk" class="footer-link">Produk</a>
+      <a href="/#portofolio" class="footer-link">Portofolio</a>
     </div>
-    <div class="card p-8 text-center">
-      <div class="w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center mx-auto mb-5"><i class="fa-solid fa-headset text-indigo-600 text-2xl"></i></div>
-      <h3 class="text-xl font-bold mb-3">Dukungan Penuh</h3>
-      <p class="text-gray-600">Bantuan instalasi, update gratis, dan garansi lisensi. Kami ada untuk Anda.</p>
+    <div>
+      <h5 class="text-white font-bold text-sm uppercase tracking-wide mb-4">Lainnya</h5>
+      <a href="/#harga" class="footer-link">Harga</a>
+      <a href="/blog" class="footer-link">Blog</a>
+      <a href="/#kontak" class="footer-link">Kontak</a>
+      <a href="/cek-lisensi" class="footer-link">Cek Lisensi</a>
+    </div>
+    <div>
+      <h5 class="text-white font-bold text-sm uppercase tracking-wide mb-4">Kontak</h5>
+      <p class="text-white/50 text-sm mb-2"><i class="fa-brands fa-whatsapp mr-2"></i>+62 881-0806-08167</p>
+      <p class="text-white/50 text-sm"><i class="fa-solid fa-location-dot mr-2"></i>Depok, Jawa Barat</p>
     </div>
   </div>
-</div>
-
-<!-- ─── Download Aplikasi ─── -->
-<div class="bg-gradient-to-r from-blue-50 to-cyan-50 py-20">
-  <div class="max-w-7xl mx-auto px-4">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Download <span class="gradient-text">Aplikasi</span></h2>
-      <p class="text-gray-600 max-w-2xl mx-auto text-lg">Download langsung dan install di tablet atau HP Android Anda.</p>
-    </div>
-    <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-      <div class="card p-6 flex items-center gap-5 hover:shadow-lg transition-shadow">
-        <div class="w-16 h-16 bg-cyan-100 rounded-2xl flex items-center justify-center shrink-0"><i class="fa-solid fa-jug-detergent text-cyan-600 text-2xl"></i></div>
-        <div class="flex-1">
-          <h3 class="font-bold text-lg">SuruhLaundry</h3>
-          <p class="text-sm text-gray-500">Manajemen laundry lengkap — order, antar-jemput, laporan</p>
-          <span class="text-xs text-gray-400 mt-1 block">v1.0.0 · 35.9 MB · Android 8+</span>
-        </div>
-        <a href="/SuruhLaundry.apk" download class="btn-primary text-sm py-3 px-5 whitespace-nowrap"><i class="fa-solid fa-download"></i> APK</a>
-      </div>
-      <div class="card p-6 flex items-center gap-5 hover:shadow-lg transition-shadow">
-        <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center shrink-0"><i class="fa-solid fa-store text-blue-600 text-2xl"></i></div>
-        <div class="flex-1">
-          <h3 class="font-bold text-lg">SuruhKelola</h3>
-          <p class="text-sm text-gray-500">Manajemen toko & restoran — kasir, stok, laporan keuangan</p>
-          <span class="text-xs text-gray-400 mt-1 block">Segera hadir</span>
-        </div>
-        <a href="#" class="btn-primary text-sm py-3 px-5 whitespace-nowrap opacity-60 pointer-events-none"><i class="fa-solid fa-download"></i> Segera</a>
-      </div>
-    </div>
+  <div class="border-t border-white/10 py-6 text-center">
+    <p class="text-white/40 text-sm">&copy; <%= new Date().getFullYear() %> SuruhNgoding. Semua hak dilindungi.</p>
   </div>
-</div>
+</footer>
 
-<!-- ─── Produk ─── -->
-<div class="max-w-7xl mx-auto px-4 py-20">
-  <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-4">Pilih <span class="gradient-text">Paket</span> Anda</h2>
-  <p class="text-gray-600 text-center max-w-2xl mx-auto mb-16 text-lg">Lisensi seumur hidup — bayar sekali, pakai selamanya.</p>
-  <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-    <!-- SuruhKelola -->
-    <div class="card p-8 border-t-4 border-t-blue-500">
-      <div class="flex items-center gap-4 mb-2">
-        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center"><i class="fa-solid fa-store text-blue-600 text-xl"></i></div>
-        <div>
-          <h3 class="text-2xl font-bold">SuruhKelola</h3>
-          <p class="text-sm text-gray-500">Manajemen Toko & Restoran</p>
-        </div>
-      </div>
-      <ul class="space-y-2 my-6 text-gray-600 text-sm">
-        <li><i class="fa-solid fa-check text-green-500 mr-2"></i>Kasir & manajemen produk</li>
-        <li><i class="fa-solid fa-check text-green-500 mr-2"></i>Manajemen stok & gudang</li>
-        <li><i class="fa-solid fa-check text-green-500 mr-2"></i>Laporan keuangan harian</li>
-        <li><i class="fa-solid fa-check text-green-500 mr-2"></i>Multi-outlet</li>
-      </ul>
-      <div class="space-y-3 mb-6">
-        <div class="flex justify-between items-center p-3 bg-gray-50 rounded-xl">
-          <span class="font-semibold">Starter</span>
-          <span class="text-gray-600">1 device</span>
-          <span class="font-bold text-blue-600">Rp 299.000</span>
-        </div>
-        <div class="flex justify-between items-center p-3 bg-gray-50 rounded-xl">
-          <span class="font-semibold">Bisnis</span>
-          <span class="text-gray-600">3 devices</span>
-          <span class="font-bold text-blue-600">Rp 699.000</span>
-        </div>
-        <div class="flex justify-between items-center p-3 bg-blue-50 rounded-xl border border-blue-200">
-          <span class="font-semibold text-blue-700">🚀 Pro</span>
-          <span class="text-gray-600">Unlimited</span>
-          <span class="font-bold text-blue-700">Rp 1.499.000</span>
-        </div>
-      </div>
-      <a href="/beli?produk=suruhkelola" class="btn-primary w-full text-center block">Beli Sekarang</a>
-    </div>
-
-    <!-- SuruhLaundry -->
-    <div class="card p-8 border-t-4 border-t-cyan-500">
-      <div class="flex items-center gap-4 mb-2">
-        <div class="w-12 h-12 bg-cyan-100 rounded-xl flex items-center justify-center"><i class="fa-solid fa-jug-detergent text-cyan-600 text-xl"></i></div>
-        <div>
-          <h3 class="text-2xl font-bold">SuruhLaundry</h3>
-          <p class="text-sm text-gray-500">Manajemen Laundry</p>
-        </div>
-      </div>
-      <ul class="space-y-2 my-6 text-gray-600 text-sm">
-        <li><i class="fa-solid fa-check text-green-500 mr-2"></i>Order & manajemen pelanggan</li>
-        <li><i class="fa-solid fa-check text-green-500 mr-2"></i>Antar-jemput & driver</li>
-        <li><i class="fa-solid fa-check text-green-500 mr-2"></i>Cetak struk via Bluetooth</li>
-        <li><i class="fa-solid fa-check text-green-500 mr-2"></i>Laporan harian & rekap</li>
-      </ul>
-      <div class="space-y-3 mb-6">
-        <div class="flex justify-between items-center p-3 bg-gray-50 rounded-xl">
-          <span class="font-semibold">Starter</span>
-          <span class="text-gray-600">1 device</span>
-          <span class="font-bold text-cyan-600">Rp 249.000</span>
-        </div>
-        <div class="flex justify-between items-center p-3 bg-gray-50 rounded-xl">
-          <span class="font-semibold">Bisnis</span>
-          <span class="text-gray-600">3 devices</span>
-          <span class="font-bold text-cyan-600">Rp 549.000</span>
-        </div>
-        <div class="flex justify-between items-center p-3 bg-cyan-50 rounded-xl border border-cyan-200">
-          <span class="font-semibold text-cyan-700">🚀 Pro</span>
-          <span class="text-gray-600">Unlimited</span>
-          <span class="font-bold text-cyan-700">Rp 1.199.000</span>
-        </div>
-      </div>
-      <a href="/beli?produk=suruhlaundry" class="btn-primary w-full text-center block">Beli Sekarang</a>
-    </div>
-  </div>
-</div>
-
-<!-- ─── Cara Kerja ─── -->
-<div class="bg-gray-50 py-20">
-  <div class="max-w-7xl mx-auto px-4">
-    <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-16">Cara <span class="gradient-text">Kerja</span></h2>
-    <div class="grid md:grid-cols-4 gap-8">
-      <div class="text-center">
-        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-blue-600">1</div>
-        <h3 class="font-bold text-lg mb-2">Pilih Produk</h3>
-        <p class="text-gray-600 text-sm">Tentukan aplikasi yang sesuai kebutuhan bisnis Anda.</p>
-      </div>
-      <div class="text-center">
-        <div class="w-16 h-16 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-cyan-600">2</div>
-        <h3 class="font-bold text-lg mb-2">Beli Lisensi</h3>
-        <p class="text-gray-600 text-sm">Pilih paket dan lakukan pembayaran. Lisensi langsung aktif.</p>
-      </div>
-      <div class="text-center">
-        <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-indigo-600">3</div>
-        <h3 class="font-bold text-lg mb-2">Download APK</h3>
-        <p class="text-gray-600 text-sm">Download aplikasi dan install di perangkat Android Anda.</p>
-      </div>
-      <div class="text-center">
-        <div class="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-emerald-600">4</div>
-        <h3 class="font-bold text-lg mb-2">Aktivasi & Pakai</h3>
-        <p class="text-gray-600 text-sm">Masukkan lisensi di aplikasi dan mulai gunakan.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ─── Testimoni ─── -->
-<div class="max-w-7xl mx-auto px-4 py-20">
-  <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-4">Apa Kata <span class="gradient-text">Pelanggan</span></h2>
-  <p class="text-gray-600 text-center max-w-2xl mx-auto mb-16 text-lg">Mereka sudah merasakan manfaatnya.</p>
-  <div class="grid md:grid-cols-3 gap-8">
-    <div class="card p-6">
-      <div class="flex items-center gap-1 text-yellow-400 mb-3">
-        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-      </div>
-      <p class="text-gray-600 mb-4 text-sm">"Aplikasi laundry-nya sangat membantu. Sekarang semua order terdata rapi, gak perlu catet manual lagi."</p>
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center font-bold text-blue-600 text-sm">RS</div>
-        <div><p class="font-semibold text-sm">Rina S.</p><p class="text-xs text-gray-500">Pemilik Laundry, Bandung</p></div>
-      </div>
-    </div>
-    <div class="card p-6">
-      <div class="flex items-center gap-1 text-yellow-400 mb-3">
-        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-      </div>
-      <p class="text-gray-600 mb-4 text-sm">"SuruhKelola bikin manajemen toko jadi lebih gampang. Stok, kasir, laporan — semua terintegrasi."</p>
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 bg-cyan-100 rounded-full flex items-center justify-center font-bold text-cyan-600 text-sm">AP</div>
-        <div><p class="font-semibold text-sm">Ahmad P.</p><p class="text-xs text-gray-500">Pemilik Toko, Jakarta</p></div>
-      </div>
-    </div>
-    <div class="card p-6">
-      <div class="flex items-center gap-1 text-yellow-400 mb-3">
-        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
-      </div>
-      <p class="text-gray-600 mb-4 text-sm">"Fitur antar-jemput-nya keren! Pelanggan puas bisa tracking status laundry dari rumah."</p>
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center font-bold text-indigo-600 text-sm">DW</div>
-        <div><p class="font-semibold text-sm">Dwi W.</p><p class="text-xs text-gray-500">Pengusaha Laundry, Surabaya</p></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ─── FAQ ─── -->
-<div class="bg-gray-50 py-20">
-  <div class="max-w-3xl mx-auto px-4">
-    <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-4">Pertanyaan <span class="gradient-text">Umum</span></h2>
-    <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12 text-lg">Yang sering ditanyakan.</p>
-    <div class="space-y-4">
-      <div class="card p-5">
-        <h3 class="font-bold mb-2">Apakah aplikasi bisa offline?</h3>
-        <p class="text-gray-600 text-sm">Ya! Setelah aktivasi lisensi, aplikasi berjalan offline penuh. Hanya butuh internet saat aktivasi awal.</p>
-      </div>
-      <div class="card p-5">
-        <h3 class="font-bold mb-2">Berapa lama lisensi berlaku?</h3>
-        <p class="text-gray-600 text-sm">Lisensi berlaku seumur hidup — bayar sekali, pakai selamanya. Termasuk update gratis.</p>
-      </div>
-      <div class="card p-5">
-        <h3 class="font-bold mb-2">Bisa pindah device?</h3>
-        <p class="text-gray-600 text-sm">Bisa. Cukup deaktivasi device lama dari dashboard, lalu aktivasi di device baru.</p>
-      </div>
-      <div class="card p-5">
-        <h3 class="font-bold mb-2">Apakah ada garansi?</h3>
-        <p class="text-gray-600 text-sm">Ada garansi 14 hari. Jika ada masalah, kami bantu penuh atau uang kembali.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ─── CTA ─── -->
-<div class="max-w-7xl mx-auto px-4 py-20 text-center">
-  <h2 class="text-3xl md:text-5xl font-extrabold mb-6">Siap Mulai?</h2>
-  <p class="text-gray-600 max-w-2xl mx-auto mb-10 text-lg">Beli lisensi sekarang dan bawa bisnis Anda ke level berikutnya.</p>
-  <div class="flex gap-4 justify-center flex-wrap">
-    <a href="/beli" class="btn-primary text-lg px-8 py-4"><i class="fa-solid fa-cart-plus"></i> Beli Lisensi</a>
-    <a href="/register" class="btn-secondary text-lg px-8 py-4"><i class="fa-solid fa-user-plus"></i> Daftar Akun</a>
-  </div>
-</div>
+<script>
+  function switchProdukTab(tab) {
+    document.querySelectorAll('.produk-tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.produk-tab-panel').forEach(p => p.classList.add('hidden'));
+    document.getElementById('tab-btn-' + tab).classList.add('active');
+    document.getElementById('tab-panel-' + tab).classList.remove('hidden');
+  }
+</script>

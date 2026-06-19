@@ -8,41 +8,126 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: #F8FAFC; color: #1E293B; }
-    .gradient-text { background: linear-gradient(135deg, #2563EB, #06B6D4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .btn-primary { background: linear-gradient(135deg, #2563EB, #06B6D4); color: #fff; padding: 12px 28px; border-radius: 12px; font-weight: 600; transition: all .2s; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; border: none; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37, 99, 235, .3); }
-    .btn-secondary { background: #1E293B; color: #fff; padding: 12px 28px; border-radius: 12px; font-weight: 600; }
-    .card { background: #fff; border-radius: 16px; border: 1px solid #E2E8F0; box-shadow: 0 4px 20px rgba(0,0,0,.06); }
+
+    :root {
+      --c1: #42D4FF;
+      --c2: #2AA7FF;
+      --c3: #1565D8;
+      --c4: #2348D8;
+      --c5: #0000B8;
+      --gradient-brand: linear-gradient(135deg, var(--c1) 0%, var(--c2) 25%, var(--c3) 50%, var(--c4) 75%, var(--c5) 100%);
+      --gradient-btn: linear-gradient(135deg, var(--c2) 0%, var(--c3) 100%);
+      --gradient-dark: linear-gradient(135deg, var(--c3) 0%, var(--c4) 55%, var(--c5) 100%);
+      --text: #0B1B3A;
+      --text-secondary: #5B6B8C;
+      --border: #E3E9F5;
+      --bg: #F7FAFF;
+      --shadow: 0 4px 20px rgba(21,101,216,.08);
+      --shadow-lg: 0 16px 48px rgba(21,101,216,.16);
+    }
+
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); }
+
+    .gradient-text { background: linear-gradient(135deg, var(--c1), var(--c3)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    .btn-primary {
+      background: var(--gradient-btn);
+      color: #fff; padding: 12px 28px; border-radius: 14px; font-weight: 600;
+      transition: all .25s; display: inline-flex; align-items: center; gap: 8px;
+      cursor: pointer; border: none; box-shadow: 0 6px 20px rgba(21,101,216,.28);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(21,101,216,.38); }
+
+    .btn-outline {
+      background: #fff; color: var(--c3); padding: 12px 28px; border-radius: 14px; font-weight: 600;
+      border: 1.5px solid var(--border); transition: all .25s; display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+    }
+    .btn-outline:hover { border-color: var(--c2); background: #F0F8FF; transform: translateY(-2px); }
+
+    .btn-secondary {
+      background: var(--text); color: #fff; padding: 12px 28px; border-radius: 14px; font-weight: 600;
+      display: inline-flex; align-items: center; gap: 8px; transition: all .2s;
+    }
+    .btn-secondary:hover { opacity: .88; }
+
+    .card { background: #fff; border-radius: 20px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+
+    .badge-pill {
+      display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px; border-radius: 100px;
+      font-size: 13px; font-weight: 600; background: #EAF4FF; color: var(--c3);
+    }
+
     .flash-success { background: #D1FAE5; color: #065F46; border: 1px solid #A7F3D0; }
     .flash-error { background: #FEE2E2; color: #991B1B; border: 1px solid #FECACA; }
+
+    .navbar-link { font-size: 14px; font-weight: 500; color: var(--text-secondary); transition: color .2s; }
+    .navbar-link:hover { color: var(--c3); }
+
+    #mobileNav { display: none; }
+    #mobileNav.open { display: flex; }
   </style>
 </head>
 <body>
-  <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+  <nav class="bg-white/90 backdrop-blur-md border-b border-gray-100 sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16 items-center">
-        <a href="/" class="font-bold text-xl"><span class="gradient-text">SuruhNgoding</span></a>
-        <div class="flex items-center gap-4">
-          <a href="/beli" class="text-gray-600 hover:text-gray-900 text-sm font-medium">Beli</a>
-          <a href="/cek-lisensi" class="text-gray-600 hover:text-gray-900 text-sm font-medium">Cek</a>
+        <a href="/" class="flex items-center shrink-0">
+          <img src="/logo-suruhngoding.jpg" alt="SuruhNgoding" class="h-8 sm:h-9 w-auto">
+        </a>
+
+        <div class="hidden lg:flex items-center gap-7">
+          <a href="/#layanan" class="navbar-link">Layanan</a>
+          <a href="/#produk" class="navbar-link">Produk</a>
+          <a href="/#portofolio" class="navbar-link">Portofolio</a>
+          <a href="/#harga" class="navbar-link">Harga</a>
+          <a href="/#kontak" class="navbar-link">Kontak</a>
+        </div>
+
+        <div class="hidden lg:flex items-center gap-4">
+          <a href="/cek-lisensi" class="navbar-link">Cek Lisensi</a>
           <% if (typeof user !== 'undefined' && user) { %>
             <% if (user.role === 'admin') { %>
-              <a href="/admin" class="text-gray-600 hover:text-gray-900 text-sm font-medium">Admin</a>
+              <a href="/admin" class="navbar-link">Admin</a>
             <% } else { %>
-              <a href="/dashboard" class="text-gray-600 hover:text-gray-900 text-sm font-medium">Dashboard</a>
+              <a href="/dashboard" class="navbar-link">Dashboard</a>
             <% } %>
-            <a href="/orders" class="text-gray-600 hover:text-gray-900 text-sm font-medium">Pesanan</a>
+            <a href="/orders" class="navbar-link">Pesanan</a>
             <a href="/logout" class="btn-primary text-sm py-2 px-4">Logout</a>
           <% } else { %>
-            <a href="/register" class="text-gray-600 hover:text-gray-900 text-sm font-medium">Daftar</a>
-            <a href="/login" class="btn-primary text-sm py-2 px-4">Masuk</a>
+            <a href="/login" class="navbar-link">Masuk</a>
+            <a href="/beli" class="btn-primary text-sm py-2 px-4">Beli Lisensi</a>
           <% } %>
         </div>
+
+        <button id="mobileNavToggle" class="lg:hidden w-10 h-10 flex items-center justify-center text-xl" style="color:var(--text)" aria-label="Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
       </div>
+    </div>
+
+    <div id="mobileNav" class="lg:hidden flex-col border-t border-gray-100 bg-white px-4 py-4 gap-1">
+      <a href="/#layanan" class="navbar-link py-2">Layanan</a>
+      <a href="/#produk" class="navbar-link py-2">Produk</a>
+      <a href="/#portofolio" class="navbar-link py-2">Portofolio</a>
+      <a href="/#harga" class="navbar-link py-2">Harga</a>
+      <a href="/#kontak" class="navbar-link py-2">Kontak</a>
+      <a href="/cek-lisensi" class="navbar-link py-2">Cek Lisensi</a>
+      <% if (typeof user !== 'undefined' && user) { %>
+        <% if (user.role === 'admin') { %><a href="/admin" class="navbar-link py-2">Admin</a><% } else { %><a href="/dashboard" class="navbar-link py-2">Dashboard</a><% } %>
+        <a href="/orders" class="navbar-link py-2">Pesanan</a>
+        <a href="/logout" class="btn-primary text-sm py-2 px-4 mt-2 justify-center">Logout</a>
+      <% } else { %>
+        <a href="/login" class="navbar-link py-2">Masuk</a>
+        <a href="/beli" class="btn-primary text-sm py-2 px-4 mt-2 justify-center">Beli Lisensi</a>
+      <% } %>
     </div>
   </nav>
   <main><%- body %></main>
+  <script>
+    document.getElementById('mobileNavToggle').addEventListener('click', function () {
+      document.getElementById('mobileNav').classList.toggle('open');
+    });
+  </script>
 </body>
 </html>
