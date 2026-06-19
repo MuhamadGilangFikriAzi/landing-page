@@ -1,0 +1,24 @@
+<div class="max-w-5xl mx-auto px-4 py-10">
+  <h1 class="text-3xl font-bold mb-2">Dashboard</h1>
+  <p class="text-gray-600 mb-8">Selamat datang! Kelola lisensi Anda di sini.</p>
+  <% if (locals.licenses && licenses.length > 0) { %>
+    <% licenses.forEach(function(l) { %>
+      <div class="card p-6 mb-4 flex justify-between items-center">
+        <div>
+          <div class="flex items-center gap-3 mb-1">
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800"><%= l.status %></span>
+            <span class="font-mono text-sm"><%= l.license_key %></span>
+          </div>
+          <p class="font-bold"><%= l.app === 'suruhkelola' ? 'SuruhKelola' : 'SuruhLaundry' %> - <%= l.package %></p>
+          <p class="text-sm text-gray-500">Device: <%= JSON.parse(l.activated_devices || '[]').length %> / <%= l.max_devices %></p>
+        </div>
+        <a href="/cek-lisensi?key=<%= l.license_key %>" class="btn-primary text-sm py-2 px-4">Detail</a>
+      </div>
+    <% }); %>
+  <% } else { %>
+    <div class="card p-12 text-center">
+      <p class="text-gray-600 mb-4">Belum ada lisensi.</p>
+      <a href="/beli" class="btn-primary">Beli Lisensi</a>
+    </div>
+  <% } %>
+</div>

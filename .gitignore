@@ -1,0 +1,8 @@
+node_modules/
+*.db
+data/
+*.bat
+cek_users.js
+reset_admin_pass.js
+*.bak
+*.backup*

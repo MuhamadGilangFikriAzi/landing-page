@@ -1,0 +1,53 @@
+<div class="max-w-7xl mx-auto px-4 py-10">
+  <h1 class="text-3xl font-bold mb-8">Pesanan</h1>
+
+  <% if (typeof success_msg !== 'undefined' && success_msg) { %>
+    <div class="flash-success p-4 rounded-xl mb-6"><%= success_msg %></div>
+  <% } %>
+  <% if (typeof error_msg !== 'undefined' && error_msg) { %>
+    <div class="flash-error p-4 rounded-xl mb-6"><%= error_msg %></div>
+  <% } %>
+
+  <div class="card overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-gray-50"><tr>
+        <th class="text-left p-4 font-semibold">Order</th>
+        <th class="text-left p-4 font-semibold">Customer</th>
+        <th class="text-left p-4 font-semibold">Produk</th>
+        <th class="text-left p-4 font-semibold">Paket</th>
+        <th class="text-left p-4 font-semibold">Jumlah</th>
+        <th class="text-left p-4 font-semibold">Status</th>
+        <th class="text-left p-4 font-semibold">Aksi</th>
+      </tr></thead>
+      <tbody>
+        <% orders.forEach(function(o) { %>
+          <tr class="border-t border-gray-100">
+            <td class="p-4 font-mono text-xs"><%= o.order_number %></td>
+            <td class="p-4"><%= o.customer_name %><br><span class="text-xs text-gray-400"><%= o.customer_email %></span></td>
+            <td class="p-4"><%= o.product %></td>
+            <td class="p-4 capitalize"><%= o.package %></td>
+            <td class="p-4 font-semibold">Rp <%= Number(o.amount).toLocaleString('id-ID') %></td>
+            <td class="p-4">
+              <% if (o.payment_status === 'pending') { %>
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-yellow-100 text-yellow-800">Pending</span>
+              <% } else { %>
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800"><%= o.payment_status %></span>
+              <% } %>
+            </td>
+            <td class="p-4">
+              <% if (o.payment_status === 'pending') { %>
+                <form action="/admin/orders/<%= o.id %>/confirm" method="POST" style="display:inline">
+                  <button type="submit" class="px-4 py-2 bg-emerald-500 text-white rounded-lg text-xs font-semibold hover:bg-emerald-600" onclick="return confirm('Konfirmasi pesanan #<%= o.order_number %>? Lisensi akan langsung tergenerate.')">
+                    <i class="fa-solid fa-check"></i> Konfirmasi
+                  </button>
+                </form>
+              <% } else if (o.license_key) { %>
+                <span class="text-xs font-mono text-gray-500"><%= o.license_key %></span>
+              <% } %>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+</div>

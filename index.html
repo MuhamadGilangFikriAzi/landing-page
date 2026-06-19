@@ -3,483 +3,320 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SuruhNgoding — Jasa Pembuatan Website Profesional</title>
-<meta name="description" content="Jasa pembuatan website profesional: landing page, company profile, toko online, undangan digital, POS system. Portfolio-driven, hasil real, bukan template.">
-<meta name="keywords" content="jasa pembuatan website, landing page murah, company profile, toko online, undangan digital, suruhngoding">
-<meta name="author" content="SuruhNgoding">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://suruhngoding.com/">
+<title>SuruhNgoding — Solusi Digital Terjangkau untuk Bisnis Anda</title>
+<meta name="description" content="Website Profesional, AI Chatbot, SuruhLaundry, dan SuruhKelola dalam satu ekosistem digital untuk membantu bisnis tumbuh lebih cepat.">
 <link rel="stylesheet" href="design-system.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-<!-- Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="SuruhNgoding — Jasa Pembuatan Website Profesional">
-<meta property="og:description" content="Landing page, company profile, toko online, undangan digital. Mulai dari Rp150K.">
-<meta property="og:url" content="https://suruhngoding.com/">
-<meta property="og:image" content="https://suruhngoding.com/og-image.jpg">
-<meta property="og:locale" content="id_ID">
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-XXXXXXXXXX');
-</script>
-
-<!-- Structured Data -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "SuruhNgoding",
-  "url": "https://suruhngoding.com/",
-  "telephone": "+628810608167",
-  "priceRange": "Rp150K - Rp5JT",
-  "areaServed": "Indonesia",
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+628810608167",
-    "contactType": "sales",
-    "availableLanguage": ["Indonesian", "English"]
-  }
-}
-</script>
 </head>
 <body>
 
-<!-- ═══════════════ NAVBAR ═══════════════ -->
+<!-- Navbar -->
 <nav class="navbar" id="navbar">
   <div class="navbar-inner">
-    <a href="#" class="navbar-logo">Suruh<span>Ngoding</span></a>
-
+    <a href="#" class="navbar-logo">
+      <span class="navbar-logo-text">Suruh<span>Ngoding</span></span>
+    </a>
     <div class="navbar-links">
-      <a href="#portfolio">Portofolio</a>
-      <a href="#pricing">Harga</a>
-      <a href="#ai">AI WhatsApp</a>
-      <a href="/promo" style="color:var(--cyan);font-weight:600;">🔥 Promo</a>
-      <a href="#contact">Kontak</a>
+      <a href="#layanan">Layanan</a>
+      <a href="#produk">Produk</a>
+      <a href="#harga">Harga</a>
+      <a href="#testimoni">Testimoni</a>
+      <a href="#kontak">Kontak</a>
     </div>
-
     <div class="navbar-actions">
-      <button class="lang-toggle" id="langToggle" onclick="toggleLang()" title="Ganti Bahasa">
-        <span class="lang-toggle-track">
-          <span class="lang-toggle-thumb"></span>
-        </span>
-        <span class="lang-toggle-label">EN</span>
-      </button>
-      <a id="navConsult" href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20tertarik%20buat%20website" target="_blank" class="btn btn-primary btn-sm" style="padding:0.55rem 1.2rem;font-size:0.8rem;">
-        <i class="fab fa-whatsapp"></i> Konsultasi
-      </a>
+      <a href="/login" class="btn btn-outline" style="padding:0.55rem 1.25rem;font-size:0.85rem">Masuk</a>
+      <a href="/register" class="btn btn-accent" style="padding:0.55rem 1.25rem;font-size:0.85rem">Daftar</a>
     </div>
-
-    <button class="mobile-toggle" onclick="toggleMobile()" aria-label="Menu">
-      <i class="fas fa-bars" id="menuIcon"></i>
+    <button class="mobile-toggle" onclick="document.getElementById('mobileMenu').classList.toggle('open')" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
     </button>
   </div>
 </nav>
 
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#portfolio" onclick="toggleMobile()">Portofolio</a>
-  <a href="#pricing" onclick="toggleMobile()">Harga</a>
-  <a href="#ai" onclick="toggleMobile()">AI WhatsApp</a>
-  <a href="/promo" onclick="toggleMobile()">🔥 Promo</a>
-  <a href="#contact" onclick="toggleMobile()">Kontak</a>
-  <div class="lang-mobile">
-    <div class="lang-toggle-wrap-mobile">
-      <span style="font-size:0.85rem;color:var(--gray-600);">Bahasa</span>
-      <button class="lang-toggle" id="langToggleMobile" onclick="toggleLang()">
-        <span class="lang-toggle-track">
-          <span class="lang-toggle-thumb"></span>
-        </span>
-        <span class="lang-toggle-label">EN</span>
-      </button>
-    </div>
-  </div>
-  <a id="navConsultM" href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20tertarik%20buat%20website" target="_blank" class="btn btn-accent" style="margin-top:0.5rem;text-align:center;">
-    <i class="fab fa-whatsapp"></i> Konsultasi Gratis
-  </a>
+  <a href="#layanan" onclick="closeMenu()">Layanan</a>
+  <a href="#produk" onclick="closeMenu()">Produk</a>
+  <a href="#harga" onclick="closeMenu()">Harga</a>
+  <a href="#testimoni" onclick="closeMenu()">Testimoni</a>
+  <a href="#kontak" onclick="closeMenu()">Kontak</a>
+  <a href="/login" onclick="closeMenu()">Masuk</a>
+  <a href="/register" class="btn btn-accent" style="text-align:center;margin-top:0.5rem" onclick="closeMenu()">Daftar</a>
 </div>
 
-<!-- ═══════════════ HERO ═══════════════ -->
+<!-- Hero -->
 <section class="hero">
   <div class="hero-grid">
     <div class="fade-up">
-      <div class="hero-badge">
-        <span class="hero-badge-dot"></span>
-        <span id="heroBadge">Bisa bantu bisnis Anda naik level</span>
-      </div>
-
-      <h1 id="heroTitle">
-        Bikin Website<br>
-        <span class="highlight">Yang Beneran Dipake</span>
-      </h1>
-
-      <p id="heroDesc">
-        Landing page, company profile, toko online, undangan digital — 
-        dikerjain langsung sama developer, bukan template instan. 
-        Hasil real yang bikin bisnis kamu keliatan profesional.
-      </p>
-
+      <div class="hero-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Platform Digital No.1 di Indonesia</div>
+      <h1>Solusi Digital <span class="highlight">Terjangkau</span> untuk Bisnis Anda</h1>
+      <p>Dari website profesional hingga AI chatbot — kami bantu bisnis Anda naik level dengan teknologi yang tepat, tanpa ribet.</p>
       <div class="hero-actions">
-        <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20tertarik%20buat%20website" target="_blank" class="btn btn-primary" id="heroCta">
-          <i class="fab fa-whatsapp"></i> Konsultasi Gratis
-        </a>
-        <a href="#portfolio" class="btn btn-outline" id="heroPorto">Lihat Portofolio</a>
+        <a href="#kontak" class="btn btn-primary">Konsultasi Gratis</a>
+        <a href="#produk" class="btn btn-outline">Lihat Produk</a>
       </div>
-
       <div class="hero-stats">
-        <div>
-          <div class="hero-stat-num">9+</div>
-          <div class="hero-stat-label" id="statProjects">Project Selesai
-        </div>
-        <div>
-          <div class="hero-stat-num">5</div>
-          <div class="hero-stat-label" id="statYears">Tahun Pengalaman</div>
-        </div>
-        <div>
-          <div class="hero-stat-num">100%</div>
-          <div class="hero-stat-label" id="statOntime">Tepat Waktu</div>
-        </div>
-        <div>
-          <div class="hero-stat-num">1 Jam</div>
-          <div class="hero-stat-label" id="statResponse">Respon Cepat</div>
-        </div>
+        <div class="stat-item"><div class="stat-number">50+</div><div class="stat-label">Klien Aktif</div></div>
+        <div class="stat-item"><div class="stat-number">3</div><div class="stat-label">Produk Unggulan</div></div>
+        <div class="stat-item"><div class="stat-number">24/7</div><div class="stat-label">Support</div></div>
+        <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">Garansi Kepuasan</div></div>
       </div>
     </div>
-
-    <div class="hero-visual fade-up fade-up-d2">
+    <div class="fade-up fade-up-d2">
       <div class="hero-visual-card">
-        <div class="mockup-bar">
-          <span class="mockup-dot" style="background:#ff5f57"></span>
-          <span class="mockup-dot" style="background:#febc2e"></span>
-          <span class="mockup-dot" style="background:#28c840"></span>
+        <div class="mockup-grid">
+          <div class="mockup-grid-item">
+            <div class="mockup-bar"><span class="mockup-dot" style="background:#EF4444"></span><span class="mockup-dot" style="background:#F59E0B"></span><span class="mockup-dot" style="background:#10B981"></span></div>
+            <div class="mockup-line w80 blue"></div>
+            <div class="mockup-line w60 cyan"></div>
+            <div class="mockup-line w85 green"></div>
+          </div>
+          <div class="mockup-grid-item">
+            <div class="mockup-bar"><span class="mockup-dot" style="background:#EF4444"></span><span class="mockup-dot" style="background:#F59E0B"></span><span class="mockup-dot" style="background:#10B981"></span></div>
+            <div class="mockup-line w70 blue"></div>
+            <div class="mockup-line w50 cyan"></div>
+            <div class="mockup-line w60 green"></div>
+          </div>
+          <div class="mockup-grid-item">
+            <div class="mockup-bar"><span class="mockup-dot" style="background:#EF4444"></span><span class="mockup-dot" style="background:#F59E0B"></span><span class="mockup-dot" style="background:#10B981"></span></div>
+            <div class="mockup-line w80 blue"></div>
+            <div class="mockup-line w60 cyan"></div>
+            <div class="mockup-line w50 green"></div>
+          </div>
+          <div class="mockup-grid-item">
+            <div class="mockup-bar"><span class="mockup-dot" style="background:#EF4444"></span><span class="mockup-dot" style="background:#F59E0B"></span><span class="mockup-dot" style="background:#10B981"></span></div>
+            <div class="mockup-line w85 blue"></div>
+            <div class="mockup-line w70 cyan"></div>
+            <div class="mockup-line w40 green"></div>
+          </div>
         </div>
-        <div class="mockup-line w80"></div>
-        <div class="mockup-line w60"></div>
-        <div class="mockup-line w80" style="margin-bottom:1.5rem"></div>
-        <div class="mockup-line w40" style="height:80px;border-radius:8px;"></div>
-        <div class="mockup-line w80" style="margin-top:0.8rem"></div>
-        <div class="mockup-line w60"></div>
-        <div class="mockup-line w80"></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ PORTFOLIO ═══════════════ -->
-<section class="section" id="portfolio">
-  <div class="container">
-    <div class="section-header fade-up">
-      <div class="section-label">Portofolio</div>
-      <h2 class="section-title" id="portoTitle">Project Terbaru</h2>
-      <p class="section-sub" id="portoSub">Beberapa website yang udah saya kerjakan — dari landing page sampe sistem POS.</p>
+<!-- Layanan -->
+<section class="section" id="layanan">
+  <div class="section-header fade-up">
+    <div class="section-label">Layanan</div>
+    <h2 class="section-title">Yang Kami Tawarkan</h2>
+    <p class="section-sub">Layanan lengkap untuk kebutuhan digital bisnis Anda — dari awal hingga scaling.</p>
+  </div>
+  <div class="service-grid fade-up">
+    <div class="service-card">
+      <div class="service-icon blue">🌐</div>
+      <h3>Website Profesional</h3>
+      <p>Landing page, company profile, toko online — responsive, SEO-friendly, loading cepat.</p>
     </div>
-
-    <div class="portfolio-grid">
-      <a href="https://gilang.novasistem.cloud" target="_blank" class="portfolio-card fade-up fade-up-d1">
-        <div class="portfolio-card-img" style="background: linear-gradient(135deg, #1e293b, #0f172a);color:rgba(255,255,255,0.3);">
-          <i class="fas fa-user-circle" style="font-size:3rem;"></i>
-        </div>
-        <div class="portfolio-card-body">
-          <div class="portfolio-card-tag">Portfolio</div>
-          <div class="portfolio-card-title">Personal Portfolio</div>
-          <div class="portfolio-card-desc">Bilingual portfolio dengan bilingual ID/EN</div>
-        </div>
-      </a>
-
-      <a href="https://pos.suruhngoding.com" target="_blank" class="portfolio-card fade-up fade-up-d2">
-        <div class="portfolio-card-img" style="background: linear-gradient(135deg, #1e3a5f, #0c1e33);color:rgba(255,255,255,0.3);">
-          <i class="fas fa-cash-register" style="font-size:3rem;"></i>
-        </div>
-        <div class="portfolio-card-body">
-          <div class="portfolio-card-tag">Web App</div>
-          <div class="portfolio-card-title">POS System</div>
-          <div class="portfolio-card-desc">Multi-kasir, manajemen stok, laporan laba</div>
-        </div>
-      </a>
-
-      <a href="https://suruhngoding.com" target="_blank" class="portfolio-card fade-up fade-up-d3">
-        <div class="portfolio-card-img" style="background: linear-gradient(135deg, #2d1b69, #1a0e3e);color:rgba(255,255,255,0.3);">
-          <i class="fas fa-code" style="font-size:3rem;"></i>
-        </div>
-        <div class="portfolio-card-body">
-          <div class="portfolio-card-tag">Landing Page</div>
-          <div class="portfolio-card-title">SuruhNgoding</div>
-          <div class="portfolio-card-desc">Landing page jasa pembuatan website</div>
-        </div>
-      </a>
-
-      <a href="https://sweetbake.suruhngoding.com" target="_blank" class="portfolio-card fade-up">
-        <div class="portfolio-card-img" style="background: linear-gradient(135deg, #5b1e34, #3a1121);color:rgba(255,255,255,0.3);">
-          <i class="fas fa-cake-candles" style="font-size:3rem;"></i>
-        </div>
-        <div class="portfolio-card-body">
-          <div class="portfolio-card-tag">Toko Online</div>
-          <div class="portfolio-card-title">SweetBake</div>
-          <div class="portfolio-card-desc">Toko kue online dengan katalog & order</div>
-        </div>
-      </a>
-
-      <a href="https://undangan.suruhngoding.com" target="_blank" class="portfolio-card fade-up fade-up-d2">
-        <div class="portfolio-card-img" style="background: linear-gradient(135deg, #7c3a4f, #4d2231);color:rgba(255,255,255,0.3);">
-          <i class="fas fa-envelope-open-text" style="font-size:3rem;"></i>
-        </div>
-        <div class="portfolio-card-body">
-          <div class="portfolio-card-tag">Undangan Digital</div>
-          <div class="portfolio-card-title">SuruhUndang</div>
-          <div class="portfolio-card-desc">25 template undangan pernikahan premium</div>
-        </div>
-      </a>
-
-      <a href="https://desadigital.suruhngoding.com" target="_blank" class="portfolio-card fade-up fade-up-d3">
-        <div class="portfolio-card-img" style="background: linear-gradient(135deg, #1e4a3a, #0f2e24);color:rgba(255,255,255,0.3);">
-          <i class="fas fa-tree" style="font-size:3rem;"></i>
-        </div>
-        <div class="portfolio-card-body">
-          <div class="portfolio-card-tag">Company Profile</div>
-          <div class="portfolio-card-title">DesaDigital v2</div>
-          <div class="portfolio-card-desc">Profil desa lengkap dengan layanan publik</div>
-        </div>
-      </a>
-
-      <a href="https://keuangan.suruhngoding.com" target="_blank" class="portfolio-card fade-up">
-        <div class="portfolio-card-img" style="background: linear-gradient(135deg, #0f4c3a, #0a2e22);color:rgba(255,255,255,0.3);">
-          <i class="fas fa-wallet" style="font-size:3rem;"></i>
-        </div>
-        <div class="portfolio-card-body">
-          <div class="portfolio-card-tag">Web App</div>
-          <div class="portfolio-card-title">KeuanganKu</div>
-          <div class="portfolio-card-desc">Aplikasi keuangan pribadi offline-first dengan grafik interaktif</div>
-        </div>
-      </a>
+    <div class="service-card fade-up-d1">
+      <div class="service-icon cyan">🤖</div>
+      <h3>AI Chatbot</h3>
+      <p>Chatbot pintar untuk customer service 24/7, integrasi WhatsApp &amp; website.</p>
+    </div>
+    <div class="service-card fade-up-d2">
+      <div class="service-icon green">📱</div>
+      <h3>Aplikasi Mobile</h3>
+      <p>Aplikasi Android untuk manajemen bisnis — SuruhLaundry, SuruhKelola, dan custom apps.</p>
+    </div>
+    <div class="service-card fade-up-d3">
+      <div class="service-icon purple">☁️</div>
+      <h3>SaaS Platform</h3>
+      <p>Platform berbasis langganan dengan fitur lengkap — update otomatis, support 24/7.</p>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ PRICING ═══════════════ -->
-<section class="section" style="background:var(--gray-100)" id="pricing">
-  <div class="container">
-    <div class="section-header fade-up">
-      <div class="section-label">Harga</div>
-      <h2 class="section-title" id="priceTitle">Paket Sederhana, Transparan</h2>
-      <p class="section-sub" id="priceSub">Domain .suruhngoding.com gratis 1 tahun. Yang keliatan mahal, yang bayar gak bikin sakit.</p>
-    </div>
-
-    <!-- Promo Banner -->
-    <div class="promo-banner fade-up fade-up-d1" id="promoBanner" style="margin-bottom:2rem;">
-      <div class="promo-label" id="promoLabel">Promo Harian</div>
-      <div class="promo-title" id="promoTitle">Diskon 30% Semua Layanan!</div>
-      <div class="promo-timer" id="countdown">
-        <div class="promo-timer-item"><span class="promo-timer-num" id="cdHours">00</span><span class="promo-timer-label">Jam</span></div>
-        <span class="promo-timer-sep">:</span>
-        <div class="promo-timer-item"><span class="promo-timer-num" id="cdMinutes">00</span><span class="promo-timer-label">Menit</span></div>
-        <span class="promo-timer-sep">:</span>
-        <div class="promo-timer-item"><span class="promo-timer-num" id="cdSeconds">00</span><span class="promo-timer-label">Detik</span></div>
-      </div>
-      <div class="promo-reset" id="promoReset">&#9881; Reset setiap pukul 00:00 WIB</div>
-    </div>
-
-    <div class="pricing-grid">
-      <div class="pricing-card fade-up">
-        <div class="pricing-name">Landing Page</div>
-        <div class="pricing-original" id="olLanding">Rp 1.600.000</div>
-        <div class="pricing-price" id="pLanding">Rp 800.000</div>
-        <div class="pricing-desc" id="dLanding">1 halaman, responsif, integrase WA, SEO</div>
-        <a href="https://wa.me/62881080608167?text=Halo%20Sari!%20Saya%20tertarik%20paket%20Landing%20Page%20(Rp%20800rb)%20dari%20Google%20Ads" target="_blank" class="pricing-cta">Pilih Paket</a>
-      </div>
-
-      <div class="pricing-card pricing-card featured fade-up fade-up-d1">
-        <div class="pricing-card-badge">Terlaris</div>
-        <div class="pricing-name">Company Profile</div>
-        <div class="pricing-original" id="olCompany">Rp 2.500.000</div>
-        <div class="pricing-price" id="pCompany">Rp 1.500.000</div>
-        <div class="pricing-desc" id="dCompany">Multi halaman, gallery, Google Maps, integrase WA</div>
-        <a href="https://wa.me/62881080608167?text=Halo%20Sari!%20Saya%20tertarik%20paket%20Company%20Profile%20(Rp%201,5jt)%20dari%20Google%20Ads" target="_blank" class="pricing-cta">Pilih Paket</a>
-      </div>
-
-      <div class="pricing-card fade-up fade-up-d2">
-        <div class="pricing-name">Toko Online</div>
-        <div class="pricing-original" id="olToko">Rp 4.000.000</div>
-        <div class="pricing-price" id="pToko">Rp 2.500.000</div>
-        <div class="pricing-desc" id="dToko">Katalog + keranjang + payment gateway + integrase WA</div>
-        <a href="https://wa.me/62881080608167?text=Halo%20Sari!%20Saya%20tertarik%20paket%20Toko%20Online%20(Rp%202,5jt)%20dari%20Google%20Ads" target="_blank" class="pricing-cta">Pilih Paket</a>
-      </div>
-
-      <div class="pricing-card fade-up">
-        <div class="pricing-name">Undangan Digital</div>
-        <div class="pricing-original" id="olUndangan">Rp 300.000</div>
-        <div class="pricing-price" id="pUndangan">Rp 150.000</div>
-        <div class="pricing-desc" id="dUndangan">25 template premium, RSVP online, music latar</div>
-        <a href="https://wa.me/62881080608167?text=Halo%20Sari!%20Saya%20tertarik%20paket%20Undangan%20Digital%20dari%20Google%20Ads" target="_blank" class="pricing-cta">Pilih Paket</a>
-      </div>
-
-      <div class="pricing-card fade-up fade-up-d1">
-        <div class="pricing-name">POS System</div>
-        <div class="pricing-original" id="olPos">Rp 5.000.000</div>
-        <div class="pricing-price" id="pPos">Rp 3.000.000</div>
-        <div class="pricing-desc" id="dPos">Stok barang, multi-kasir, laporan laba/rugi</div>
-        <a href="https://wa.me/62881080608167?text=Halo%20Sari!%20Saya%20tertarik%20paket%20POS%20System%20dari%20Google%20Ads" target="_blank" class="pricing-cta">Pilih Paket</a>
-      </div>
-
-      <div class="pricing-card fade-up fade-up-d2">
-        <div class="pricing-name">Web App Custom</div>
-        <div class="pricing-price" id="pCustom">Mulai Rp 5.000.000+</div>
-        <div class="pricing-desc" id="dCustom">Sistem sesuai kebutuhan — inventory, CRM, booking, dll</div>
-        <a href="https://wa.me/62881080608167?text=Halo%20Sari!%20Saya%20tertarik%20paket%20Web%20App%20Custom%20dari%20SuruhNgoding" target="_blank" class="pricing-cta">Konsultasi</a>
-      </div>
-    </div>
-
-    <div class="pricing-note fade-up">
-      Ada kebutuhan lain? <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20mau%20tanya%20soal%20project" target="_blank">Tanya aja langsung</a>, saya respon cepat kok.
-    </div>
+<!-- Produk -->
+<section class="section" id="produk" style="background:var(--surface)">
+  <div class="section-header fade-up">
+    <div class="section-label">Produk</div>
+    <h2 class="section-title">Pilihan Produk Kami</h2>
+    <p class="section-sub">Tiga produk unggulan yang siap membantu bisnis Anda berjalan lebih efisien.</p>
   </div>
-</section>
-
-<!-- ═══════════════ AI SECTION ═══════════════ -->
-<section class="section ai-section" id="ai">
-  <div class="container">
-    <div class="section-header fade-up">
-      <div class="section-label">AI WhatsApp</div>
-      <h2 class="section-title" id="aiTitle">Balas Chat Pelanggan Pake AI</h2>
-      <p class="section-sub" id="aiSub">Pelanggan chatting, AI jawab — lo tinggal pantau. 24 jam, gak libur, gak lembur.</p>
-    </div>
-
-    <div class="ai-benefits fade-up">
-      <div class="ai-benefit-card">
-        <span class="ai-benefit-icon">⏱️</span>
-        <div class="ai-benefit-title" id="aiBen1Title">Balas Cepat 24 Jam</div>
-        <p class="ai-benefit-desc" id="aiBen1Desc">Setiap chat langsung dibalas dalam hitungan detik. Gak ada lagi pelanggan nunggu berjam-jam.</p>
-      </div>
-      <div class="ai-benefit-card">
-        <span class="ai-benefit-icon">💬</span>
-        <div class="ai-benefit-title" id="aiBen2Title">Chat Seperti Admin Asli</div>
-        <p class="ai-benefit-desc" id="aiBen2Desc">Pelanggan gak bakal sadar mereka chat sama AI — responnya natural, ramah, dan personal.</p>
-      </div>
-      <div class="ai-benefit-card">
-        <span class="ai-benefit-icon">⏳</span>
-        <div class="ai-benefit-title" id="aiBen3Title">Hemat Waktu & Fokus</div>
-        <p class="ai-benefit-desc" id="aiBen3Desc">AI handle pertanyaan umum, kamu fokus ke bisnis utama.</p>
+  <div style="max-width:1200px;margin:0 auto;padding:0 24px;display:grid;gap:2rem">
+    <!-- SuruhLaundry -->
+    <div class="portfolio-card fade-up">
+      <div class="portfolio-card-img" style="background:linear-gradient(135deg,#E6FFFA,#F0FDF4);font-size:4rem">🧺</div>
+      <div class="portfolio-card-body">
+        <div class="portfolio-card-tag">Aplikasi Manajemen</div>
+        <div class="portfolio-card-title">SuruhLaundry</div>
+        <p class="portfolio-card-desc">Aplikasi manajemen laundry lengkap — manajemen order, billing, laporan keuangan, dan dashboard real-time. Tersedia untuk Android &amp; Windows.</p>
+        <span class="pricing-cta" style="margin-top:1rem;width:auto;display:inline-block;padding:0.5rem 1.5rem">Pelajari →</span>
       </div>
     </div>
-
-    <div class="ai-grid">
-      <div class="ai-steps">
-        <div class="ai-step fade-up">
-          <span class="ai-step-num">1</span>
-          <span class="ai-step-text" id="aiStep1">Hubungin nomor WhatsApp bisnis kamu</span>
-        </div>
-        <div class="ai-step fade-up fade-up-d1">
-          <span class="ai-step-num">2</span>
-          <span class="ai-step-text" id="aiStep2">Setel gaya chat sesuai bisnis kamu</span>
-        </div>
-        <div class="ai-step fade-up fade-up-d2">
-          <span class="ai-step-num">3</span>
-          <span class="ai-step-text" id="aiStep3">AI siap balas otomatis & natural</span>
-        </div>
-        <div class="ai-step fade-up fade-up-d3">
-          <span class="ai-step-num">4</span>
-          <span class="ai-step-text" id="aiStep4">Pantau chat & evaluasi dari dashboard</span>
-        </div>
-      </div>
-
-      <div class="ai-info fade-up fade-up-d1">
-        <p id="aiDesc1">AI ini dirancang biar pelanggan gak sadar lagi chatting sama AI. Responsif, ramah, natural — bukan robot kaku yang jawab "Baik, akan saya bantu."</p>
-        <p id="aiDesc2">Cocok buat bisnis yang sering kewalahan balas chat, atau lo yang mau tetap responsif meskipun lagi sibuk.</p>
-        <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20tertarik%20AI%20WhatsApp%20untuk%20bisnis%20saya" target="_blank" class="btn btn-accent">
-          <i class="fab fa-whatsapp"></i> <span id="aiCta">Konsultasi Gratis</span>
-        </a>
+    <!-- SuruhKelola -->
+    <div class="portfolio-card fade-up fade-up-d1" style="direction:rtl">
+      <div class="portfolio-card-img" style="background:linear-gradient(135deg,#FFF7ED,#FEF3C7);font-size:4rem">📊</div>
+      <div class="portfolio-card-body" style="direction:ltr">
+        <div class="portfolio-card-tag">SaaS Bisnis</div>
+        <div class="portfolio-card-title">SuruhKelola</div>
+        <p class="portfolio-card-desc">Platform manajemen bisnis all-in-one — stok, penjualan, keuangan, dan analitik. Cocok untuk UMKM yang ingin scaling.</p>
+        <span class="pricing-cta" style="margin-top:1rem;width:auto;display:inline-block;padding:0.5rem 1.5rem">Pelajari →</span>
       </div>
     </div>
-
-    <div class="ai-pricing-header fade-up">
-      <h3 class="ai-pricing-title" id="aiPricingTitle">Pilih Paket AI</h3>
-      <p class="section-sub" id="aiPricingSub">Mulai dari yang sederhana sampai yang paling pintar — ada semua.</p>
-    </div>
-
-    <div class="pricing-grid fade-up">
-      <div class="pricing-card">
-        <div class="pricing-name">Starter AI Reply</div>
-        <div class="pricing-price">Rp 1.500.000</div>
-        <div class="pricing-desc">Auto reply sederhana & cepat untuk UMKM</div>
-        <ul class="ai-feature-list">
-          <li>Auto reply WhatsApp otomatis</li>
-          <li>FAQ otomatis pertanyaan umum</li>
-          <li>Balasan 24 jam nonstop</li>
-          <li>Setup gaya chat sesuai bisnis</li>
-          <li>Cocok untuk UMKM & pemula</li>
-        </ul>
-        <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20tertarik%20paket%20Starter%20AI%20Reply" target="_blank" class="pricing-cta">Konsultasi Gratis</a>
-      </div>
-
-      <div class="pricing-card featured">
-        <div class="pricing-card-badge">Populer</div>
-        <div class="pricing-name">Smart AI CS</div>
-        <div class="pricing-price">Rp 3.500.000</div>
-        <div class="pricing-desc">AI yang lebih natural & paham konteks</div>
-        <ul class="ai-feature-list">
-          <li>Semua fitur Starter</li>
-          <li>Balasan lebih natural & kontekstual</li>
-          <li>Memahami pertanyaan customer</li>
-          <li>Follow up ringan otomatis</li>
-          <li>Custom gaya admin sesuai brand</li>
-          <li>Cocok untuk bisnis berkembang</li>
-        </ul>
-        <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20tertarik%20paket%20Smart%20AI%20CS" target="_blank" class="pricing-cta">Konsultasi Gratis</a>
-      </div>
-
-      <div class="pricing-card">
-        <div class="pricing-name">Advanced AI Assistant</div>
-        <div class="pricing-price">Rp 6.000.000</div>
-        <div class="pricing-desc">AI paling pintar untuk bisnis dengan chat tinggi</div>
-        <ul class="ai-feature-list">
-          <li>Semua fitur Smart</li>
-          <li>AI customer service lebih pintar</li>
-          <li>Multi kebutuhan balasan</li>
-          <li>Prompt custom sesuai bisnis</li>
-          <li>Respon fleksibel & natural</li>
-          <li>Maintenance & optimasi awal</li>
-        </ul>
-        <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20tertarik%20paket%20Advanced%20AI%20Assistant" target="_blank" class="pricing-cta">Konsultasi Gratis</a>
-      </div>
-    </div>
-
-    <div class="ai-note fade-up">
-      <p id="aiNote">💡 AI ini dirancang agar pelanggan tetap merasa seperti chatting dengan admin manusia. Responsif, ramah, dan natural — bukan robot kaku. Cocok untuk bisnis yang sering kewalahan membalas chat WhatsApp pelanggan, atau kamu yang ingin tetap responsif meskipun lagi sibuk.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════ CONTACT ═══════════════ -->
-<section class="section contact-section" id="contact">
-  <div class="container">
-    <div class="section-header fade-up">
-      <div class="section-label" style="color:var(--accent)">Kontak</div>
-      <h2 class="section-title" id="contactTitle">Diskusikan Project Kamu</h2>
-      <p class="section-sub" id="contactSub">Konsultasi Gratis dulu. Saya bantu tentukan konsep yang pas. Gak ada kewajiban lanjut.</p>
-    </div>
-
-    <div class="contact-grid">
-      <div class="contact-info fade-up">
-        <i class="fab fa-whatsapp" style="font-size:2rem;color:var(--accent);opacity:0.6;"></i>
-        <div class="wa-number">+62 881-0806-08167</div>
-        <p>Respon cepat, biasanya dalam 1 jam. Atau kirim pesan langsung:</p>
-        <a href="https://wa.me/62881080608167?text=Halo%20SuruhNgoding%2C%20saya%20ada%20pertanyaan%20soal%20website" target="_blank" class="btn btn-accent">
-          <i class="fab fa-whatsapp"></i> Chat WhatsApp
-        </a>
+    <!-- AI Chatbot -->
+    <div class="portfolio-card fade-up fade-up-d2">
+      <div class="portfolio-card-img" style="background:linear-gradient(135deg,#EDE9FE,#F3E8FF);font-size:4rem">🤖</div>
+      <div class="portfolio-card-body">
+        <div class="portfolio-card-tag">AI Automation</div>
+        <div class="portfolio-card-title">AI Chatbot &amp; Automation</div>
+        <p class="portfolio-card-desc">Chatbot WhatsApp &amp; website untuk customer service otomatis, penjadwalan, dan follow-up pelanggan 24/7.</p>
+        <span class="pricing-cta" style="margin-top:1rem;width:auto;display:inline-block;padding:0.5rem 1.5rem">Coba Demo →</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ FOOTER ═══════════════ -->
+<!-- Harga -->
+<section class="section" id="harga">
+  <div class="section-header fade-up">
+    <div class="section-label">Harga</div>
+    <h2 class="section-title">Pilihan Paket</h2>
+    <p class="section-sub">Harga terjangkau untuk setiap skala bisnis. Mulai dari yang gratis hingga enterprise.</p>
+  </div>
+  <div class="pricing-grid fade-up">
+    <div class="pricing-card">
+      <div class="pricing-name">Starter</div>
+      <div class="pricing-price">Gratis</div>
+      <p class="pricing-desc">Coba dulu tanpa risiko. Akses fitur dasar untuk eksplorasi.</p>
+      <ul class="ai-feature-list">
+        <li>1 project active</li>
+        <li>Basic template</li>
+        <li>Community support</li>
+        <li>Update standar</li>
+      </ul>
+      <a href="#kontak" class="pricing-cta">Mulai Gratis</a>
+    </div>
+    <div class="pricing-card featured">
+      <div class="pricing-card-badge">Terpopuler</div>
+      <div class="pricing-name">Bisnis</div>
+      <div class="pricing-price">Rp149rb <span class="pricing-original">Rp299rb</span></div>
+      <p class="pricing-desc">Paket lengkap untuk bisnis yang ingin serius go digital.</p>
+      <ul class="ai-feature-list">
+        <li>Semua fitur Starter</li>
+        <li>Custom domain</li>
+        <li>AI Chatbot basic</li>
+        <li>Priority support</li>
+        <li>Full analytics</li>
+      </ul>
+      <a href="#kontak" class="pricing-cta">Pilih Paket</a>
+    </div>
+    <div class="pricing-card pricing-enterprise">
+      <div class="pricing-card-badge">Enterprise</div>
+      <div class="pricing-name">Enterprise</div>
+      <div class="pricing-price">Custom</div>
+      <p class="pricing-desc">Solusi khusus untuk kebutuhan bisnis skala besar.</p>
+      <ul class="ai-feature-list">
+        <li>Semua fitur Bisnis</li>
+        <li>White label</li>
+        <li>AI Chatbot advanced</li>
+        <li>API integration</li>
+        <li>Dedicated support</li>
+      </ul>
+      <a href="#kontak" class="pricing-cta">Hubungi Kami</a>
+    </div>
+  </div>
+</section>
+
+<!-- Testimoni -->
+<section class="section" id="testimoni" style="background:var(--surface)">
+  <div class="section-header fade-up">
+    <div class="section-label">Testimoni</div>
+    <h2 class="section-title">Apa Kata Klien Kami</h2>
+    <p class="section-sub">Mereka sudah merasakan manfaatnya. Sekarang giliran Anda.</p>
+  </div>
+  <div class="testimoni-grid fade-up">
+    <div class="testimoni-card">
+      <p style="color:#F59E0B;margin-bottom:12px">⭐⭐⭐⭐⭐</p>
+      <blockquote>"Aplikasi SuruhLaundry benar-benar membantu operasional laundry saya. Sekarang semua terkelola rapi dari satu dashboard."</blockquote>
+      <div class="testimoni-author">
+        <div class="testimoni-avatar" style="background:linear-gradient(135deg,#2563EB,#06B6D4)">A</div>
+        <div><h5>Andi Pratama</h5><span>Pemilik Laundry Bersih</span></div>
+      </div>
+    </div>
+    <div class="testimoni-card fade-up-d1">
+      <p style="color:#F59E0B;margin-bottom:12px">⭐⭐⭐⭐⭐</p>
+      <blockquote>"SuruhKelola bikin manajemen stok dan penjualan jadi jauh lebih mudah. Dashboardnya lengkap banget."</blockquote>
+      <div class="testimoni-author">
+        <div class="testimoni-avatar" style="background:linear-gradient(135deg,#10B981,#06B6D4)">S</div>
+        <div><h5>Siti Rahmawati</h5><span>Owner Toko Makmur</span></div>
+      </div>
+    </div>
+    <div class="testimoni-card fade-up-d2">
+      <p style="color:#F59E0B;margin-bottom:12px">⭐⭐⭐⭐⭐</p>
+      <blockquote>"Chatbot AI-nya keren banget! Pelanggan bisa tanya-tanya 24/7 tanpa harus nunggu admin."</blockquote>
+      <div class="testimoni-author">
+        <div class="testimoni-avatar" style="background:linear-gradient(135deg,#8B5CF6,#6366F1)">D</div>
+        <div><h5>Dwi Cahyono</h5><span>Founder StartupKita</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Kontak -->
+<section class="section contact-section" id="kontak">
+  <div class="section-header fade-up">
+    <h2 class="section-title">Mulai Transformasi Digital Anda</h2>
+    <p class="section-sub">Konsultasi gratis — ceritakan kebutuhan bisnis Anda, kami bantu wujudkan.</p>
+  </div>
+  <div class="fade-up">
+    <div class="contact-info">
+      <p style="font-size:1.1rem">Hubungi kami langsung via WhatsApp</p>
+      <div class="wa-number">+62 812-3456-7890</div>
+      <a href="https://wa.me/6281234567890" class="btn btn-accent" target="_blank" style="margin-top:8px">Chat WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
 <footer class="footer">
-  <p id="footerRights">Hak Cipta &copy; 2026 SuruhNgoding. Dibikin dengan <i class="fas fa-heart" style="color:var(--accent)"></i> di Indonesia.</p>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">Suruh<span>Ngoding</span></div>
+      <p>Platform digital yang membantu bisnis Indonesia tumbuh dengan teknologi terjangkau. Website, aplikasi, AI chatbot — semua dalam satu ekosistem.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h5>Produk</h5>
+        <a href="#">SuruhLaundry</a>
+        <a href="#">SuruhKelola</a>
+        <a href="#">AI Chatbot</a>
+      </div>
+      <div class="footer-col">
+        <h5>Perusahaan</h5>
+        <a href="#tentang">Tentang</a>
+        <a href="#kontak">Kontak</a>
+        <a href="#">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h5>Dukungan</h5>
+        <a href="#">FAQ</a>
+        <a href="#">Dokumentasi</a>
+        <a href="#">Status</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 SuruhNgoding. All rights reserved.</p>
+  </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script>
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.style.animationPlayState = 'running'; observer.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => { el.style.animationPlayState = 'paused'; observer.observe(el); });
+
+// FAQ toggle
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', function() { this.parentElement.classList.toggle('active'); });
+});
+</script>
+
 </body>
 </html>
