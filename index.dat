@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SuruhNgoding — Solusi Digital Terjangkau untuk Bisnis Anda</title>
+<meta name="description" content="Website Profesional, AI Chatbot, SuruhLaundry, dan SuruhKelola dalam satu ekosistem digital untuk membantu bisnis tumbuh lebih cepat.">
+<link rel="stylesheet" href="design-system.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="#" class="navbar-logo">
+      <span class="navbar-logo-text">Suruh<span>Ngoding</span></span>
+    </a>
+    <div class="navbar-links">
+      <a href="#layanan">Layanan</a>
+      <a href="#produk">Produk</a>
+      <a href="#harga">Harga</a>
+      <a href="#tentang">Tentang</a>
+      <a href="#kontak">Kontak</a>
+    </div>
+    <div class="navbar-actions">
+      <a href="#kontak" class="btn btn-accent" style="padding:0.55rem 1.25rem;font-size:0.85rem">Hubungi Kami</a>
+    </div>
+    <button class="mobile-toggle" onclick="document.getElementById('mobileMenu').classList.toggle('open')" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#layanan" onclick="closeMenu()">Layanan</a>
+  <a href="#produk" onclick="closeMenu()">Produk</a>
+  <a href="#harga" onclick="closeMenu()">Harga</a>
+  <a href="#tentang" onclick="closeMenu()">Tentang</a>
+  <a href="#kontak" onclick="closeMenu()">Kontak</a>
+  <a href="#kontak" class="btn btn-accent" style="text-align:center;margin-top:1rem" onclick="closeMenu()">Hubungi Kami</a>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-grid">
+    <div class="fade-up">
+      <div class="hero-badge"><span class="hero-badge-dot"></span> Platform Digital No.1 di Indonesia</div>
+      <h1>Solusi Digital <span class="highlight">Terjangkau</span> untuk Bisnis Anda</h1>
+      <p>Dari website profesional hingga AI chatbot — kami bantu bisnis Anda naik level dengan teknologi yang tepat, tanpa ribet.</p>
+      <div class="hero-actions">
+        <a href="#kontak" class="btn btn-primary">Konsultasi Gratis</a>
+        <a href="#produk" class="btn btn-outline">Lihat Produk</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="hero-stat-num">50+</div><div class="hero-stat-label">Klien Aktif</div></div>
+        <div><div class="hero-stat-num">3</div><div class="hero-stat-label">Produk Unggulan</div></div>
+        <div><div class="hero-stat-num">24/7</div><div class="hero-stat-label">Support</div></div>
+        <div><div class="hero-stat-num">100%</div><div class="hero-stat-label">Garansi Kepuasan</div></div>
+      </div>
+    </div>
+    <div class="hero-visual fade-up fade-up-d2">
+      <div class="hero-visual-card">
+        <div class="mockup-bar"><span class="mockup-dot" style="background:#EF6C00"></span><span class="mockup-dot" style="background:#1565C0"></span><span class="mockup-dot" style="background:#10B981"></span></div>
+        <div class="mockup-line w80"></div><div class="mockup-line w60"></div><div class="mockup-line w80"></div><div class="mockup-line w40"></div>
+        <div style="margin-top:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div><div class="mockup-line w80"></div><div class="mockup-line w60"></div></div>
+          <div><div class="mockup-line w80"></div><div class="mockup-line w60"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Layanan -->
+<section class="section" id="layanan">
+  <div class="section-header fade-up">
+    <div class="section-label">Layanan</div>
+    <h2 class="section-title">Yang Kami Tawarkan</h2>
+    <p class="section-sub">Layanan lengkap untuk kebutuhan digital bisnis Anda — dari awal hingga scaling.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;max-width:1200px;margin:0 auto">
+    <div class="ai-benefit-card fade-up" style="border:1px solid var(--gray-200)">
+      <span class="ai-benefit-icon">🌐</span>
+      <div class="ai-benefit-title">Website Profesional</div>
+      <p class="ai-benefit-desc">Landing page, company profile, toko online — responsive, SEO-friendly, loading cepat.</p>
+    </div>
+    <div class="ai-benefit-card fade-up fade-up-d1" style="border:1px solid var(--gray-200)">
+      <span class="ai-benefit-icon">🤖</span>
+      <div class="ai-benefit-title">AI Chatbot</div>
+      <p class="ai-benefit-desc">Chatbot pintar untuk customer service 24/7, integrasi WhatsApp & website.</p>
+    </div>
+    <div class="ai-benefit-card fade-up fade-up-d2" style="border:1px solid var(--gray-200)">
+      <span class="ai-benefit-icon">📱</span>
+      <div class="ai-benefit-title">Aplikasi Mobile</div>
+      <p class="ai-benefit-desc">Aplikasi Android & iOS untuk manajemen bisnis — SuruhLaundry, SuruhKelola, dan custom apps.</p>
+    </div>
+    <div class="ai-benefit-card fade-up fade-up-d3" style="border:1px solid var(--gray-200)">
+      <span class="ai-benefit-icon">☁️</span>
+      <div class="ai-benefit-title">SaaS Platform</div>
+      <p class="ai-benefit-desc">Platform berbasis langganan dengan fitur lengkap — update otomatis, support 24/7.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Produk -->
+<section class="section" id="produk" style="background:var(--gray-100)">
+  <div class="section-header fade-up">
+    <div class="section-label">Produk</div>
+    <h2 class="section-title">Pilihan Produk Kami</h2>
+    <p class="section-sub">Tiga produk unggulan yang siap membantu bisnis Anda berjalan lebih efisien.</p>
+  </div>
+  <div style="max-width:1200px;margin:0 auto;display:grid;gap:2rem">
+    <!-- SuruhLaundry -->
+    <div class="portfolio-card fade-up" style="display:grid;grid-template-columns:1fr 1fr;gap:0" onclick="window.open('https:\/\/suruhlaundry.app','_blank')">
+      <div class="portfolio-card-img" style="background:linear-gradient(135deg,#E6FFFA,#F0FDF4);font-size:3rem">🧺</div>
+      <div class="portfolio-card-body" style="display:flex;flex-direction:column;justify-content:center">
+        <div class="portfolio-card-tag">Aplikasi Manajemen</div>
+        <div class="portfolio-card-title" style="font-size:1.3rem">SuruhLaundry</div>
+        <div class="portfolio-card-desc">Aplikasi manajemen laundry lengkap — manajemen order, billing, laporan keuangan, dan dashboard real-time. Tersedia untuk Android & Windows.</div>
+        <span class="pricing-cta" style="margin-top:1rem;width:auto;display:inline-block;padding:0.5rem 1.5rem">Pelajari →</span>
+      </div>
+    </div>
+    <!-- SuruhKelola -->
+    <div class="portfolio-card fade-up fade-up-d1" style="display:grid;grid-template-columns:1fr 1fr;gap:0;direction:rtl" onclick="window.open('https:\/\/suruhkelola.app','_blank')">
+      <div class="portfolio-card-img" style="background:linear-gradient(135deg,#FFF7ED,#FEF3C7);font-size:3rem">📊</div>
+      <div class="portfolio-card-body" style="display:flex;flex-direction:column;justify-content:center;direction:ltr">
+        <div class="portfolio-card-tag">SaaS Bisnis</div>
+        <div class="portfolio-card-title" style="font-size:1.3rem">SuruhKelola</div>
+        <div class="portfolio-card-desc">Platform manajemen bisnis all-in-one — stok, penjualan, keuangan, dan analitik. Cocok untuk UMKM yang ingin scaling.</div>
+        <span class="pricing-cta" style="margin-top:1rem;width:auto;display:inline-block;padding:0.5rem 1.5rem">Pelajari →</span>
+      </div>
+    </div>
+    <!-- AI Chatbot -->
+    <div class="portfolio-card fade-up fade-up-d2" style="display:grid;grid-template-columns:1fr 1fr;gap:0" onclick="window.open('https:\/\/wa.me/6281234567890','_blank')">
+      <div class="portfolio-card-img" style="background:linear-gradient(135deg,#EDE9FE,#F3E8FF);font-size:3rem">🤖</div>
+      <div class="portfolio-card-body" style="display:flex;flex-direction:column;justify-content:center">
+        <div class="portfolio-card-tag">AI Automation</div>
+        <div class="portfolio-card-title" style="font-size:1.3rem">AI Chatbot & Automation</div>
+        <div class="portfolio-card-desc">Chatbot WhatsApp & website untuk customer service otomatis, penjadwalan, dan follow-up pelanggan 24/7.</div>
+        <span class="pricing-cta" style="margin-top:1rem;width:auto;display:inline-block;padding:0.5rem 1.5rem">Coba Demo →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Harga -->
+<section class="section" id="harga">
+  <div class="section-header fade-up">
+    <div class="section-label">Harga</div>
+    <h2 class="section-title">Pilihan Paket</h2>
+    <p class="section-sub">Harga terjangkau untuk setiap skala bisnis. Mulai dari yang gratis hingga enterprise.</p>
+  </div>
+  <div class="pricing-grid fade-up">
+    <div class="pricing-card">
+      <div class="pricing-name">Starter</div>
+      <div class="pricing-price">Gratis</div>
+      <div class="pricing-desc">Coba dulu tanpa risiko. Akses fitur dasar untuk eksplorasi.</div>
+      <ul class="ai-feature-list">
+        <li>1 project active</li>
+        <li>Basic template</li>
+        <li>Community support</li>
+        <li>Update standar</li>
+      </ul>
+      <a href="#kontak" class="pricing-cta">Mulai Gratis</a>
+    </div>
+    <div class="pricing-card featured">
+      <div class="pricing-card-badge">Terpopuler</div>
+      <div class="pricing-name">Bisnis</div>
+      <div class="pricing-price">Rp149rb <span class="pricing-original">Rp299rb</span></div>
+      <div class="pricing-desc">Paket lengkap untuk bisnis yang ingin serius go digital.</div>
+      <ul class="ai-feature-list">
+        <li>Semua fitur Starter</li>
+        <li>Custom domain</li>
+        <li>AI Chatbot basic</li>
+        <li>Priority support</li>
+        <li>Full analytics</li>
+      </ul>
+      <a href="#kontak" class="pricing-cta">Pilih Paket</a>
+    </div>
+    <div class="pricing-card pricing-enterprise">
+      <div class="pricing-card-badge">Enterprise</div>
+      <div class="pricing-name">Enterprise</div>
+      <div class="pricing-price">Custom</div>
+      <div class="pricing-desc">Solusi khusus untuk kebutuhan bisnis skala besar.</div>
+      <ul class="ai-feature-list">
+        <li>Semua fitur Bisnis</li>
+        <li>White label</li>
+        <li>AI Chatbot advanced</li>
+        <li>API integration</li>
+        <li>Dedicated support</li>
+      </ul>
+      <a href="#kontak" class="pricing-cta">Hubungi Kami</a>
+    </div>
+  </div>
+</section>
+
+<!-- Kontak -->
+<section class="section contact-section" id="kontak">
+  <div class="section-header fade-up">
+    <h2 class="section-title" style="color:var(--white)">Mulai Transformasi Digital Anda</h2>
+    <p class="section-sub" style="color:rgba(255,255,255,0.55)">Konsultasi gratis — ceritakan kebutuhan bisnis Anda, kami bantu wujudkan.</p>
+  </div>
+  <div class="contact-grid fade-up">
+    <div class="contact-info">
+      <div style="font-size:3rem;margin-bottom:0.5rem">💬</div>
+      <p>Hubungi kami langsung via WhatsApp</p>
+      <div class="wa-number">+62 812-3456-7890</div>
+      <a href="https://wa.me/6281234567890" class="btn btn-accent" target="_blank">Chat WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">Suruh<span>Ngoding</span></div>
+      <p>Platform digital yang membantu bisnis Indonesia tumbuh dengan teknologi terjangkau. Website, aplikasi, AI chatbot — semua dalam satu ekosistem.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h5>Produk</h5>
+        <a href="#">SuruhLaundry</a>
+        <a href="#">SuruhKelola</a>
+        <a href="#">AI Chatbot</a>
+      </div>
+      <div class="footer-col">
+        <h5>Perusahaan</h5>
+        <a href="#tentang">Tentang</a>
+        <a href="#kontak">Kontak</a>
+        <a href="#">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h5>Dukungan</h5>
+        <a href="#">FAQ</a>
+        <a href="#">Dokumentasi</a>
+        <a href="#">Status</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 SuruhNgoding. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+// Navbar scroll effect
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Close mobile menu
+function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+// IntersectionObserver for fade-up animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.style.animationPlayState = 'running'; observer.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => { el.style.animationPlayState = 'paused'; observer.observe(el); });
+</script>
+
+</body>
+</html>
+

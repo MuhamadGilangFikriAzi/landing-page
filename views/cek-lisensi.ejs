@@ -1,0 +1,27 @@
+<div class="max-w-3xl mx-auto px-4 py-10">
+  <h1 class="text-3xl font-bold text-center mb-2">Cek Lisensi</h1>
+  <p class="text-gray-600 text-center mb-8">Masukkan license key untuk melihat status lisensi.</p>
+  <form method="GET" action="/cek-lisensi" class="flex gap-3 mb-8">
+    <input type="text" name="key" value="<%= locals.queryKey || '' %>" placeholder="SK-XXXX-XXXX-XXXX-XXXX" class="flex-1 px-4 py-3 border border-gray-300 rounded-xl font-mono uppercase">
+    <button type="submit" class="btn-primary"> Cek</button>
+  </form>
+  <% if (locals.license) { %>
+    <div class="card p-8">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-bold">Detail Lisensi</h2>
+        <span class="px-4 py-1.5 rounded-full text-sm font-bold bg-emerald-100 text-emerald-800"><%= license.status %></span>
+      </div>
+      <div class="space-y-3 text-sm">
+        <p><span class="text-gray-500">Key:</span> <span class="font-mono font-bold"><%= license.license_key %></span></p>
+        <p><span class="text-gray-500">Produk:</span> <%= license.app === 'suruhkelola' ? 'SuruhKelola' : 'SuruhLaundry' %></p>
+        <p><span class="text-gray-500">Paket:</span> <%= license.package.charAt(0).toUpperCase() + license.package.slice(1) %></p>
+        <p><span class="text-gray-500">Customer:</span> <%= license.customer_name %></p>
+        <p><span class="text-gray-500">Device:</span> <%= JSON.parse(license.activated_devices || '[]').length %> / <%= license.max_devices >= 99 ? 'Unlimited' : license.max_devices %></p>
+      </div>
+    </div>
+  <% } else if (locals.queryKey) { %>
+    <div class="card p-8 text-center">
+      <p class="text-gray-600">Lisensi <strong><%= queryKey %></strong> tidak ditemukan.</p>
+    </div>
+  <% } %>
+</div>

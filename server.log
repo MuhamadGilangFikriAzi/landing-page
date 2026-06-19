@@ -1,0 +1,7 @@
+🚀 SuruhNgoding Platform running on http://0.0.0.0:8090
+   Landing: http://localhost:8090/
+   Login:   http://localhost:8090/login
+   Register: http://localhost:8090/register
+   Admin:   http://localhost:8090/admin (admin@sistem.xyz / admin123)
+   Admin API Token: 76b62f69dd059c69...
+   Database: sqlite://data/suruhngoding.db

@@ -1,0 +1,17 @@
+﻿{
+    "version":  "1.0.0",
+    "name":  "suruhngoding-platform",
+    "description":  "SaaS Licensing Platform",
+    "scripts":  {
+                    "start":  "node server.js"
+                },
+    "dependencies":  {
+                         "connect-sqlite3":  "latest",
+                         "bcryptjs":  "latest",
+                         "better-sqlite3":  "latest",
+                         "express-session":  "latest",
+                         "express":  "latest",
+                         "ejs":  "latest"
+                     },
+    "main":  "server.js"
+}
